@@ -9,4 +9,7 @@ export class ApiFirmService {
     return 'salut';
   }
 
+    getMyServ(): void {
+    }
+
 }
