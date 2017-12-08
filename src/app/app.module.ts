@@ -3,11 +3,15 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { FilterComponent } from './filter/filter.component';
+import { EnterpriseComponent } from './enterprise/enterprise.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FilterComponent,
+    EnterpriseComponent
   ],
   imports: [
     BrowserModule
