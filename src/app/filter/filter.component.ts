@@ -21,13 +21,10 @@ export class FilterComponent implements OnInit {
             this.results = data['company'];
             this.loaded = true;
         });
-
-
         this.getList();
     }
 
     getList(): void {
         this.listTest = this.apiFirmService.list;
     }
-
 }
