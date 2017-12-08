@@ -9,6 +9,7 @@ import { TopNavbarComponent } from './top-navbar/top-navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ApiFirmService } from './api-firm.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     FilterComponent,
     EnterpriseComponent,
     TopNavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
