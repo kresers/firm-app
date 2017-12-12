@@ -1,7 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
 import { AppComponent } from './app.component';
 import { FilterComponent } from './filter/filter.component';
 import { EnterpriseComponent } from './enterprise/enterprise.component';
@@ -10,6 +8,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ApiFirmService } from './api-firm.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -22,7 +21,8 @@ import { NavbarComponent } from './navbar/navbar.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    DataTablesModule
   ],
   providers: [ApiFirmService],
   bootstrap: [AppComponent]
