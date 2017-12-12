@@ -1,5 +1,15 @@
 .custom-nav
 {
-    top:0;
-    background-color: ;
+    background-color: #e1e1e1;
+    margin-top: -20px;
+    width: 100%;
 }
+
+.widthNav
+{
+    width:50%;
+    margin: 0 auto;
+}
+
+
+
