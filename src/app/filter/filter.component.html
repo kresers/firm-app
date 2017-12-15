@@ -17,7 +17,8 @@
 <div class="widthFilter filter-yellow">
     <p class="title-filter">
         <span class="glyphicon glyphicon-book" aria-hidden="true"></span><span
-            class="glyphicon glyphicon-plus-sign pull-right badge-plus-yellow" aria-hidden="true"></span>
+            class="glyphicon glyphicon-plus-sign pull-right badge-plus-yellow" aria-hidden="true" data-toggle="modal"
+            data-target="#myModalCodePostal"></span>
         <b>Code postal</b></p>
     <ul>
         <li><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 95270<span
@@ -35,7 +36,8 @@
 <div class="widthFilter filter-green">
     <p class="title-filter">
         <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><span
-            class="glyphicon glyphicon-plus-sign pull-right badge-plus-green" aria-hidden="true"></span>
+            class="glyphicon glyphicon-plus-sign pull-right badge-plus-green" aria-hidden="true" data-toggle="modal"
+            data-target="#myModalDepartement"></span>
         <b>Département</b></p>
     <ul>
         <li><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Oise<span
@@ -67,3 +69,55 @@
         </div>
     </ul>
 </div>
+
+<!-- Button trigger modal -->
+<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">-->
+    <!--Launch demo modal-->
+<!--</button>-->
+
+<!-- Modal CODEPOSTAL-->
+<div class="modal fade" id="myModalCodePostal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">CODEPOSTAL</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Departement-->
+<div class="modal fade" id="myModalDepartement" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">DEPARTEMNT</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+</script>

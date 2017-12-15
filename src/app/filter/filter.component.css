@@ -93,6 +93,7 @@ li{
 .glyphicon-plus-sign
 {
     font-size: 135%;
+    cursor: pointer;
 }
 
 .reset
@@ -105,4 +106,5 @@ li{
 .reset:hover
 {
     color: #555555;
+    cursor: pointer;
 }
