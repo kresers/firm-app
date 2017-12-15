@@ -9,6 +9,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DataTablesModule } from 'angular-datatables';
 import { CarteComponent } from './carte/carte.component';
+import {RouterModule, Routes} from '@angular/router';
+
+const appRoutes: Routes = [
+    { path: '', component: EnterpriseComponent },
+    { path: 'carte', component: CarteComponent },
+];
 
 @NgModule({
   declarations: [
@@ -22,7 +28,11 @@ import { CarteComponent } from './carte/carte.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    DataTablesModule
+    DataTablesModule,
+      RouterModule.forRoot(
+          appRoutes,
+          { enableTracing: true }
+      )
   ],
   providers: [ApiFirmService],
   bootstrap: [AppComponent]
