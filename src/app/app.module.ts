@@ -11,6 +11,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { CarteComponent } from './carte/carte.component';
 import {RouterModule, Routes} from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
+import { ExportComponent } from './export/export.component';
 
 const appRoutes: Routes = [
     { path: '', component: EnterpriseComponent },
@@ -24,7 +25,8 @@ const appRoutes: Routes = [
     EnterpriseComponent,
     TopNavbarComponent,
     NavbarComponent,
-    CarteComponent
+    CarteComponent,
+    ExportComponent
   ],
   imports: [
     BrowserModule,
