@@ -76,6 +76,15 @@
     padding-left: 20px;
 }
 
+.smalltext
+{
+    font-size: 80%;
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #656565;
+}
+
 ul{
     list-style:none;
 }
@@ -92,7 +101,7 @@ li{
 
 .glyphicon-plus-sign
 {
-    font-size: 135%;
+    font-size: 150%;
     cursor: pointer;
 }
 
@@ -114,3 +123,5 @@ li{
     color: #555555;
     cursor: pointer;
 }
+
+
