@@ -8,6 +8,7 @@ import { ApiFirmService } from './api-firm.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DataTablesModule } from 'angular-datatables';
+import { CarteComponent } from './carte/carte.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { DataTablesModule } from 'angular-datatables';
     FilterComponent,
     EnterpriseComponent,
     TopNavbarComponent,
-    NavbarComponent
+    NavbarComponent,
+    CarteComponent
   ],
   imports: [
     BrowserModule,
