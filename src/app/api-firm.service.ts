@@ -17,6 +17,6 @@ export class ApiFirmService {
 
     getAllEnterprises(): Observable<Object> {
 
-        return this.http.get('https://firmapi.com/api/v1/companies');
+        return this.http.get('https://firmapi.com/api/v1/companies?limit=1000');
     }
 }
