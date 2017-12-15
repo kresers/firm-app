@@ -19,7 +19,10 @@ export class EnterpriseComponent implements OnInit {
   ngOnInit(): void {
       this.dtOptions = {
           pagingType: 'full_numbers',
-          pageLength: 10
+          pageLength: 50,
+          autoWidth: true,
+          paging: false,
+          searching: false
       };
     this.fetchEnterprises();
   }

@@ -1,0 +1,34 @@
+.main-datatable
+{
+    margin-top: 2%;
+}
+
+.borderless td, .borderless th {
+    border: none;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    -o-text-overflow: ellipsis;
+    max-width: 150px;
+}
+
+.headercolor
+{
+    background-color: #eaebef;
+    color: #31312f;
+}
+
+.table.dataTable thead .sorting:after
+{
+    display:none;
+}
+
+.table.dataTable thead .sorting_asc:after
+{
+    display: none;
+}
+
+.table.dataTable thead .sorting_desc:after
+{
+    display: none;
+}
