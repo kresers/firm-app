@@ -10,6 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { DataTablesModule } from 'angular-datatables';
 import { CarteComponent } from './carte/carte.component';
 import {RouterModule, Routes} from '@angular/router';
+import { AgmCoreModule } from '@agm/core';
 
 const appRoutes: Routes = [
     { path: '', component: EnterpriseComponent },
@@ -32,7 +33,10 @@ const appRoutes: Routes = [
       RouterModule.forRoot(
           appRoutes,
           { enableTracing: true }
-      )
+      ),
+      AgmCoreModule.forRoot({
+          apiKey: 'AIzaSyCZ2D_Hz-63OIhvKl1TbjxToKLJ98jgXbU'
+      })
   ],
   providers: [ApiFirmService],
   bootstrap: [AppComponent]
