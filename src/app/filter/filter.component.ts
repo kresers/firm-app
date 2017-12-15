@@ -8,9 +8,11 @@ import {HttpClient} from '@angular/common/http';
     styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
+    zipCode = [];
     results: string[];
     loaded = false;
     listTest = [];
+    displayZipCodeForm = false;
 
     constructor(private  http: HttpClient, private apiFirmService: ApiFirmService) {
     }
@@ -26,5 +28,22 @@ export class FilterComponent implements OnInit {
 
     getList(): void {
         this.listTest = this.apiFirmService.list;
+    }
+
+    addZipCode(code: string): void {
+        this.zipCode.push(code);
+    }
+
+    deleteZipCode(idCode): void {
+        console.log(idCode);
+        this.zipCode.splice(idCode,1);
+    }
+
+    onSelect(): void {
+        if (this.displayZipCodeForm) {
+            this.displayZipCodeForm = false;
+        }else {
+            this.displayZipCodeForm = true;
+        }
     }
 }

@@ -16,20 +16,28 @@
 
 <div class="widthFilter filter-yellow">
     <p class="title-filter">
-        <span class="glyphicon glyphicon-book" aria-hidden="true"></span><span
-            class="glyphicon glyphicon-plus-sign pull-right badge-plus-yellow" aria-hidden="true" data-toggle="modal"
-            data-target="#myModalCodePostal"></span>
+        <span class="glyphicon glyphicon-book" aria-hidden="true"></span><span *ngIf="displayZipCodeForm == false" (click)="onSelect()"
+                                                                               class="glyphicon glyphicon-plus-sign pull-right badge-plus-yellow"
+                                                                               aria-hidden="true" data-toggle="modal"
+                                                                               data-target="#myModalCodePostal"></span>
+        <span *ngIf="displayZipCodeForm" (click)="onSelect()"
+              class="glyphicon glyphicon-minus-sign pull-right badge-plus-yellow"
+              aria-hidden="true" data-toggle="modal"
+              data-target="#myModalCodePostal"></span>
         <b>Code postal</b></p>
+    <div *ngIf="displayZipCodeForm"  class="col-md-12">
+        <div class="col-md-11 space">
+            <input class="form-control widthForm pull-right" #zc placeholder="Code postal">
+        </div>
+        <div class="col-md-1">
+            <button class="special-btn-orange btn btn-primary pull-right leftFloat" (click)="addZipCode(zc.value);">Ajouter</button>
+        </div>
+
+    </div>
     <ul>
-        <li><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 95270<span
+        <li *ngFor="let value of zipCode; let i = index"><span (click)="deleteZipCode(index)" class="glyphicon glyphicon-remove" aria-hidden="true"></span> {{ value }}<span
                 class="badge badge-default badge-yellow
  pull-right ">14</span></li>
-        <li><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 95150<span
-                class="badge badge-default badge-yellow
- pull-right ">965</span></li>
-        <li><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 60000<span
-                class="badge badge-default badge-yellow
- pull-right ">263</span></li>
     </ul>
 </div>
 
@@ -72,9 +80,8 @@
 
 <!-- Button trigger modal -->
 <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">-->
-    <!--Launch demo modal-->
+<!--Launch demo modal-->
 <!--</button>-->
-
 
 
 <script>
