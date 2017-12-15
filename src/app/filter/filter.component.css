@@ -108,3 +108,9 @@ li{
     color: #555555;
     cursor: pointer;
 }
+
+.glyphicon-remove:hover
+{
+    color: #555555;
+    cursor: pointer;
+}
