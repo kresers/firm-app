@@ -16,7 +16,7 @@ import { ExportComponent } from './export/export.component';
 const appRoutes: Routes = [
     { path: '', component: EnterpriseComponent },
     { path: 'carte', component: MapComponent },
-    {path: 'export', component: ExportComponent },
+    { path: 'export', component: ExportComponent },
 ];
 
 @NgModule({
