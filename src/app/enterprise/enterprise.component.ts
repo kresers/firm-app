@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiFirmService} from '../api-firm.service';
+import {Enterprise} from '../model/enterprise';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-enterprise',
@@ -7,22 +10,27 @@ import {ApiFirmService} from '../api-firm.service';
   styleUrls: ['./enterprise.component.css']
 })
 export class EnterpriseComponent implements OnInit {
-    results: string[];
-    loaded = false;
-    listEnterprise = [];
+    dtOptions: DataTables.Settings = {};
+    listEnterprises = [];
+    dtTrigger: Subject<any> = new Subject();
 
   constructor(private apiFirmService: ApiFirmService) { }
 
   ngOnInit(): void {
+      this.dtOptions = {
+          pagingType: 'full_numbers',
+          pageLength: 2
+      };
     this.fetchEnterprises();
   }
 
   fetchEnterprises() {
     this.apiFirmService.getAllEnterprises().subscribe(data => {
         // Read the result field from the JSON response.
-        this.listEnterprise = data['companies'];
-        console.log(this.listEnterprise);
-        this.loaded = true;
+        this.listEnterprises = data['companies'];
+
+        this.dtTrigger.next();
+        console.log(this.listEnterprises);
     })
   }
 }
