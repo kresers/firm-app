@@ -8,6 +8,13 @@ import { ApiFirmService } from './api-firm.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DataTablesModule } from 'angular-datatables';
+import { CarteComponent } from './carte/carte.component';
+import {RouterModule, Routes} from '@angular/router';
+
+const appRoutes: Routes = [
+    { path: '', component: EnterpriseComponent },
+    { path: 'carte', component: CarteComponent },
+];
 
 @NgModule({
   declarations: [
@@ -15,12 +22,17 @@ import { DataTablesModule } from 'angular-datatables';
     FilterComponent,
     EnterpriseComponent,
     TopNavbarComponent,
-    NavbarComponent
+    NavbarComponent,
+    CarteComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    DataTablesModule
+    DataTablesModule,
+      RouterModule.forRoot(
+          appRoutes,
+          { enableTracing: true }
+      )
   ],
   providers: [ApiFirmService],
   bootstrap: [AppComponent]
