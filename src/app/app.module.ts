@@ -8,14 +8,15 @@ import { ApiFirmService } from './api-firm.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DataTablesModule } from 'angular-datatables';
-import { CarteComponent } from './carte/carte.component';
+import { MapComponent } from './map/map.component';
 import {RouterModule, Routes} from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
 import { ExportComponent } from './export/export.component';
 
 const appRoutes: Routes = [
     { path: '', component: EnterpriseComponent },
-    { path: 'carte', component: CarteComponent },
+    { path: 'carte', component: MapComponent },
+    {path: 'export', component: ExportComponent },
 ];
 
 @NgModule({
@@ -25,7 +26,7 @@ const appRoutes: Routes = [
     EnterpriseComponent,
     TopNavbarComponent,
     NavbarComponent,
-    CarteComponent,
+    MapComponent,
     ExportComponent
   ],
   imports: [
