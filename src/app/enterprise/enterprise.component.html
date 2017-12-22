@@ -3,30 +3,17 @@
            class="table table-striped borderless table-hover ">
         <thead>
         <tr class="headercolor">
-            <th></th>
             <th> Siren</th>
-            <th> Nom </th>
-            <th> Forme Juridique </th>
             <th> Adresse</th>
             <th> Code postal</th>
             <th> Ville </th>
             <th> Année de création </th>
-            <th> Capital (€)</th>
         </tr>
         </thead>
         <tbody class="text-uppercase">
             <tr *ngFor="let Enterprise of listEnterprises">
                 <td>
-                    {{ Enterprise.id }}
-                </td>
-                <td>
                     {{ Enterprise.siren}}
-                </td>
-                <td>
-                    {{ Enterprise.names.best }}
-                </td>
-                <td>
-                    {{Enterprise.legal_form}}
                 </td>
                 <td>
                     {{ Enterprise.address}}
@@ -39,9 +26,6 @@
                 </td>
                 <td>
                     {{Enterprise.established_on}}
-                </td>
-                <td>
-                    {{Enterprise.capital}}
                 </td>
             </tr>
         </tbody>
