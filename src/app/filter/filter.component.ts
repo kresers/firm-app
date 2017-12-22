@@ -19,16 +19,10 @@ export class FilterComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.http.get('https://firmapi.com/api/v1/companies/803417153').subscribe(data => {
-            // Read the result field from the JSON response.
-            this.results = data['company'];
-            this.loaded = true;
-        });
-        this.getList();
     }
 
     getList(): void {
-        this.listTest = this.apiFirmService.list;
+        this.listTest = this.apiFirmService.listEnterprise;
     }
 
     addZipCode(code: string): void {

@@ -6,26 +6,15 @@ import {forEach} from '@angular/router/src/utils/collection';
 @Injectable()
 export class ApiFirmService {
 
-    zipCodes: '';
-    parameters: '';
-    listOutputZipCode;
-
-    constructor(private http: HttpClient) {
-    }
-
-    list = ['yo', 'ya', 'yi'];
-    listEnterprise = [];
-
-    static test() {
-        return 'salut';
-    }
+  constructor(private http: HttpClient) { }
+  listEnterprise = [];
 
     getMyServ(): void {
     }
 
     getAllEnterprises(): Observable<Object> {
 
-        return this.http.get('https://firmapi.com/api/v1/companies?limit=1000');
+      return this.http.get('https://data.opendatasoft.com/api/records/1.0/search/?dataset=base-sirene%40datanova&rows=1000&start=50');
     }
 
     getEnterpriseByParameters(listZipCode): Observable<Object> {
