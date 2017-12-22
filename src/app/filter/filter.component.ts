@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ApiFirmService} from '../api-firm.service';
 import {HttpClient} from '@angular/common/http';
 
@@ -8,7 +8,8 @@ import {HttpClient} from '@angular/common/http';
     styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
-    zipCode = [];
+    zipCode = [] ;
+    @Output() outputListZipCode = new EventEmitter<{}>();
     results: string[];
     loaded = false;
     listTest = [];
@@ -32,18 +33,23 @@ export class FilterComponent implements OnInit {
 
     addZipCode(code: string): void {
         this.zipCode.push(code);
+        this.updateParentZipCodes();
     }
 
     deleteZipCode(idCode): void {
         console.log(idCode);
-        this.zipCode.splice(idCode,1);
+        this.zipCode.splice(idCode, 1);
     }
 
     onSelect(): void {
         if (this.displayZipCodeForm) {
             this.displayZipCodeForm = false;
-        }else {
+        } else {
             this.displayZipCodeForm = true;
         }
+    }
+
+    updateParentZipCodes() {
+        this.outputListZipCode.emit(this.zipCode);
     }
 }

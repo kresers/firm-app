@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {FilterLinkService} from './filter-link.service';
 
 @Component({
     selector: 'app-root',
@@ -7,7 +8,20 @@ import {Component} from '@angular/core';
 })
 
 export class AppComponent {
+    constructor(private filterLinkService: FilterLinkService) {
+
+    }
+
     title = 'app';
     lat = 43;
     lng = 5;
+    generalListZipCode = [];
+
+
+    outputListZipCode(listZipCodes) {
+        console.log(listZipCodes);
+       // this.generalListZipCode = listZipCodes; // récupère la list des zipcode défini dans filter component
+        this.filterLinkService.LoadZipCodes(listZipCodes);
+    }
+
 }
