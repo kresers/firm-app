@@ -35,9 +35,9 @@ export class EnterpriseComponent implements OnInit {
     this.apiFirmService.getAllEnterprises().subscribe(data => {
         data['records'].forEach((value)=>{
             const enterprise = new Enterprise(value.fields.siren,value.fields.l1_normalisee, value.fields.codpos,value.fields.libcom,value.fields.dcren);
-
             this.listEnterprises.push(enterprise);
         });
+        this.dtTrigger.next();
     });
   }
 
