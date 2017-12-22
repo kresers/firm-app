@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiFirmService} from '../api-firm.service';
 import { Angular2Csv } from 'angular2-csv/Angular2-csv';
-import {Enterprise} from "../model/enterprise";
 
 @Component({
   selector: 'app-export',
@@ -10,7 +9,29 @@ import {Enterprise} from "../model/enterprise";
 })
 export class ExportComponent implements OnInit {
 
-    listEnterprises = [];
+    listEnterprises = [
+        {
+            name: "Test 1",
+            age: 13,
+            average: 8.2,
+            approved: true,
+            description: "using 'Content here, content here' "
+        },
+        {
+            name: 'Test 2',
+            age: 11,
+            average: 8.2,
+            approved: true,
+            description: "using 'Content here, content here' "
+        },
+        {
+            name: 'Test 4',
+            age: 10,
+            average: 8.2,
+            approved: true,
+            description: "using 'Content here, content here' "
+        },
+    ];
 
 
   constructor(private apiFirmService: ApiFirmService) { }
@@ -19,21 +40,15 @@ export class ExportComponent implements OnInit {
   }
 
   downloadCsv (){
-      const options = {
-          fieldSeparator: ';',
+      var options = {
+          fieldSeparator: ',',
           quoteStrings: '"',
           decimalseparator: '.',
           showLabels: true,
           showTitle: true,
           useBom: true
       };
-
-      this.apiFirmService.getAllEnterprises().subscribe(data => {
-          data['records'].forEach((value)=>{
-              const enterprise = new Enterprise(value.fields.siren,value.fields.l1_normalisee, value.fields.codpos,value.fields.libcom,value.fields.dcren);
-              this.listEnterprises.push(enterprise);
-          });
-          new Angular2Csv(this.listEnterprises, 'nom du fichier', options);
-      });
+      new Angular2Csv(this.listEnterprises, 'nom du fichier', options);
     }
+
 }
