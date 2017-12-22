@@ -48,6 +48,17 @@
     color: #9acb00;
 }
 
+
+.badge-blue
+{
+    background-color: #1ba0e5;
+}
+
+.badge-plus-blue:hover
+{
+    color:#1ba0e5;
+}
+
 .filter-blue
 {
     border-left: solid 5px;
@@ -59,6 +70,8 @@
     border-left: solid 5px;
     border-color:#6534cc;
 }
+
+
 
 .title-filter
 {
@@ -141,6 +154,18 @@ li{
 {
     border-radius: 0px 50px 50px 0px;
     background-color: #ff9800 ;
+    border-color: lightgray;
+}
+
+.special-btn-green{
+    background-color: #9acb00;
+    border-radius: 0px 50px 50px 0px;
+    border-color: lightgray;
+}
+
+.special-btn-blue{
+    background-color: #1ba0e5;
+    border-radius: 0px 50px 50px 0px;
     border-color: lightgray;
 }
 
