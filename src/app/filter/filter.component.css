@@ -49,6 +49,66 @@
 }
 
 
+.filter-light-purple
+{
+    border-left: solid 5px;
+    border-color:#a83acd;
+}
+
+.badge-light-purple
+{
+    background-color: #a83acd;
+}
+
+.badge-plus-light-purple:hover
+{
+    color: #a83acd;
+}
+
+.filter-pink
+ {
+     border-left: solid 5px;
+     border-color:#cb308b;
+ }
+
+.badge-pink
+{
+    background-color: #cb308b;
+}
+
+.badge-plus-pink:hover
+{
+    color: #cb308b;
+}
+
+.filter-red
+{
+    border-left: solid 5px;
+    border-color: #d10000;
+}
+
+.badge-red
+{
+    background-color: #d10000;
+}
+
+.badge-plus-red:hover
+{
+    color: #d10000;
+}
+
+
+
+.badge-purple
+{
+    background-color: #6534cc;
+}
+
+.badge-plus-purple:hover
+{
+    color: #6534cc;
+}
+
 .badge-blue
 {
     background-color: #1ba0e5;
@@ -57,6 +117,16 @@
 .badge-plus-blue:hover
 {
     color:#1ba0e5;
+}
+
+.badge-dark-blue
+{
+    background-color: #3567ca;
+}
+
+.badge-plus-dark-blue:hover
+{
+    color:#3567ca;
 }
 
 .filter-blue
@@ -69,6 +139,12 @@
 {
     border-left: solid 5px;
     border-color:#6534cc;
+}
+
+.filter-dark-blue
+{
+    border-left: solid 5px;
+    border-color: #3567ca;
 }
 
 
@@ -157,6 +233,13 @@ li{
     border-color: lightgray;
 }
 
+.special-btn-dark-blue
+{
+    border-radius: 0px 50px 50px 0px;
+    background-color: #3567ca ;
+    border-color: lightgray;
+}
+
 .special-btn-green{
     background-color: #9acb00;
     border-radius: 0px 50px 50px 0px;
@@ -166,6 +249,34 @@ li{
 .special-btn-blue{
     background-color: #1ba0e5;
     border-radius: 0px 50px 50px 0px;
+    border-color: lightgray;
+}
+
+.special-btn-purple
+{
+    border-radius: 0px 50px 50px 0px;
+    background-color: #6534cc;
+    border-color: lightgray;
+}
+
+.special-btn-light-purple
+{
+    border-radius: 0px 50px 50px 0px;
+    background-color: #a83acd;
+    border-color: lightgray;
+}
+
+.special-btn-pink
+{
+    border-radius: 0px 50px 50px 0px;
+    background-color: #cb308b;
+    border-color: lightgray;
+}
+
+.special-btn-red
+{
+    border-radius: 0px 50px 50px 0px;
+    background-color: #d10000;
     border-color: lightgray;
 }
 
