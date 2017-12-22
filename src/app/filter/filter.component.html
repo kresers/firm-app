@@ -13,10 +13,373 @@
         <b>216</b> résultats</p>
 </div>
 
+<!--CODE APE-->
+<div class="widthFilter filter-yellow">
+    <p class="title-filter">
+        <span class="glyphicon glyphicon-object-align-vertical" aria-hidden="true"></span><span
+            *ngIf="displayCodeApeForm == false"
+            (click)="onSelectCodeApe()"
+            class="glyphicon glyphicon-plus-sign pull-right badge-plus-yellow"
+            aria-hidden="true" data-toggle="modal"
+            data-target="#myModalCodePostal"></span>
+        <span *ngIf="displayCodeApeForm" (click)="onSelectCodeApe()"
+              class="glyphicon glyphicon-minus-sign pull-right badge-plus-yellow"
+              aria-hidden="true" data-toggle="modal"
+              data-target="#myModalCodePostal"></span>
+        <b>Activité (code APE)</b></p>
+    <div *ngIf="displayCodeApeForm" class="col-md-12">
+        <div class="col-md-11 space">
+            <input class="form-control widthForm pull-right" #codeApe placeholder="Code APE">
+        </div>
+        <div class="col-md-1">
+            <button class="special-btn-orange btn btn-primary pull-right leftFloat"
+                    (click)="addCodeApe(codeApe.value);">
+                Ajouter
+            </button>
+        </div>
+    </div>
+    <ul>
+        <li *ngFor="let value of codeApe; let i = index"><span (click)="deleteCodeApe(index)"
+                                                               class="glyphicon glyphicon-remove"
+                                                               aria-hidden="true"></span> {{ value }}<span
+                class="badge badge-default badge-yellow
+ pull-right ">14</span></li>
+    </ul>
+    <div class="alert alert-danger" *ngIf="apeError">
+        <strong>Attention!</strong> Il y a une erreur.
+    </div>
+</div>
+<!--CATEGORIE ENTREPRISE Nom (identifiant)	categorie-->
+<div class="widthFilter filter-green">
+    <p class="title-filter">
+        <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span><span *ngIf="displayCategEnt == false"
+                                                                                       (click)="onSelectCategEnt()"
+                                                                                       class="glyphicon glyphicon-plus-sign pull-right badge-plus-green"
+                                                                                       aria-hidden="true"
+                                                                                       data-toggle="modal"
+                                                                                       data-target="#myModalCodePostal"></span>
+        <span *ngIf="displayCategEnt" (click)="onSelectCategEnt()"
+              class="glyphicon glyphicon-minus-sign pull-right badge-plus-green"
+              aria-hidden="true" data-toggle="modal"
+              data-target="#myModalCodePostal"></span>
+        <b>Catégorie d'entreprise</b></p>
+    <div *ngIf="displayCategEnt" class="col-md-12">
+        <div class="col-md-11 space">
+            <select class="form-control widthForm pull-right" #categ>
+                <option *ngFor="let value of categEntHard; let i = index"><span (click)="deleteCategEnt(index)"
+                                                                                class="glyphicon glyphicon-remove"
+                                                                                aria-hidden="true"></span> {{ value }}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-1">
+            <button class="special-btn-green btn btn-primary pull-right leftFloat" (click)="addCategEnt(categ.value);">
+                Ajouter
+            </button>
+        </div>
+    </div>
+    <ul>
+        <li *ngFor="let value of categEnt; let i = index"><span (click)="deleteCategEnt(index)"
+                                                                class="glyphicon glyphicon-remove"
+                                                                aria-hidden="true"></span> {{ value }}<span
+                class="badge badge-default badge-green
+ pull-right ">14</span></li>
+    </ul>
+    <div class="alert alert-danger" *ngIf="categError">
+        <strong>Attention!</strong> Cette catégorie existe déja.
+    </div>
+</div>
+<!--DEPARTEMENT -->
+<div class="widthFilter filter-blue">
+    <p class="title-filter">
+        <span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span><span
+            *ngIf="displayDepartementForm == false" (click)="onSelectDep()"
+            class="glyphicon glyphicon-plus-sign pull-right badge-plus-blue" aria-hidden="true" data-toggle="modal"
+            data-target="#myModalDepartement"></span>
+        <span
+                *ngIf="displayDepartementForm" (click)="onSelectDep()"
+                class="glyphicon glyphicon-minus-sign pull-right badge-plus-blue" aria-hidden="true"
+                data-toggle="modal"
+                data-target="#myModalDepartement"></span>
+        <b>Département</b></p>
+    <div *ngIf="displayDepartementForm" class="col-md-12">
+        <div class="col-md-11 space">
+            <input class="form-control widthForm pull-right" #dep placeholder="Departement">
+        </div>
+        <div class="col-md-1">
+            <button class="special-btn-blue btn btn-primary pull-right leftFloat" (click)="addDepartement(dep.value);">
+                Ajouter
+            </button>
+        </div>
+    </div>
+    <ul>
+        <li *ngFor="let value of departement; let i = index"><span (click)="deleteDepartement(index)"
+                                                                   class="glyphicon glyphicon-remove"
+                                                                   aria-hidden="true"></span> {{ value }}<span
+                class="badge badge-default badge-blue
+ pull-right ">14</span></li>
+    </ul>
+    <div class="alert alert-danger" *ngIf="depError">
+        <strong>Attention!</strong> Il y a une erreur.
+    </div>
+</div>
+<!--COMMUNE Nom (identifiant)	libcom-->
+<div class="widthFilter filter-dark-blue">
+    <p class="title-filter">
+        <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><span
+            *ngIf="displayCommuneForm == false"
+            (click)="onSelectCommune()"
+            class="glyphicon glyphicon-plus-sign pull-right badge-plus-dark-blue"
+            aria-hidden="true"
+            data-toggle="modal"
+            data-target="#myModalCodePostal"></span>
+        <span *ngIf="displayCommuneForm" (click)="onSelectCommune()"
+              class="glyphicon glyphicon-minus-sign pull-right badge-plus-dark-blue"
+              aria-hidden="true" data-toggle="modal"
+              data-target="#myModalCodePostal"></span>
+        <b>Commune</b></p>
+    <div *ngIf="displayCommuneForm" class="col-md-12">
+        <div class="col-md-11 space">
+            <select class="form-control widthForm pull-right" #commune>
+                <option *ngFor="let value of communeHard; let i = index"><span (click)="deleteCommune(index)"
+                                                                               class="glyphicon glyphicon-remove"
+                                                                               aria-hidden="true"></span> {{ value }}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-1">
+            <button class="special-btn-dark-blue btn btn-primary pull-right leftFloat"
+                    (click)="addCommune(commune.value);">
+                Ajouter
+            </button>
+        </div>
+    </div>
+    <ul>
+        <li *ngFor="let value of commune; let i = index"><span (click)="deleteCommune(index)"
+                                                                class="glyphicon glyphicon-remove"
+                                                                aria-hidden="true"></span> {{ value }}<span
+                class="badge badge-default badge-dark-blue
+ pull-right ">14</span></li>
+    </ul>
+    <div class="alert alert-danger" *ngIf="comError">
+        <strong>Attention!</strong> Cette commune existe déja.
+    </div>
+</div>
+<!--DATE DE CREATION Nom (identifiant)	amintret-->
+<div class="widthFilter filter-purple">
+    <p class="title-filter">
+        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><span
+            *ngIf="displayAnneeCreationForm == false"
+            (click)="onSelectAnneeCreation()"
+            class="glyphicon glyphicon-plus-sign pull-right badge-plus-purple"
+            aria-hidden="true"
+            data-toggle="modal"
+            data-target="#myModalCodePostal"></span>
+        <span *ngIf="displayAnneeCreationForm" (click)="onSelectAnneeCreation()"
+              class="glyphicon glyphicon-minus-sign pull-right badge-plus-purple"
+              aria-hidden="true" data-toggle="modal"
+              data-target="#myModalCodePostal"></span>
+        <b>Année de création</b></p>
+    <div *ngIf="displayAnneeCreationForm" class="col-md-12">
+        <div class="col-md-11 space">
+            <select class="form-control widthForm pull-right" #annee>
+                <option *ngFor="let value of anneeCreationHard; let i = index"><span (click)="deleteAnneeCreation(index)"
+                                                                               class="glyphicon glyphicon-remove"
+                                                                               aria-hidden="true"></span> {{ value }}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-1">
+            <button class="special-btn-purple btn btn-primary pull-right leftFloat"
+                    (click)="addAnneeCreation(annee.value);">
+                Ajouter
+            </button>
+        </div>
+    </div>
+    <ul>
+        <li *ngFor="let value of anneeCreation; let i = index"><span (click)="deleteAnneeCreation(index)"
+                                                               class="glyphicon glyphicon-remove"
+                                                               aria-hidden="true"></span> {{ value }}<span
+                class="badge badge-default badge-purple
+ pull-right ">14</span></li>
+    </ul>
+    <div class="alert alert-danger" *ngIf="anneeCreationError">
+        <strong>Attention!</strong> Il y a une erreur.
+    </div>
+</div>
+<!--STATUT JURIDIQUE Nom (identifiant)	nj-->
+<div class="widthFilter filter-light-purple">
+    <p class="title-filter">
+        <span class="glyphicon glyphicon-road" aria-hidden="true"></span><span
+            *ngIf="displayStatutForm == false"
+            (click)="onSelectStatut()"
+            class="glyphicon glyphicon-plus-sign pull-right badge-plus-light-purple"
+            aria-hidden="true"
+            data-toggle="modal"
+            data-target="#myModalCodePostal"></span>
+        <span *ngIf="displayStatutForm" (click)="onSelectStatut()"
+              class="glyphicon glyphicon-minus-sign pull-right badge-plus-light-purple"
+              aria-hidden="true" data-toggle="modal"
+              data-target="#myModalCodePostal"></span>
+        <b>Année de création</b></p>
+    <div *ngIf="displayStatutForm" class="col-md-12">
+        <div class="col-md-11 space">
+            <select class="form-control widthForm pull-right" #statut>
+                <option *ngFor="let value of statutHard; let i = index"><span (click)="deleteStatut(index)"
+                                                                                     class="glyphicon glyphicon-remove"
+                                                                                     aria-hidden="true"></span> {{ value }}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-1">
+            <button class="special-btn-light-purple btn btn-primary pull-right leftFloat"
+                    (click)="addStatut(statut.value);">
+                Ajouter
+            </button>
+        </div>
+    </div>
+    <ul>
+        <li *ngFor="let value of statut; let i = index"><span (click)="deleteStatut(index)"
+                                                                     class="glyphicon glyphicon-remove"
+                                                                     aria-hidden="true"></span> {{ value }}<span
+                class="badge badge-default badge-light-purple
+ pull-right ">14</span></li>
+    </ul>
+    <div class="alert alert-danger" *ngIf="statutError">
+        <strong>Attention!</strong> Il y a une erreur.
+    </div>
+</div>
+<!--EFFECTIFS Nom (identifiant)	tefen-->
+<div class="widthFilter filter-pink">
+    <p class="title-filter">
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span><span
+            *ngIf="displayEffectifsForm == false"
+            (click)="onSelectEffectifs()"
+            class="glyphicon glyphicon-plus-sign pull-right badge-plus-pink"
+            aria-hidden="true"
+            data-toggle="modal"
+            data-target="#myModalCodePostal"></span>
+        <span *ngIf="displayEffectifsForm" (click)="onSelectEffectifs()"
+              class="glyphicon glyphicon-minus-sign pull-right badge-plus-pink"
+              aria-hidden="true" data-toggle="modal"
+              data-target="#myModalCodePostal"></span>
+        <b>Effectifs</b></p>
+    <div *ngIf="displayEffectifsForm" class="col-md-12">
+        <div class="col-md-11 space">
+            <select class="form-control widthForm pull-right" #effectifs>
+                <option *ngFor="let value of effectifsHard; let i = index"><span (click)="deleteEffectifs(index)"
+                                                                                 class="glyphicon glyphicon-remove"
+                                                                                 aria-hidden="true"></span> {{ value }}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-1">
+            <button class="special-btn-pink btn btn-primary pull-right leftFloat"
+                    (click)="addEffectifs(effectifs.value);">
+                Ajouter
+            </button>
+        </div>
+    </div>
+    <ul>
+        <li *ngFor="let value of effectifs; let i = index"><span (click)="deleteStatut(index)"
+                                                                 class="glyphicon glyphicon-remove"
+                                                                 aria-hidden="true"></span> {{ value }}<span
+                class="badge badge-default badge-pink
+ pull-right ">14</span></li>
+    </ul>
+    <div class="alert alert-danger" *ngIf="effectifsError">
+        <strong>Attention!</strong> Il y a une erreur.
+    </div>
+</div>
+<!--CHIFFRE D'AFFAIRE Nom (identifiant)	tca-->
+<div class="widthFilter filter-red">
+    <p class="title-filter">
+        <span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span><span
+            *ngIf="displayCaForm == false"
+            (click)="onSelectCa()"
+            class="glyphicon glyphicon-plus-sign pull-right badge-plus-red"
+            aria-hidden="true"
+            data-toggle="modal"
+            data-target="#myModalCodePostal"></span>
+        <span *ngIf="displayCaForm" (click)="onSelectCa()"
+              class="glyphicon glyphicon-minus-sign pull-right badge-plus-pink"
+              aria-hidden="true" data-toggle="modal"
+              data-target="#myModalCodePostal"></span>
+        <b>Chiffre d'Affaires</b></p>
+    <div *ngIf="displayCaForm" class="col-md-12">
+        <div class="col-md-11 space">
+            <select class="form-control widthForm pull-right" #ca>
+                <option *ngFor="let value of caHard; let i = index"><span (click)="deleteCa(index)"
+                                                                                 class="glyphicon glyphicon-remove"
+                                                                                 aria-hidden="true"></span> {{ value }}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-1">
+            <button class="special-btn-red btn btn-primary pull-right leftFloat"
+                    (click)="addCa(ca.value);">
+                Ajouter
+            </button>
+        </div>
+    </div>
+    <ul>
+        <li *ngFor="let value of ca; let i = index"><span (click)="deleteCa(index)"
+                                                                 class="glyphicon glyphicon-remove"
+                                                                 aria-hidden="true"></span> {{ value }}<span
+                class="badge badge-default badge-red
+ pull-right ">14</span></li>
+    </ul>
+    <div class="alert alert-danger" *ngIf="caError">
+        <strong>Attention!</strong> Il y a une erreur.
+    </div>
+</div>
+<!--REGION Nom (identifiant)	libreg_new-->
+<div class="widthFilter filter-yellow">
+    <p class="title-filter">
+        <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><span
+            *ngIf="displayRegionForm == false"
+            (click)="onSelectRegion()"
+            class="glyphicon glyphicon-plus-sign pull-right badge-plus-yellow"
+            aria-hidden="true"
+            data-toggle="modal"
+            data-target="#myModalCodePostal"></span>
+        <span *ngIf="displayRegionForm" (click)="onSelectRegion()"
+              class="glyphicon glyphicon-minus-sign pull-right badge-plus-yellow"
+              aria-hidden="true" data-toggle="modal"
+              data-target="#myModalCodePostal"></span>
+        <b>Région</b></p>
+    <div *ngIf="displayRegionForm" class="col-md-12">
+        <div class="col-md-11 space">
+            <select class="form-control widthForm pull-right" #ca>
+                <option *ngFor="let value of regionHard; let i = index"><span (click)="deleteRegion(index)"
+                                                                          class="glyphicon glyphicon-remove"
+                                                                          aria-hidden="true"></span> {{ value }}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-1">
+            <button class="special-btn-orange btn btn-primary pull-right leftFloat"
+                    (click)="addRegion(ca.value);">
+                Ajouter
+            </button>
+        </div>
+    </div>
+    <ul>
+        <li *ngFor="let value of region; let i = index"><span (click)="deleteRegion(index)"
+                                                          class="glyphicon glyphicon-remove"
+                                                          aria-hidden="true"></span> {{ value }}<span
+                class="badge badge-default badge-yellow
+ pull-right ">14</span></li>
+    </ul>
+    <div class="alert alert-danger" *ngIf="regionError">
+        <strong>Attention!</strong> Il y a une erreur.
+    </div>
+</div>
 
 <div class="widthFilter filter-yellow">
     <p class="title-filter">
-        <span class="glyphicon glyphicon-book" aria-hidden="true"></span><span *ngIf="displayZipCodeForm == false" (click)="onSelect()"
+        <span class="glyphicon glyphicon-book" aria-hidden="true"></span><span *ngIf="displayZipCodeForm == false"
+                                                                               (click)="onSelect()"
                                                                                class="glyphicon glyphicon-plus-sign pull-right badge-plus-yellow"
                                                                                aria-hidden="true" data-toggle="modal"
                                                                                data-target="#myModalCodePostal"></span>
@@ -25,43 +388,23 @@
               aria-hidden="true" data-toggle="modal"
               data-target="#myModalCodePostal"></span>
         <b>Code postal</b></p>
-    <div *ngIf="displayZipCodeForm"  class="col-md-12">
+    <div *ngIf="displayZipCodeForm" class="col-md-12">
         <div class="col-md-11 space">
             <input class="form-control widthForm pull-right" #zc placeholder="Code postal">
         </div>
         <div class="col-md-1">
-            <button class="special-btn-orange btn btn-primary pull-right leftFloat" (click)="addZipCode(zc.value);">Ajouter</button>
+            <button class="special-btn-orange btn btn-primary pull-right leftFloat" (click)="addZipCode(zc.value);">
+                Ajouter
+            </button>
         </div>
-
     </div>
     <ul>
-        <li *ngFor="let value of zipCode; let i = index"><span (click)="deleteZipCode(index)" class="glyphicon glyphicon-remove" aria-hidden="true"></span> {{ value }}<span
+        <li *ngFor="let value of zipCode; let i = index"><span (click)="deleteZipCode(index)"
+                                                               class="glyphicon glyphicon-remove"
+                                                               aria-hidden="true"></span> {{ value }}<span
                 class="badge badge-default badge-yellow
  pull-right ">14</span></li>
     </ul>
-</div>
-
-<div class="widthFilter filter-green">
-    <p class="title-filter">
-        <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><span
-            class="glyphicon glyphicon-plus-sign pull-right badge-plus-green" aria-hidden="true" data-toggle="modal"
-            data-target="#myModalDepartement"></span>
-        <b>Département</b></p>
-    <ul>
-        <li><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Oise<span
-                class="badge badge-default badge-green
- pull-right ">56</span></li>
-        <li><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Aisne<span
-                class="badge badge-default badge-green
- pull-right ">127</span></li>
-        <li><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Somme<span
-                class="badge badge-default badge-green
- pull-right ">96</span></li>
-        <li><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Aquitaine<span
-                class="badge badge-default badge-green
- pull-right ">14</span></li>
-    </ul>
-
 </div>
 <div class="widthFilter filter-blue">
     <p class="title-filter">
