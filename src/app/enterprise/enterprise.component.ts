@@ -3,8 +3,8 @@ import {ApiFirmService} from '../api-firm.service';
 import {Enterprise} from '../model/enterprise';
 import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
-import {FilterLinkService} from "../filter-link.service";
-import {Subscription} from "rxjs/Subscription";
+import {FilterLinkService} from '../filter-link.service';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
     selector: 'app-enterprise',
@@ -16,12 +16,14 @@ export class EnterpriseComponent implements OnInit {
     listEnterprises = [];
     dtTrigger: Subject<any> = new Subject();
     subscription: Subscription;
-    zipCodes = {};
+    zipCodes = [];
 
     constructor(private apiFirmService: ApiFirmService, private filterLinkService: FilterLinkService) {
         this.subscription = filterLinkService.loadZipCodeReceived$.subscribe(zipCodes => {
             this.zipCodes = zipCodes;
-            console.log(this.zipCodes);
+            console.log('avant fetch entreprise');
+            this.fetchEnterprises();
+            console.log(('Après fetch entreprise');
         });
     }
 
@@ -42,20 +44,11 @@ export class EnterpriseComponent implements OnInit {
 
     fetchEnterprises() {
         this.apiFirmService.getEnterpriseByParameters(this.zipCodes).subscribe(data => {
-            // Read the result field from the JSON response.
-            this.listEnterprises = data['companies'];
-            this.dtTrigger.next();
-            console.log(this.listEnterprises);
+            this.listEnterprises = [];
+            data['records'].forEach((value) => {
+                const enterprise = new Enterprise(value.fields.siren, value.fields.l1_normalisee, value.fields.codpos, value.fields.libcom, value.fields.dcren);
+                this.listEnterprises.push(enterprise);
+            });
         });
     }
-  fetchEnterprises() {
-    this.apiFirmService.getAllEnterprises().subscribe(data => {
-        data['records'].forEach((value)=>{
-            const enterprise = new Enterprise(value.fields.siren,value.fields.l1_normalisee, value.fields.codpos,value.fields.libcom,value.fields.dcren);
-
-            this.listEnterprises.push(enterprise);
-        });
-    });
-  }
-
 }
