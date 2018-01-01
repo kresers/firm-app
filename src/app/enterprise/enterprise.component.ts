@@ -50,5 +50,8 @@ export class EnterpriseComponent implements OnInit {
                 this.listEnterprises.push(enterprise);
             });
         });
-    }
+        this.dtTrigger.next();
+    });
+  }
+
 }
