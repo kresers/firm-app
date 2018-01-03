@@ -51,7 +51,5 @@ export class EnterpriseComponent implements OnInit {
             });
         });
         this.dtTrigger.next();
-    });
-  }
-
+    }
 }
