@@ -13,6 +13,10 @@ import {RouterModule, Routes} from '@angular/router';
 import {AgmCoreModule} from '@agm/core';
 import {ExportComponent} from './export/export.component';
 import {FilterLinkService} from './filter-link.service';
+import {LoaderComponent} from './loader/loader.component';
+import { FilterCodeApeComponent } from './filter-code-ape/filter-code-ape.component';
+
+
 
 const appRoutes: Routes = [
     {path: '', component: EnterpriseComponent},
@@ -28,7 +32,9 @@ const appRoutes: Routes = [
         TopNavbarComponent,
         NavbarComponent,
         MapComponent,
-        ExportComponent
+        ExportComponent,
+        LoaderComponent,
+        FilterCodeApeComponent,
     ],
     imports: [
         BrowserModule,

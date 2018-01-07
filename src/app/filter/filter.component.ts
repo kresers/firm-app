@@ -5,13 +5,12 @@ import {HttpClient} from '@angular/common/http';
 @Component({
     selector: 'app-filter',
     templateUrl: './filter.component.html',
-    styleUrls: ['./filter.component.css']
+    styleUrls: ['./filter.component.css'],
 })
 export class FilterComponent implements OnInit {
     /** Tous les arrays. */
     zipCode = [];
     departement = [];
-    codeApe = [];
     categEnt = [];
     categEntHard = ['PME', 'ETI', 'GE'];
     commune = [];
@@ -28,8 +27,7 @@ export class FilterComponent implements OnInit {
     regionHard = ['Picardie', 'Ile de France'];
     /** Tous les display. */
     displayZipCodeForm = false;
-    displayDepartementForm = false;
-    displayCodeApeForm = false;
+    displayDepartementForm = false
     displayCategEnt = false;
     displayCommuneForm = false;
     displayAnneeCreationForm = false;
@@ -39,7 +37,6 @@ export class FilterComponent implements OnInit {
     displayRegionForm = false;
     /** Toutes les variables errors. */
     categError = false;
-    apeError = false;
     depError = false;
     comError = false;
     anneeCreationError = false;
@@ -62,6 +59,8 @@ export class FilterComponent implements OnInit {
     getList(): void {
         this.listTest = this.apiFirmService.listEnterprise;
     }
+
+    /** Example with zipCode**/
 
     addZipCode(code: string): void {
         this.zipCode.push(code);
@@ -86,6 +85,7 @@ export class FilterComponent implements OnInit {
         this.outputListZipCode.emit(this.zipCode);
     }
 
+
     /** DEPARTEMENT **/
     addDepartement(code: string): void {
         const status = this.checkValue(code, this.departement)
@@ -96,10 +96,12 @@ export class FilterComponent implements OnInit {
             this.depError = true;
         }
     }
+
     deleteDepartement(idCode): void {
         console.log(idCode);
         this.departement.splice(idCode, 1);
     }
+
     onSelectDep(): void {
         if (this.displayDepartementForm) {
             this.displayDepartementForm = false;
@@ -108,28 +110,8 @@ export class FilterComponent implements OnInit {
             this.displayDepartementForm = true;
         }
     }
-    /** CODE APE **/
-    addCodeApe(code: string): void {
-        const status = this.checkValue(code, this.codeApe)
-        if (status === false && code !== '') {
-            this.codeApe.push(code);
-            this.apeError = false;
-        } else {
-            this.apeError = true;
-        }
-    }
-    deleteCodeApe(idCode): void {
-        console.log(idCode);
-        this.codeApe.splice(idCode, 1);
-    }
-    onSelectCodeApe(): void {
-        if (this.displayCodeApeForm) {
-            this.displayCodeApeForm = false;
-            this.resetErrors();
-        } else {
-            this.displayCodeApeForm = true;
-        }
-    }
+
+
     /** CATEGORIE ENTREPRISE **/
     addCategEnt(code: string): void {
         const status = this.checkValue(code, this.categEnt)
@@ -140,10 +122,12 @@ export class FilterComponent implements OnInit {
             this.categError = true;
         }
     }
+
     deleteCategEnt(idCode): void {
         console.log(idCode);
         this.categEnt.splice(idCode, 1);
     }
+
     onSelectCategEnt(): void {
         if (this.displayCategEnt) {
             this.displayCategEnt = false;
@@ -152,6 +136,7 @@ export class FilterComponent implements OnInit {
             this.displayCategEnt = true;
         }
     }
+
     /** CATEGORIE ENTREPRISE **/
     addCommune(code: string): void {
         const status = this.checkValue(code, this.commune)
@@ -162,10 +147,12 @@ export class FilterComponent implements OnInit {
             this.comError = true;
         }
     }
+
     deleteCommune(idCode): void {
         console.log(idCode);
         this.commune.splice(idCode, 1);
     }
+
     onSelectCommune(): void {
         if (this.displayCommuneForm) {
             this.displayCommuneForm = false;
@@ -174,6 +161,7 @@ export class FilterComponent implements OnInit {
             this.displayCommuneForm = true;
         }
     }
+
     /** ANNEE DE CREATION **/
     addAnneeCreation(code: string): void {
         const status = this.checkValue(code, this.anneeCreation)
@@ -184,10 +172,12 @@ export class FilterComponent implements OnInit {
             this.anneeCreationError = true;
         }
     }
+
     deleteAnneeCreation(idCode): void {
         console.log(idCode);
         this.anneeCreation.splice(idCode, 1);
     }
+
     onSelectAnneeCreation(): void {
         if (this.displayAnneeCreationForm) {
             this.displayAnneeCreationForm = false;
@@ -196,6 +186,7 @@ export class FilterComponent implements OnInit {
             this.displayAnneeCreationForm = true;
         }
     }
+
     /** STATUS JURIDIQUE **/
     addStatut(code: string): void {
         const status = this.checkValue(code, this.statut)
@@ -206,10 +197,12 @@ export class FilterComponent implements OnInit {
             this.statutError = true;
         }
     }
+
     deleteStatut(idCode): void {
         console.log(idCode);
         this.statut.splice(idCode, 1);
     }
+
     onSelectStatut(): void {
         if (this.displayStatutForm) {
             this.displayStatutForm = false;
@@ -218,6 +211,7 @@ export class FilterComponent implements OnInit {
             this.displayStatutForm = true;
         }
     }
+
     /** STATUS JURIDIQUE **/
     addEffectifs(code: string): void {
         const status = this.checkValue(code, this.effectifs)
@@ -228,10 +222,12 @@ export class FilterComponent implements OnInit {
             this.effectifsError = true;
         }
     }
+
     deleteEffectifs(idCode): void {
         console.log(idCode);
         this.effectifs.splice(idCode, 1);
     }
+
     onSelectEffectifs(): void {
         if (this.displayEffectifsForm) {
             this.displayEffectifsForm = false;
@@ -240,6 +236,7 @@ export class FilterComponent implements OnInit {
             this.displayEffectifsForm = true;
         }
     }
+
     /** CHIFFRES D'AFFAIRES **/
     addCa(code: string): void {
         const status = this.checkValue(code, this.ca)
@@ -250,10 +247,12 @@ export class FilterComponent implements OnInit {
             this.caError = true;
         }
     }
+
     deleteCa(idCode): void {
         console.log(idCode);
         this.ca.splice(idCode, 1);
     }
+
     onSelectCa(): void {
         if (this.displayCaForm) {
             this.displayCaForm = false;
@@ -262,6 +261,7 @@ export class FilterComponent implements OnInit {
             this.displayCaForm = true;
         }
     }
+
     /** REGION **/
     addRegion(code: string): void {
         const status = this.checkValue(code, this.region)
@@ -272,10 +272,12 @@ export class FilterComponent implements OnInit {
             this.regionError = true;
         }
     }
+
     deleteRegion(idCode): void {
         console.log(idCode);
         this.region.splice(idCode, 1);
     }
+
     onSelectRegion(): void {
         if (this.displayRegionForm) {
             this.displayRegionForm = false;
@@ -284,6 +286,7 @@ export class FilterComponent implements OnInit {
             this.displayRegionForm = true;
         }
     }
+
     /** AUTRE FONCTION **/
     checkValue(value, array) {
         let status = false;
@@ -299,7 +302,6 @@ export class FilterComponent implements OnInit {
 
     resetErrors() {
         this.categError = false;
-        this.apeError = false;
         this.depError = false;
         this.anneeCreationError = false;
         this.statutError = false;

@@ -13,15 +13,23 @@ export class ApiFirmService {
     listEnterprise = [];
     parameters = '';
     zipCodes = '';
-
-    getMyServ(): void {
+    /* celui qui à écrit cette fonction est invité à commenté merci :) . Elle était ancienement situé dans le filter component*/
+    static checkValue(value, array) {
+        let status = false;
+        for (let i = 0; i < array.length; i++) {
+            const name = array[i];
+            if (name === value) {
+                status = true;
+                break;
+            }
+        }
+        return status;
     }
 
-    getAllEnterprises(): Observable<Object> {
+    /* this function return entreprises with the selected filter */
+    /* params : */
 
-        return this.http.get('https://data.opendatasoft.com/api/records/1.0/search/?dataset=base-sirene%40datanova&rows=1000&start=50');
-    }
-
+    /* listZipcode -> this an example */
     getEnterpriseByParameters(listZipCode): Observable<Object> {
         this.parameters = '&q='; // init the list of parameters
         // list of zipCode parameter
@@ -33,7 +41,6 @@ export class ApiFirmService {
             this.zipCodes += item;
         });
         this.parameters += this.zipCodes;
-        console.log(ApiFirmService.BASE_URL + this.parameters);
         return this.http.get(ApiFirmService.BASE_URL + this.parameters);
     }
 }

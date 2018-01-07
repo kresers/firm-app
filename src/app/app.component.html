@@ -1,6 +1,23 @@
 <app-top-navbar></app-top-navbar>
 <app-navbar></app-navbar>
-<div class="col-md-12 delete-bootstrap-padding fixed-top-filter">
-    <app-filter (outputListZipCode)="outputListZipCode($event)" class="col-md-3 delete-bootstrap-padding"></app-filter>
-    <router-outlet></router-outlet>
+<app-loader style="display: none"></app-loader>
+<div>
+    <div class="col-md-12 delete-bootstrap-padding fixed-top-filter">
+        <div class="col-md-3 delete-bootstrap-padding ">
+            <div class="widthFilterTop">
+                <p class="title-sidebar"><span
+                        class="glyphicon glyphicon-remove pull-right reset" aria-hidden="true"></span>
+                    <b>216</b> résultats</p>
+            </div>
+            <!-- list of filters -->
+            <app-filter-code-ape></app-filter-code-ape>
+        </div>
+        <div class="col-md-9 delete-bootstrap-padding">
+            <app-filter style="display: none" (outputListZipCode)="outputListZipCode($event)"
+                        class="col-md-3 delete-bootstrap-padding"></app-filter>
+        </div>
+
+        <router-outlet></router-outlet>
+    </div>
 </div>
+

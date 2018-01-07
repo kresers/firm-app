@@ -1,0 +1,187 @@
+.back
+{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    top:0;
+    background-color: lightgray;
+    background-size: 100%;
+    z-index: 5;
+}
+@-webkit-keyframes spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    15% {
+        -webkit-transform: rotate(0deg);
+    }
+    21% {
+        -webkit-transform: rotate(90deg);
+    }
+    36% {
+        -webkit-transform: rotate(90deg);
+    }
+    42% {
+        -webkit-transform: rotate(180deg);
+    }
+    57% {
+        -webkit-transform: rotate(180deg);
+    }
+    63% {
+        -webkit-transform: rotate(270deg);
+    }
+    78% {
+        -webkit-transform: rotate(270deg);
+    }
+    84% {
+        -webkit-transform: rotate(360deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@-moz-keyframes spinner {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+    15% {
+        -moz-transform: rotate(0deg);
+    }
+    21% {
+        -moz-transform: rotate(90deg);
+    }
+    36% {
+        -moz-transform: rotate(90deg);
+    }
+    42% {
+        -moz-transform: rotate(180deg);
+    }
+    57% {
+        -moz-transform: rotate(180deg);
+    }
+    63% {
+        -moz-transform: rotate(270deg);
+    }
+    78% {
+        -moz-transform: rotate(270deg);
+    }
+    84% {
+        -moz-transform: rotate(360deg);
+    }
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+@-ms-keyframes spinner {
+    0% {
+        -ms-transform: rotate(0deg);
+    }
+    15% {
+        -ms-transform: rotate(0deg);
+    }
+    21% {
+        -ms-transform: rotate(90deg);
+    }
+    36% {
+        -ms-transform: rotate(90deg);
+    }
+    42% {
+        -ms-transform: rotate(180deg);
+    }
+    57% {
+        -ms-transform: rotate(180deg);
+    }
+    63% {
+        -ms-transform: rotate(270deg);
+    }
+    78% {
+        -ms-transform: rotate(270deg);
+    }
+    84% {
+        -ms-transform: rotate(360deg);
+    }
+    100% {
+        -ms-transform: rotate(360deg);
+    }
+}
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    15% {
+        transform: rotate(0deg);
+    }
+    21% {
+        transform: rotate(90deg);
+    }
+    36% {
+        transform: rotate(90deg);
+    }
+    42% {
+        transform: rotate(180deg);
+    }
+    57% {
+        transform: rotate(180deg);
+    }
+    63% {
+        transform: rotate(270deg);
+    }
+    78% {
+        transform: rotate(270deg);
+    }
+    84% {
+        transform: rotate(360deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.spinner {
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 64px;
+    height: 64px;
+    margin: -32px 0 0 -32px;
+    background-color: rgba(255, 255, 255, 0.75);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-border-radius: 50%;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 50%;
+    -moz-background-clip: padding;
+    border-radius: 50%;
+    background-clip: padding-box;
+    -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.8);
+    -webkit-animation: spinner 4s cubic-bezier(0.68, -0.55, 0.265, 2.55) infinite;
+    -moz-animation: spinner 4s cubic-bezier(0.68, -0.55, 0.265, 2.55) infinite;
+    -o-animation: spinner 4s cubic-bezier(0.68, -0.55, 0.265, 2.55) infinite;
+    -ms-animation: spinner 4s cubic-bezier(0.68, -0.55, 0.265, 2.55) infinite;
+    animation: spinner 4s cubic-bezier(0.68, -0.55, 0.265, 2.55) infinite;
+}
+.spinner:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    width: 52px;
+    height: 52px;
+    border-top: 12px #218DA6 solid;
+    border-right: 12px #595551 solid;
+    border-bottom: 12px #FF9719 solid;
+    border-left: 12px #A0CC00 solid;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-border-radius: 50%;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 50%;
+    -moz-background-clip: padding;
+    border-radius: 50%;
+    background-clip: padding-box;
+}

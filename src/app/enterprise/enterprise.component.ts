@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ApiFirmService} from '../api-firm.service';
 import {Enterprise} from '../model/enterprise';
 import {Subject} from 'rxjs/Subject';
@@ -17,13 +17,15 @@ export class EnterpriseComponent implements OnInit {
     dtTrigger: Subject<any> = new Subject();
     subscription: Subscription;
     zipCodes = [];
+    @Output() outputLoader = new EventEmitter<{}>();
+    loaded = false;
 
     constructor(private apiFirmService: ApiFirmService, private filterLinkService: FilterLinkService) {
         this.subscription = filterLinkService.loadZipCodeReceived$.subscribe(zipCodes => {
             this.zipCodes = zipCodes;
             console.log('avant fetch entreprise');
             this.fetchEnterprises();
-            console.log(('Après fetch entreprise');
+            console.log('Après fetch entreprise');
         });
     }
 
@@ -43,13 +45,22 @@ export class EnterpriseComponent implements OnInit {
     }
 
     fetchEnterprises() {
+        this.loaded = true;
+        this.updateParentLoader();
         this.apiFirmService.getEnterpriseByParameters(this.zipCodes).subscribe(data => {
             this.listEnterprises = [];
             data['records'].forEach((value) => {
-                const enterprise = new Enterprise(value.fields.siren, value.fields.l1_normalisee, value.fields.codpos, value.fields.libcom, value.fields.dcren);
+                const enterprise = new Enterprise
+                (value.fields.siren, value.fields.l1_normalisee, value.fields.codpos, value.fields.libcom, value.fields.dcren);
                 this.listEnterprises.push(enterprise);
             });
         });
+        this.loaded = false;
+        this.updateParentLoader();
         this.dtTrigger.next();
+    }
+
+    updateParentLoader() {
+        this.outputLoader.emit(this.loaded);
     }
 }
