@@ -47,8 +47,6 @@ export class FilterComponent implements OnInit {
     effectifsError = false;
     caError = false;
     regionError = false;
-
-    zipCode = [] ;
     @Output() outputListZipCode = new EventEmitter<{}>();
     results: string[];
     loaded = false;
