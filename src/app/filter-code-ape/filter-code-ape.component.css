@@ -30,6 +30,12 @@ li{
     border-bottom: solid 2px;
     border-bottom-color: #e7e7e7 !important ;
 }
+.special-btn-orange
+{
+    border-radius: 0px 50px 50px 0px;
+    background-color: #ff9800 ;
+    border-color: lightgray;
+}
 
 .title-filter
 {

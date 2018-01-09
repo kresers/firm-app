@@ -1,6 +1,6 @@
+<app-loader></app-loader>
 <app-top-navbar></app-top-navbar>
 <app-navbar></app-navbar>
-<app-loader style="display: none"></app-loader>
 <div>
     <div class="col-md-12 delete-bootstrap-padding fixed-top-filter">
         <div class="col-md-3 delete-bootstrap-padding ">
@@ -10,13 +10,12 @@
                     <b>216</b> résultats</p>
             </div>
             <!-- list of filters -->
-            <app-filter-code-ape></app-filter-code-ape>
+            <app-filter-code-ape (outputCodeApe)="outputCodeApe($event)"></app-filter-code-ape>
         </div>
         <div class="col-md-9 delete-bootstrap-padding">
-            <app-filter style="display: none" (outputListZipCode)="outputListZipCode($event)"
+            <app-filter style="display: none"
                         class="col-md-3 delete-bootstrap-padding"></app-filter>
         </div>
-
         <router-outlet></router-outlet>
     </div>
 </div>

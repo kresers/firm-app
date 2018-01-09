@@ -16,16 +16,14 @@ export class EnterpriseComponent implements OnInit {
     listEnterprises = [];
     dtTrigger: Subject<any> = new Subject();
     subscription: Subscription;
-    zipCodes = [];
+    listCodeApe = [];
+    loader = true;
     @Output() outputLoader = new EventEmitter<{}>();
-    loaded = false;
 
     constructor(private apiFirmService: ApiFirmService, private filterLinkService: FilterLinkService) {
-        this.subscription = filterLinkService.loadZipCodeReceived$.subscribe(zipCodes => {
-            this.zipCodes = zipCodes;
-            console.log('avant fetch entreprise');
+        this.subscription = filterLinkService.loadCodeApeReceived$.subscribe(codeApe => {
+            this.listCodeApe = codeApe;
             this.fetchEnterprises();
-            console.log('Après fetch entreprise');
         });
     }
 
@@ -45,22 +43,20 @@ export class EnterpriseComponent implements OnInit {
     }
 
     fetchEnterprises() {
-        this.loaded = true;
-        this.updateParentLoader();
-        this.apiFirmService.getEnterpriseByParameters(this.zipCodes).subscribe(data => {
+        this.apiFirmService.updateLoader();
+        this.apiFirmService.getEnterpriseByParameters(this.listCodeApe).subscribe(data => {
             this.listEnterprises = [];
             data['records'].forEach((value) => {
                 const enterprise = new Enterprise
                 (value.fields.siren, value.fields.l1_normalisee, value.fields.codpos, value.fields.libcom, value.fields.dcren);
                 this.listEnterprises.push(enterprise);
             });
+            this.apiFirmService.updateLoader();
         });
-        this.loaded = false;
-        this.updateParentLoader();
         this.dtTrigger.next();
     }
 
-    updateParentLoader() {
-        this.outputLoader.emit(this.loaded);
+    updateLoader() {
+        this.outputLoader.emit(this.loader);
     }
 }

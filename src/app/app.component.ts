@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {FilterLinkService} from './filter-link.service';
-import {ApiFirmService} from './api-firm.service';
 
 @Component({
     selector: 'app-root',
@@ -9,14 +8,14 @@ import {ApiFirmService} from './api-firm.service';
 })
 
 export class AppComponent {
-    constructor(private filterLinkService: FilterLinkService, private  apiFirmService: ApiFirmService) {
+    constructor(private filterLinkService: FilterLinkService) {
     }
 
     title = 'app';
     lat = 43;
     lng = 5;
 
-    outputListZipCode(listZipCodes) {
-        this.filterLinkService.LoadZipCodes(listZipCodes);
+    outputCodeApe(codeApe) {
+        this.filterLinkService.LoadCodeApe(codeApe);
     }
 }
