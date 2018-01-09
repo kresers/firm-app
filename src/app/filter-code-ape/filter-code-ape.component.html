@@ -1,0 +1,35 @@
+<div class="widthFilter filter-yellow">
+  <p class="title-filter">
+    <span class="glyphicon glyphicon-object-align-vertical" aria-hidden="true"></span><span
+          *ngIf="displayCodeApeForm == false && displayButton == false"
+          (click)="onSelectCodeApe()"
+          class="glyphicon glyphicon-plus-sign pull-right badge-plus-yellow"
+          aria-hidden="true" data-toggle="modal"
+          data-target="#myModalCodePostal"></span>
+    <span *ngIf="displayCodeApeForm && displayButton == false" (click)="onSelectCodeApe()"
+          class="glyphicon glyphicon-minus-sign pull-right badge-plus-yellow"
+          aria-hidden="true" data-toggle="modal"
+          data-target="#myModalCodePostal"></span>
+    <b>Activité (code APE)</b></p>
+  <div *ngIf="displayCodeApeForm  && displayButton == false" class="col-md-12">
+    <div class="col-md-11 space">
+      <input class="form-control widthForm pull-right" #ape placeholder="Code APE">
+    </div>
+    <div class="col-md-1">
+      <button class="special-btn-orange btn btn-primary pull-right leftFloat"
+              (click)="addCodeApe(ape.value);">
+        Ajouter
+      </button>
+    </div>
+  </div>
+  <ul>
+    <li *ngFor="let value of codeApe; let i = index"><span (click)="deleteCodeApe(index)"
+                                                           class="glyphicon glyphicon-remove"
+                                                           aria-hidden="true"></span> {{ value }}<span
+            class="badge badge-default badge-yellow
+ pull-right ">14</span></li>
+  </ul>
+  <div class="alert alert-danger" *ngIf="apeError">
+    <strong>Attention!</strong> Il y a une erreur.
+  </div>
+</div>

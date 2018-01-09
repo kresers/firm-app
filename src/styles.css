@@ -1,3 +1,4 @@
+@import '../node_modules/ng2-slim-loading-bar/style.css';
 /* You can add global styles to this file, and also import other style files */
 .navbar-default {
     background-color: #f3f3f3;

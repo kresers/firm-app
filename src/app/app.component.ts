@@ -9,19 +9,13 @@ import {FilterLinkService} from './filter-link.service';
 
 export class AppComponent {
     constructor(private filterLinkService: FilterLinkService) {
-
     }
 
     title = 'app';
     lat = 43;
     lng = 5;
-    generalListZipCode = [];
 
-
-    outputListZipCode(listZipCodes) {
-        console.log(listZipCodes);
-       // this.generalListZipCode = listZipCodes; // récupère la list des zipcode défini dans filter component
-        this.filterLinkService.LoadZipCodes(listZipCodes);
+    outputCodeApe(codeApe) {
+        this.filterLinkService.LoadCodeApe(codeApe);
     }
-
 }
