@@ -3,12 +3,10 @@ import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class FilterLinkService {
-
-
     private loadCodeApeSource = new Subject<[string]>();
     loadCodeApeReceived$ = this.loadCodeApeSource.asObservable();
-    private loadLoaderSource = new Subject<boolean>();
-    loadLoaderReceived$ = this.loadLoaderSource.asObservable();
+    private loadCategEntSource = new Subject<[string]>();
+    loadLoaderReceived$ = this.loadCategEntSource.asObservable();
 
     constructor() {
     }
@@ -17,9 +15,8 @@ export class FilterLinkService {
         this.loadCodeApeSource.next(codeApe);
     }
 
-    LoadLoader(loader): void {
-        console.log(loader);
-        this.loadLoaderSource.next(loader);
+    /* #SEB */
+    LoadCategEnterprise(categEnt): void {
+        this.loadCategEntSource.next(categEnt);
     }
-
 }

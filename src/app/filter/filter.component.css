@@ -1,21 +1,6 @@
 
 
 
-.filter-green
-{
-    border-left: solid 5px;
-    border-color:#9acb00;
-}
-
-.badge-green
-{
-    background-color: #9acb00;
-}
-
-.badge-plus-green:hover
-{
-    color: #9acb00;
-}
 
 
 .filter-light-purple
@@ -136,11 +121,7 @@
     border-color: lightgray;
 }
 
-.special-btn-green{
-    background-color: #9acb00;
-    border-radius: 0px 50px 50px 0px;
-    border-color: lightgray;
-}
+
 
 .special-btn-blue{
     background-color: #1ba0e5;
