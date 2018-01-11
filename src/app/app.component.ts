@@ -20,8 +20,14 @@ export class AppComponent {
     }
 
     /* #SEB this function update the value in the service to easy access in the enterprise component */
+
     /* Don't forget to call this function in the app.component.html */
     outputListCateg(categEnt) {
         this.filterLinkService.LoadCategEnterprise(categEnt);
+    }
+
+    outputListArea(areaEnt) {
+        console.log(areaEnt);
+        this.filterLinkService.LoadAreaEntreprise(areaEnt);
     }
 }

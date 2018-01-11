@@ -16,6 +16,7 @@ export class ApiFirmService {
     parameters = '';
     codeApe = '';
     categ = '';
+    area = '';
     loader = false;
     private loadLoaderSource = new Subject<boolean>();
     loadLoaderReceived$ = this.loadLoaderSource.asObservable();
@@ -39,7 +40,7 @@ export class ApiFirmService {
     /* listCodeApe : the list of ape Code filter */
 
     /* listCateg : the list of  enterprise categ filter */
-    getEnterpriseByParameters(listCodeApe, listCategEnt): Observable<Object> {
+    getEnterpriseByParameters(listCodeApe, listCategEnt, listAreaEnt): Observable<Object> {
         this.parameters = '&q='; // init the list of parameters
         // list of codeApe parameter
         listCodeApe.forEach((item, index) => {
@@ -71,6 +72,21 @@ export class ApiFirmService {
         /* if we have list categ filter we add '&' for the next filter */
         if (listCodeApe !== []) {
             this.parameters += this.categ;
+            this.parameters += '&';
+        }
+        /*list of area entreprise */
+        listAreaEnt.forEach((item, index) => {
+            if (index !== 0) {
+                this.area += '+OR+';
+            }
+            if (item !== '') {
+                this.area += 'rpet:';
+                this.categ += item;
+            }
+        });
+        /* if we have list area filter we add '&' for the next filter */
+        if (listAreaEnt !== []) {
+            this.parameters += this.area;
             this.parameters += '&';
         }
         this.parameters += this.codeApe;
