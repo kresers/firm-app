@@ -16,6 +16,7 @@ export class EnterpriseComponent implements OnInit {
     dtTrigger: Subject<any> = new Subject();
     listCodeApe = [];
     listCategEnterprise = [];
+    listAreaEnt = [];
 
     constructor(private apiFirmService: ApiFirmService, private filterLinkService: FilterLinkService) {
         filterLinkService.loadCodeApeReceived$.subscribe(codeApe => {
@@ -26,6 +27,11 @@ export class EnterpriseComponent implements OnInit {
         /* #SEB call fetchEnterprise when value change */
         filterLinkService.loadLoaderReceived$.subscribe(categ => {
             this.listCategEnterprise = categ;
+            this.fetchEnterprises();
+        });
+
+        filterLinkService.loadAreaEntReceived$.subscribe(area => {
+            this.listAreaEnt = area;
             this.fetchEnterprises();
         });
     }
@@ -48,7 +54,7 @@ export class EnterpriseComponent implements OnInit {
     /* this function load enteprises with loader when user wait */
     fetchEnterprises() {
         this.apiFirmService.updateLoader();
-        this.apiFirmService.getEnterpriseByParameters(this.listCodeApe, this.listCategEnterprise).subscribe(data => {
+        this.apiFirmService.getEnterpriseByParameters(this.listCodeApe, this.listCategEnterprise, this.listAreaEnt).subscribe(data => {
             this.listEnterprises = [];
             data['records'].forEach((value) => {
                 const enterprise = new Enterprise
