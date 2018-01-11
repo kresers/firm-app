@@ -1,0 +1,39 @@
+<div class="widthFilter filter-green">
+  <p class="title-filter">
+    <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span><span *ngIf="displayCategEnt == false"
+                                                                                   (click)="onSelectCategEnt()"
+                                                                                   class="glyphicon glyphicon-plus-sign pull-right badge-plus-green"
+                                                                                   aria-hidden="true"
+                                                                                   data-toggle="modal"
+                                                                                   data-target="#myModalCodePostal"></span>
+    <span *ngIf="displayCategEnt" (click)="onSelectCategEnt()"
+          class="glyphicon glyphicon-minus-sign pull-right badge-plus-green"
+          aria-hidden="true" data-toggle="modal"
+          data-target="#myModalCodePostal"></span>
+    <b>Catégorie d'entreprise</b></p>
+  <div *ngIf="displayCategEnt" class="col-md-12">
+    <div class="col-md-11 space">
+      <select class="form-control widthForm pull-right" #categ>
+        <option *ngFor="let value of categEntHard; let i = index"><span (click)="deleteCategEnt(index)"
+                                                                        class="glyphicon glyphicon-remove"
+                                                                        aria-hidden="true"></span> {{ value }}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-1">
+      <button class="special-btn-green btn btn-primary pull-right leftFloat" (click)="addCategEnt(categ.value);">
+        Ajouter
+      </button>
+    </div>
+  </div>
+  <ul>
+    <li *ngFor="let value of categEnt; let i = index"><span (click)="deleteCategEnt(index)"
+                                                            class="glyphicon glyphicon-remove"
+                                                            aria-hidden="true"></span> {{ value }}<span
+            class="badge badge-default badge-green
+ pull-right ">14</span></li>
+  </ul>
+  <div class="alert alert-danger" *ngIf="categError">
+    <strong>Attention!</strong> Cette catégorie existe déja.
+  </div>
+</div>
