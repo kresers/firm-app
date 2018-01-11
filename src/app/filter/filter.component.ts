@@ -86,7 +86,7 @@ export class FilterComponent implements OnInit {
 
     /** DEPARTEMENT **/
     addDepartement(code: string): void {
-        const status = this.checkValue(code, this.departement)
+        const status = this.checkValue(code, this.departement);
         if (status === false && code !== '') {
             this.departement.push(code);
             this.depError = false;
