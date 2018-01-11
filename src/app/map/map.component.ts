@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable,OnInit } from '@angular/core';
+import { enterprise } from '..model/enterprise';
 
 @Component({
   selector: 'app-map',
