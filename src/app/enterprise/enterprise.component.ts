@@ -4,7 +4,6 @@ import {Enterprise} from '../model/enterprise';
 import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 import {FilterLinkService} from '../filter-link.service';
-import {Subscription} from 'rxjs/Subscription';
 
 @Component({
     selector: 'app-enterprise',
@@ -15,14 +14,18 @@ export class EnterpriseComponent implements OnInit {
     dtOptions: DataTables.Settings = {};
     listEnterprises = [];
     dtTrigger: Subject<any> = new Subject();
-    subscription: Subscription;
     listCodeApe = [];
-    loader = true;
-    @Output() outputLoader = new EventEmitter<{}>();
+    listCategEnterprise = [];
 
     constructor(private apiFirmService: ApiFirmService, private filterLinkService: FilterLinkService) {
-        this.subscription = filterLinkService.loadCodeApeReceived$.subscribe(codeApe => {
+        filterLinkService.loadCodeApeReceived$.subscribe(codeApe => {
             this.listCodeApe = codeApe;
+            this.fetchEnterprises();
+        });
+
+        /* #SEB call fetchEnterprise when value change */
+        filterLinkService.loadLoaderReceived$.subscribe(categ => {
+            this.listCategEnterprise = categ;
             this.fetchEnterprises();
         });
     }
@@ -42,9 +45,10 @@ export class EnterpriseComponent implements OnInit {
         this.fetchEnterprises();
     }
 
+    /* this function load enteprises with loader when user wait */
     fetchEnterprises() {
         this.apiFirmService.updateLoader();
-        this.apiFirmService.getEnterpriseByParameters(this.listCodeApe).subscribe(data => {
+        this.apiFirmService.getEnterpriseByParameters(this.listCodeApe, this.listCategEnterprise).subscribe(data => {
             this.listEnterprises = [];
             data['records'].forEach((value) => {
                 const enterprise = new Enterprise
@@ -54,9 +58,5 @@ export class EnterpriseComponent implements OnInit {
             this.apiFirmService.updateLoader();
         });
         this.dtTrigger.next();
-    }
-
-    updateLoader() {
-        this.outputLoader.emit(this.loader);
     }
 }

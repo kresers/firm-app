@@ -12,8 +12,7 @@ export class FilterCodeApeComponent implements OnInit {
     displayCodeApeForm = false;
     apeError = false;
     displayButton = false;
-    @Output() outputCodeApe = new EventEmitter<{}>();
-
+    @Output() outputCodeApe = new EventEmitter<{}>(); // #SEB  the value of this output is transmit to the app.componenent.ts
     constructor(private apiFirmService: ApiFirmService) {
     }
 
@@ -26,7 +25,7 @@ export class FilterCodeApeComponent implements OnInit {
         if (status === false && code !== '') { // if doesn't exist
             this.codeApe.push(code); // we push the new APE filter in the list of APE filter
             this.apeError = false; // we have no error
-            this.updateParentCodeApe(); // update list code APE
+            this.updateParentCodeApe(); // #SEB update list code APE
         } else {
             this.apeError = true; // else we have an error
         }
@@ -51,7 +50,7 @@ export class FilterCodeApeComponent implements OnInit {
         }
     }
 
-    updateParentCodeApe() {
+    updateParentCodeApe() { // #SEB  this function update the value in the app.component.ts
         this.outputCodeApe.emit(this.codeApe);
     }
 }

@@ -18,4 +18,10 @@ export class AppComponent {
     outputCodeApe(codeApe) {
         this.filterLinkService.LoadCodeApe(codeApe);
     }
+
+    /* #SEB this function update the value in the service to easy access in the enterprise component */
+    /* Don't forget to call this function in the app.component.html */
+    outputListCateg(categEnt) {
+        this.filterLinkService.LoadCategEnterprise(categEnt);
+    }
 }

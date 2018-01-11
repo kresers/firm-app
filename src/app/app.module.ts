@@ -15,6 +15,7 @@ import {ExportComponent} from './export/export.component';
 import {FilterLinkService} from './filter-link.service';
 import {LoaderComponent} from './loader/loader.component';
 import { FilterCodeApeComponent } from './filter-code-ape/filter-code-ape.component';
+import { FilterBusinessCategoriesComponent } from './filter-business-categories/filter-business-categories.component';
 
 
 
@@ -35,6 +36,7 @@ const appRoutes: Routes = [
         ExportComponent,
         LoaderComponent,
         FilterCodeApeComponent,
+        FilterBusinessCategoriesComponent,
     ],
     imports: [
         BrowserModule,
