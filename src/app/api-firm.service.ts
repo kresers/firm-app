@@ -74,6 +74,7 @@ export class ApiFirmService {
             this.parameters += '&';
         }
         this.parameters += this.codeApe;
+        console.log(this.http.get(ApiFirmService.BASE_URL + this.parameters));
         return this.http.get(ApiFirmService.BASE_URL + this.parameters);
     }
 
