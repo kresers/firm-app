@@ -1,6 +1,32 @@
-<div class="col-md-3"></div>
-<div class="col-md-6">
-  <br> <br> <br>
-  <button class="btn btn-info" (click)="downloadCsv()" > Exporter en csv </button>
+<div class="col-md-2"></div>
+<div class="col-md-8">
+  <br/>
+  <p> Format de fichiers plats</p>
+
+  <h4 class="export_title"> CSV </h4>
+
+  <a (click)="downloadCsv()" class="separate_glyph">
+    <span class="glyphicon glyphicon-download-alt"> Jeu de données entier</span>
+  </a>
+  <a (click)="downloadCsv()">
+    <span class="glyphicon glyphicon-download-alt"> Jeu de données sélectionnées</span>
+  </a>
+  <p> Le CSV utilise le ; comme séparateur.</p>
+  <h4 class="export_title"> JSON </h4>
+
+    <a (click)="downloadJson()" class="separate_glyph">
+      <span class="glyphicon glyphicon-download-alt"> Jeu de données entier</span>
+    </a>
+    <a (click)="downloadJson()" >
+      <span class="glyphicon glyphicon-download-alt"> Jeu de données sélectionnées</span>
+    </a>
+  <br/>
+  <h4 class="export_title"> EXCEL </h4>
+
+    <a (click)="downloadExcel()" class="separate_glyph">
+      <span class="glyphicon glyphicon-download-alt"> Jeu de données entier</span>
+    </a>
+    <a (click)="downloadExcel()">
+      <span class="glyphicon glyphicon-download-alt"> Jeu de données sélectionnées</span>
+    </a>
 </div>
-<div class="col-md-3"></div>
