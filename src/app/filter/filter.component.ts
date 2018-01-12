@@ -12,19 +12,14 @@ export class FilterComponent implements OnInit {
     zipCode = [];
 
 
-    region = [];
-    regionHard = ['Picardie', 'Ile de France'];
     /** Tous les display. */
     displayZipCodeForm = false;
 
-
-    displayRegionForm = false;
     /** Toutes les variables errors. */
     categError = false;
     depError = false;
 
 
-    regionError = false;
     listTest = [];
 
 
@@ -57,33 +52,6 @@ export class FilterComponent implements OnInit {
             this.displayZipCodeForm = true;
         }
     }
-
-
-    /** REGION **/
-    addRegion(code: string): void {
-        const status = this.checkValue(code, this.region);
-        if (status === false) {
-            this.region.push(code);
-            this.regionError = false;
-        } else {
-            this.regionError = true;
-        }
-    }
-
-    deleteRegion(idCode): void {
-        console.log(idCode);
-        this.region.splice(idCode, 1);
-    }
-
-    onSelectRegion(): void {
-        if (this.displayRegionForm) {
-            this.displayRegionForm = false;
-            this.resetErrors();
-        } else {
-            this.displayRegionForm = true;
-        }
-    }
-
     /** AUTRE FONCTION **/
     checkValue(value, array) {
         let status = false;
@@ -100,7 +68,6 @@ export class FilterComponent implements OnInit {
     resetErrors() {
         this.categError = false;
         this.depError = false;
-        this.regionError = false;
     }
 }
 

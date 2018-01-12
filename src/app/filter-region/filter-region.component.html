@@ -1,0 +1,44 @@
+<div class="widthFilter filter-yellow">
+  <p class="title-filter">
+    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><span
+          *ngIf="displayRegionForm == false"
+          (click)="onSelectRegion()"
+          class="glyphicon glyphicon-plus-sign pull-right badge-plus-yellow"
+          aria-hidden="true"
+          data-toggle="modal"
+          data-target="#myModalCodePostal"></span>
+    <span *ngIf="displayRegionForm" (click)="onSelectRegion()"
+          class="glyphicon glyphicon-minus-sign pull-right badge-plus-yellow"
+          aria-hidden="true" data-toggle="modal"
+          data-target="#myModalCodePostal"></span>
+    <b>Région</b></p>
+  <div *ngIf="displayRegionForm" class="col-md-12">
+    <div class="col-md-11 space">
+      <select class="form-control widthForm pull-right" #ca>
+        <option *ngFor="let value of regionHard; let i = index"><span (click)="deleteRegion(index)"
+                                                                      class="glyphicon glyphicon-remove"
+                                                                      aria-hidden="true"></span> {{ value }}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-1">
+      <button class="special-btn-orange btn btn-primary pull-right leftFloat"
+              (click)="addRegion(ca.value);">
+        Ajouter
+      </button>
+    </div>
+  </div>
+  <ul>
+    <li *ngFor="let value of region; let i = index"><span (click)="deleteRegion(index)"
+                                                          class="glyphicon glyphicon-remove"
+                                                          aria-hidden="true"></span> {{ value }}<span
+            class="badge badge-default badge-yellow
+ pull-right ">14</span></li>
+  </ul>
+  <div class="alert alert-danger" *ngIf="regionError">
+    <strong>Attention!</strong> Il y a une erreur.
+  </div>
+</div>
+
+
+

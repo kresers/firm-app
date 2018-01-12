@@ -22,6 +22,7 @@ export class EnterpriseComponent implements OnInit {
     listLegalStatus = [];
     listWorkforceEnt = [];
     listTotalRevenue = [];
+    listRegion = [];
 
     constructor(private apiFirmService: ApiFirmService, private filterLinkService: FilterLinkService) {
         filterLinkService.loadCodeApeReceived$.subscribe(codeApe => {
@@ -64,6 +65,11 @@ export class EnterpriseComponent implements OnInit {
             this.listTotalRevenue = area;
             this.fetchEnterprises();
         });
+
+        filterLinkService.loadRegionEntReceived$.subscribe( area => {
+            this.listRegion = area;
+            this.fetchEnterprises();
+        });
     }
 
     ngOnInit(): void {
@@ -86,7 +92,7 @@ export class EnterpriseComponent implements OnInit {
         this.apiFirmService.updateLoader();
         this.apiFirmService.getEnterpriseByParameters(this.listCodeApe, this.listCategEnterprise, this.listAreaEnt,
             this.listMunicipalityEnt, this.listCreationYearEnt, this.listLegalStatus, this.listWorkforceEnt,
-            this.listTotalRevenue).subscribe(data => { this.listEnterprises = [];
+            this.listTotalRevenue, this.listRegion).subscribe(data => { this.listEnterprises = [];
             data['records'].forEach((value) => {
                 const enterprise = new Enterprise
                 (value.fields.siren, value.fields.l1_normalisee, value.fields.codpos, value.fields.libcom, value.fields.dcren);

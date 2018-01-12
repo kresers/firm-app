@@ -55,4 +55,9 @@ export class AppComponent {
         console.log(totalRevenueEnt);
         this.filterLinkService.LoadTotalRevenue(totalRevenueEnt);
     }
+
+    outputRegion(regionEnt) {
+        console.log(regionEnt);
+        this.filterLinkService.LoadRegion(regionEnt);
+    }
 }
