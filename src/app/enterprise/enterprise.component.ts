@@ -17,6 +17,7 @@ export class EnterpriseComponent implements OnInit {
     listCodeApe = [];
     listCategEnterprise = [];
     listAreaEnt = [];
+    listMunicipalityEnt = [];
 
     constructor(private apiFirmService: ApiFirmService, private filterLinkService: FilterLinkService) {
         filterLinkService.loadCodeApeReceived$.subscribe(codeApe => {
@@ -32,6 +33,11 @@ export class EnterpriseComponent implements OnInit {
 
         filterLinkService.loadAreaEntReceived$.subscribe(area => {
             this.listAreaEnt = area;
+            this.fetchEnterprises();
+        });
+
+        filterLinkService.loadMunicipalityEntReceived$.subscribe(area => {
+            this.listMunicipalityEnt = area;
             this.fetchEnterprises();
         });
     }

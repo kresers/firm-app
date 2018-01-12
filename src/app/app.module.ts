@@ -17,6 +17,8 @@ import {LoaderComponent} from './loader/loader.component';
 import { FilterCodeApeComponent } from './filter-code-ape/filter-code-ape.component';
 import { FilterBusinessCategoriesComponent } from './filter-business-categories/filter-business-categories.component';
 import { FilterAreaComponent } from './filter-area/filter-area.component';
+import { FilterMunicipalityComponent } from './filter-municipality/filter-municipality.component';
+import { FilterCreationYearComponent } from './filter-creation-year/filter-creation-year.component';
 
 
 
@@ -39,6 +41,8 @@ const appRoutes: Routes = [
         FilterCodeApeComponent,
         FilterBusinessCategoriesComponent,
         FilterAreaComponent,
+        FilterMunicipalityComponent,
+        FilterCreationYearComponent,
     ],
     imports: [
         BrowserModule,

@@ -1,0 +1,41 @@
+<div class="widthFilter filter-dark-blue">
+  <p class="title-filter">
+    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><span
+          *ngIf="displayCommuneForm == false"
+          (click)="onSelectCommune()"
+          class="glyphicon glyphicon-plus-sign pull-right badge-plus-dark-blue"
+          aria-hidden="true"
+          data-toggle="modal"
+          data-target="#myModalCodePostal"></span>
+    <span *ngIf="displayCommuneForm" (click)="onSelectCommune()"
+          class="glyphicon glyphicon-minus-sign pull-right badge-plus-dark-blue"
+          aria-hidden="true" data-toggle="modal"
+          data-target="#myModalCodePostal"></span>
+    <b>Commune</b></p>
+  <div *ngIf="displayCommuneForm" class="col-md-12">
+    <div class="col-md-11 space">
+      <select class="form-control widthForm pull-right" #commune>
+        <option *ngFor="let value of communeHard; let i = index"><span (click)="deleteCommune(index)"
+                                                                       class="glyphicon glyphicon-remove"
+                                                                       aria-hidden="true"></span> {{ value }}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-1">
+      <button class="special-btn-dark-blue btn btn-primary pull-right leftFloat"
+              (click)="addCommune(commune.value);">
+        Ajouter
+      </button>
+    </div>
+  </div>
+  <ul>
+    <li *ngFor="let value of commune; let i = index"><span (click)="deleteCommune(index)"
+                                                           class="glyphicon glyphicon-remove"
+                                                           aria-hidden="true"></span> {{ value }}<span
+            class="badge badge-default badge-dark-blue
+ pull-right ">14</span></li>
+  </ul>
+  <div class="alert alert-danger" *ngIf="comError">
+    <strong>Attention!</strong> Cette commune existe déja.
+  </div>
+</div>

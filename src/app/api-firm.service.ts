@@ -17,11 +17,12 @@ export class ApiFirmService {
     codeApe = '';
     categ = '';
     area = '';
+    municipality = '';
     loader = false;
     private loadLoaderSource = new Subject<boolean>();
     loadLoaderReceived$ = this.loadLoaderSource.asObservable();
 
-    /* celui qui à écrit cette fonction est invité à commenté merci :) . Elle était ancienement situé dans le filter component*/
+    /* Verifies if the value already exists in an array */
     checkValue(value, array): Boolean {
         let status = false;
         for (let i = 0; i < array.length; i++) {

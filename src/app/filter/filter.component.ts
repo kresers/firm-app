@@ -10,13 +10,6 @@ import {HttpClient} from '@angular/common/http';
 export class FilterComponent implements OnInit {
     /** Tous les arrays. */
     zipCode = [];
-    departement = [];
-    categEnt = [];
-    categEntHard = ['PME', 'ETI', 'GE'];
-    commune = [];
-    communeHard = ['Chantilly', 'Senlis', 'Compiegne', 'Paris', 'Lille'];
-    anneeCreation = [];
-    anneeCreationHard = ['2017', '2016', '2015'];
     statut = [];
     statutHard = ['6412 - Société mutuelle', '6413 - Union de sociétés mutuelles', '6414 - Autre société non com'];
     effectifs = [];
@@ -27,10 +20,8 @@ export class FilterComponent implements OnInit {
     regionHard = ['Picardie', 'Ile de France'];
     /** Tous les display. */
     displayZipCodeForm = false;
-    displayDepartementForm = false
-    displayCategEnt = false;
-    displayCommuneForm = false;
-    displayAnneeCreationForm = false;
+
+
     displayStatutForm = false;
     displayEffectifsForm = false;
     displayCaForm = false;
@@ -38,8 +29,8 @@ export class FilterComponent implements OnInit {
     /** Toutes les variables errors. */
     categError = false;
     depError = false;
-    comError = false;
-    anneeCreationError = false;
+
+
     statutError = false;
     effectifsError = false;
     caError = false;
@@ -84,110 +75,13 @@ export class FilterComponent implements OnInit {
     }
 
 
-    /** DEPARTEMENT **/
-    addDepartement(code: string): void {
-        const status = this.checkValue(code, this.departement);
-        if (status === false && code !== '') {
-            this.departement.push(code);
-            this.depError = false;
-        } else {
-            this.depError = true;
-        }
-    }
-
-    deleteDepartement(idCode): void {
-        console.log(idCode);
-        this.departement.splice(idCode, 1);
-    }
-
-    onSelectDep(): void {
-        if (this.displayDepartementForm) {
-            this.displayDepartementForm = false;
-            this.resetErrors();
-        } else {
-            this.displayDepartementForm = true;
-        }
-    }
 
 
-    /** CATEGORIE ENTREPRISE **/
-    addCategEnt(code: string): void {
-        const status = this.checkValue(code, this.categEnt)
-        if (status === false) {
-            this.categEnt.push(code);
-            this.categError = false;
-        } else {
-            this.categError = true;
-        }
-    }
 
-    deleteCategEnt(idCode): void {
-        console.log(idCode);
-        this.categEnt.splice(idCode, 1);
-    }
-
-    onSelectCategEnt(): void {
-        if (this.displayCategEnt) {
-            this.displayCategEnt = false;
-            this.resetErrors();
-        } else {
-            this.displayCategEnt = true;
-        }
-    }
-
-    /** CATEGORIE ENTREPRISE **/
-    addCommune(code: string): void {
-        const status = this.checkValue(code, this.commune)
-        if (status === false) {
-            this.commune.push(code);
-            this.comError = false;
-        } else {
-            this.comError = true;
-        }
-    }
-
-    deleteCommune(idCode): void {
-        console.log(idCode);
-        this.commune.splice(idCode, 1);
-    }
-
-    onSelectCommune(): void {
-        if (this.displayCommuneForm) {
-            this.displayCommuneForm = false;
-            this.resetErrors();
-        } else {
-            this.displayCommuneForm = true;
-        }
-    }
-
-    /** ANNEE DE CREATION **/
-    addAnneeCreation(code: string): void {
-        const status = this.checkValue(code, this.anneeCreation)
-        if (status === false) {
-            this.anneeCreation.push(code);
-            this.anneeCreationError = false;
-        } else {
-            this.anneeCreationError = true;
-        }
-    }
-
-    deleteAnneeCreation(idCode): void {
-        console.log(idCode);
-        this.anneeCreation.splice(idCode, 1);
-    }
-
-    onSelectAnneeCreation(): void {
-        if (this.displayAnneeCreationForm) {
-            this.displayAnneeCreationForm = false;
-            this.resetErrors();
-        } else {
-            this.displayAnneeCreationForm = true;
-        }
-    }
 
     /** STATUS JURIDIQUE **/
     addStatut(code: string): void {
-        const status = this.checkValue(code, this.statut)
+        const status = this.checkValue(code, this.statut);
         if (status === false) {
             this.statut.push(code);
             this.statutError = false;
@@ -212,7 +106,7 @@ export class FilterComponent implements OnInit {
 
     /** STATUS JURIDIQUE **/
     addEffectifs(code: string): void {
-        const status = this.checkValue(code, this.effectifs)
+        const status = this.checkValue(code, this.effectifs);
         if (status === false) {
             this.effectifs.push(code);
             this.effectifsError = false;
@@ -237,7 +131,7 @@ export class FilterComponent implements OnInit {
 
     /** CHIFFRES D'AFFAIRES **/
     addCa(code: string): void {
-        const status = this.checkValue(code, this.ca)
+        const status = this.checkValue(code, this.ca);
         if (status === false) {
             this.ca.push(code);
             this.caError = false;
@@ -262,7 +156,7 @@ export class FilterComponent implements OnInit {
 
     /** REGION **/
     addRegion(code: string): void {
-        const status = this.checkValue(code, this.region)
+        const status = this.checkValue(code, this.region);
         if (status === false) {
             this.region.push(code);
             this.regionError = false;
@@ -301,7 +195,6 @@ export class FilterComponent implements OnInit {
     resetErrors() {
         this.categError = false;
         this.depError = false;
-        this.anneeCreationError = false;
         this.statutError = false;
         this.effectifsError = false;
         this.caError = false;

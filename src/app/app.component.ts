@@ -30,4 +30,9 @@ export class AppComponent {
         console.log(areaEnt);
         this.filterLinkService.LoadAreaEntreprise(areaEnt);
     }
+
+    outputListMunicipality(municipalityEnt) {
+        console.log(municipalityEnt);
+        this.filterLinkService.LoadMunicipalityEntreprise(municipalityEnt);
+    }
 }
