@@ -17,6 +17,9 @@ export class EnterpriseComponent implements OnInit {
     listCodeApe = [];
     listCategEnterprise = [];
     listAreaEnt = [];
+    listMunicipalityEnt = [];
+    listCreationYearEnt = [];
+    listLegalStatus = [];
 
     constructor(private apiFirmService: ApiFirmService, private filterLinkService: FilterLinkService) {
         filterLinkService.loadCodeApeReceived$.subscribe(codeApe => {
@@ -32,6 +35,21 @@ export class EnterpriseComponent implements OnInit {
 
         filterLinkService.loadAreaEntReceived$.subscribe(area => {
             this.listAreaEnt = area;
+            this.fetchEnterprises();
+        });
+
+        filterLinkService.loadMunicipalityEntReceived$.subscribe(area => {
+            this.listMunicipalityEnt = area;
+            this.fetchEnterprises();
+        });
+
+        filterLinkService.loadCreationDateEntReceived$.subscribe(area => {
+            this.listCreationYearEnt = area;
+            this.fetchEnterprises();
+        });
+
+        filterLinkService.loadLegalStatusEntReceived$.subscribe(area => {
+            this.listLegalStatus = area;
             this.fetchEnterprises();
         });
     }
@@ -54,7 +72,8 @@ export class EnterpriseComponent implements OnInit {
     /* this function load enteprises with loader when user wait */
     fetchEnterprises() {
         this.apiFirmService.updateLoader();
-        this.apiFirmService.getEnterpriseByParameters(this.listCodeApe, this.listCategEnterprise, this.listAreaEnt).subscribe(data => {
+        this.apiFirmService.getEnterpriseByParameters(this.listCodeApe, this.listCategEnterprise, this.listAreaEnt,
+            this.listMunicipalityEnt, this.listCreationYearEnt, this.listLegalStatus).subscribe(data => {
             this.listEnterprises = [];
             data['records'].forEach((value) => {
                 const enterprise = new Enterprise

@@ -1,0 +1,120 @@
+ul{
+    list-style:none;
+}
+
+li{
+    color: #656565;
+}
+
+.widthFilter
+{
+    background-color: #f3f3f3;
+    height: 100%;
+    min-height: 90px;
+    border-bottom: solid 2px;
+    border-bottom-color: #e7e7e7 !important ;
+}
+
+.title-filter
+{
+    font-size: 100%;
+    color: #656565;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+
+
+.smalltext
+{
+    font-size: 80%;
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #656565;
+}
+
+.pull-right
+{
+    margin-right: 8px;
+}
+
+.glyphicon-plus-sign
+{
+    font-size: 150%;
+    cursor: pointer;
+}
+
+.glyphicon-minus-sign
+{
+    font-size: 150%;
+    cursor: pointer;
+}
+
+.reset
+{
+    margin-top: 8px;
+    font-size: 70%;
+    color: grey;
+}
+
+.reset:hover
+{
+    color: #555555;
+    cursor: pointer;
+}
+
+.glyphicon-remove:hover
+{
+    color: #555555;
+    cursor: pointer;
+}
+
+.widthForm
+{
+    width: 120px;
+}
+
+.space
+{
+    margin-left: -40px;
+    margin-right: 20px;
+}
+.widthFilter
+{
+    background-color: #f3f3f3;
+    height: 100%;
+    min-height: 90px;
+    border-bottom: solid 2px;
+    border-bottom-color: #e7e7e7 !important ;
+}
+
+
+
+.special-btn-light-purple
+{
+    border-radius: 0px 50px 50px 0px;
+    background-color: #a83acd;
+    border-color: lightgray;
+}
+
+.filter-light-purple
+{
+    border-left: solid 5px;
+    border-color:#a83acd;
+}
+
+.badge-light-purple
+{
+    background-color: #a83acd;
+}
+
+.badge-plus-light-purple:hover
+{
+    color: #a83acd;
+}
+
+.glyphicon-minus-sign
+{
+    font-size: 150%;
+}
