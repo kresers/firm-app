@@ -3,11 +3,11 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {forEach} from '@angular/router/src/utils/collection';
 import {Subject} from 'rxjs/Subject';
-import {count} from "rxjs/operator/count";
+import {count} from 'rxjs/operator/count';
 
 @Injectable()
 export class ApiFirmService {
-    static BASE_URL = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=base-sirene%40datanova&rows=200&start=0';
+    static BASE_URL = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=base-sirene%40datanova&rows=2000&start=0';
 
     constructor(private http: HttpClient) {
     }
@@ -21,6 +21,7 @@ export class ApiFirmService {
     loader = false;
     private loadLoaderSource = new Subject<boolean>();
     loadLoaderReceived$ = this.loadLoaderSource.asObservable();
+    ind = 0;
 
     /* Verifies if the value already exists in an array */
     checkValue(value, array): Boolean {
@@ -41,61 +42,43 @@ export class ApiFirmService {
     /* listCodeApe : the list of ape Code filter */
 
     /* listCateg : the list of  enterprise categ filter */
-    getEnterpriseByParameters(listCodeApe, listCategEnt, listAreaEnt): Observable<Object> {
+    getEnterpriseByParameters(listCodeApe = [], listCategEnt = [], listAreaEnt = []): Observable<Object> {
         this.parameters = '&q='; // init the list of parameters
-        // list of codeApe parameter
-        listCodeApe.forEach((item, index) => {
-            // first time in the loop we don't add "+OR+"
-            if (index !== 0) {
-                this.codeApe += '+OR+';
-            }
-            // if the item is not null we add the label filter + the value of filter */
-            if (item !== '') {
-                this.codeApe += 'apet700:';
-                this.codeApe += item;
-            }
-        });
-        /* if we have code ape filter we add '&' for the next filter */
-        if (listCodeApe !== []) {
-            this.parameters += this.codeApe;
-            this.parameters += '&';
-        }
-        /* list of categ eterprise */
-        listCategEnt.forEach((item, index) => {
-            if (index !== 0) {
-                this.categ += '+OR+';
-            }
-            if (item !== '') {
-                this.categ += 'categorie:';
-                this.categ += item;
-            }
-        });
-        /* if we have list categ filter we add '&' for the next filter */
-        if (listCodeApe !== []) {
-            this.parameters += this.categ;
-            this.parameters += '&';
-        }
-        /*list of area entreprise */
-        listAreaEnt.forEach((item, index) => {
-            if (index !== 0) {
-                this.area += '+OR+';
-            }
-            if (item !== '') {
-                this.area += 'rpet:';
-                this.categ += item;
-            }
-        });
-        /* if we have list area filter we add '&' for the next filter */
-        if (listAreaEnt !== []) {
-            this.parameters += this.area;
-            this.parameters += '&';
-        }
-        this.parameters += this.codeApe;
+        this.addFilter(listCodeApe, 'apet700', this.codeApe);
+        this.addFilter(listCategEnt, 'categorie', this.categ);
+        this.addFilter(listAreaEnt, 'depet', this.area);
+        console.log(ApiFirmService.BASE_URL + this.parameters);
         return this.http.get(ApiFirmService.BASE_URL + this.parameters);
     }
 
     getAllEnterprises(): Observable<Object> {
         return this.http.get('https://data.opendatasoft.com/api/records/1.0/search/?dataset=base-sirene%40datanova&rows=1000&start=50');
+    }
+
+    /* this function add filter */
+    /* params : */
+    /* list : the list of filter value */
+    /* fieldName : the name of the field in the API */
+    /* paramName : the variable string who concat params */
+    addFilter(list, fieldName, paramName) {
+        this.ind = 0;
+        list.forEach((item, index) => {
+            if (index !== 0) {
+                paramName += '+OR+';
+            }
+            if (item !== '') {
+                paramName += fieldName + ':';
+                paramName += item;
+                this.ind++;
+            }
+        });
+        if (list.length > 0) {
+            this.parameters += paramName;
+            if (this.ind >= list.length) {
+                this.parameters += '&';
+            }
+
+        }
     }
 
     updateLoader() {
