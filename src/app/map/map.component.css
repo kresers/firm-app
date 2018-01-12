@@ -1,10 +1,18 @@
-agm-map {
-
-    height: 500px;
-
+.container{
+   max-width: 79%;
 }
 
 .marge
 {
-    margin: 78px 75px 75px auto;
+    margin:16px 78px 70px auto
 }
+
+.delete-bootstrap-padding
+{
+    padding-right: 0px !important;
+}
+
+.updateCol{
+    width: 75.7% !important;
+}
+

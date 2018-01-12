@@ -2,7 +2,7 @@
 .delete-bootstrap-padding
 {
     margin-left: -15px !important;
-    margin-right: -15px !important;
+    padding-right: 0px !important;
 }
 
 .fixed-top-filter
