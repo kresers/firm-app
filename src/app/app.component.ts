@@ -35,4 +35,14 @@ export class AppComponent {
         console.log(municipalityEnt);
         this.filterLinkService.LoadMunicipalityEntreprise(municipalityEnt);
     }
+
+    outputListCreationDate(creationDateEnt) {
+        console.log(creationDateEnt);
+        this.filterLinkService.LoadCreationYearEntreprise(creationDateEnt);
+    }
+
+    outputListLegalStatus(legalStatusEnt) {
+        console.log(legalStatusEnt);
+        this.filterLinkService.LoadLegalStatusEntreprise(legalStatusEnt);
+    }
 }

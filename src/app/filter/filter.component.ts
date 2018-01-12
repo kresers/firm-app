@@ -10,8 +10,7 @@ import {HttpClient} from '@angular/common/http';
 export class FilterComponent implements OnInit {
     /** Tous les arrays. */
     zipCode = [];
-    statut = [];
-    statutHard = ['6412 - Société mutuelle', '6413 - Union de sociétés mutuelles', '6414 - Autre société non com'];
+
     effectifs = [];
     effectifsHard = ['0 à 9 salariés', '10 à 250 salariés', '250 à 500 salariés'];
     ca = [];
@@ -20,22 +19,15 @@ export class FilterComponent implements OnInit {
     regionHard = ['Picardie', 'Ile de France'];
     /** Tous les display. */
     displayZipCodeForm = false;
-
-
-    displayStatutForm = false;
     displayEffectifsForm = false;
     displayCaForm = false;
     displayRegionForm = false;
     /** Toutes les variables errors. */
     categError = false;
     depError = false;
-
-
-    statutError = false;
     effectifsError = false;
     caError = false;
     regionError = false;
-    @Output() outputListZipCode = new EventEmitter<{}>();
     listTest = [];
 
 
@@ -53,7 +45,6 @@ export class FilterComponent implements OnInit {
 
     addZipCode(code: string): void {
         this.zipCode.push(code);
-        this.updateParentZipCodes();
     }
 
     deleteZipCode(idCode): void {
@@ -70,39 +61,9 @@ export class FilterComponent implements OnInit {
         }
     }
 
-    updateParentZipCodes() {
-        this.outputListZipCode.emit(this.zipCode);
-    }
 
 
 
-
-
-
-    /** STATUS JURIDIQUE **/
-    addStatut(code: string): void {
-        const status = this.checkValue(code, this.statut);
-        if (status === false) {
-            this.statut.push(code);
-            this.statutError = false;
-        } else {
-            this.statutError = true;
-        }
-    }
-
-    deleteStatut(idCode): void {
-        console.log(idCode);
-        this.statut.splice(idCode, 1);
-    }
-
-    onSelectStatut(): void {
-        if (this.displayStatutForm) {
-            this.displayStatutForm = false;
-            this.resetErrors();
-        } else {
-            this.displayStatutForm = true;
-        }
-    }
 
     /** STATUS JURIDIQUE **/
     addEffectifs(code: string): void {
@@ -195,7 +156,6 @@ export class FilterComponent implements OnInit {
     resetErrors() {
         this.categError = false;
         this.depError = false;
-        this.statutError = false;
         this.effectifsError = false;
         this.caError = false;
         this.regionError = false;

@@ -14,7 +14,8 @@
             <app-filter-business-categories (outputListCateg)="outputListCateg($event)"></app-filter-business-categories>
             <app-filter-area (outputListArea)="outputListArea($event)"></app-filter-area>
             <app-filter-municipality (outputListArea)="outputListMunicipality($event)"></app-filter-municipality>
-            <app-filter-creation-year></app-filter-creation-year>
+            <app-filter-creation-year (outputListArea)="outputListCreationDate($event)"></app-filter-creation-year>
+            <app-filter-legal-status (outputListZipCode)="outputListLegalStatus($event)"></app-filter-legal-status>
         </div>
         <div class="col-md-9 delete-bootstrap-padding">
             <app-filter style="display: none"

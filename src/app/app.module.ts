@@ -19,6 +19,7 @@ import { FilterBusinessCategoriesComponent } from './filter-business-categories/
 import { FilterAreaComponent } from './filter-area/filter-area.component';
 import { FilterMunicipalityComponent } from './filter-municipality/filter-municipality.component';
 import { FilterCreationYearComponent } from './filter-creation-year/filter-creation-year.component';
+import { FilterLegalStatusComponent } from './filter-legal-status/filter-legal-status.component';
 
 
 
@@ -43,6 +44,7 @@ const appRoutes: Routes = [
         FilterAreaComponent,
         FilterMunicipalityComponent,
         FilterCreationYearComponent,
+        FilterLegalStatusComponent,
     ],
     imports: [
         BrowserModule,

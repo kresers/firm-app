@@ -11,6 +11,10 @@ export class FilterLinkService {
     loadAreaEntReceived$ = this.loadAreaEntSource.asObservable();
     private loadMunicipalityEntSource = new Subject<[string]>();
     loadMunicipalityEntReceived$ = this.loadMunicipalityEntSource.asObservable();
+    private loadCreationYearEntSource = new Subject<[string]>();
+    loadCreationDateEntReceived$ = this.loadCreationYearEntSource.asObservable();
+    private loadLegalStatusEntSource = new Subject<[string]>();
+    loadLegalStatusEntReceived$ = this.loadLegalStatusEntSource.asObservable();
 
     constructor() {
     }
@@ -30,5 +34,13 @@ export class FilterLinkService {
 
     LoadMunicipalityEntreprise(municipalityEnt): void {
         this.loadMunicipalityEntSource.next(municipalityEnt);
+    }
+
+    LoadCreationYearEntreprise(creationYearEnt): void {
+        this.loadCreationYearEntSource.next(creationYearEnt);
+    }
+
+    LoadLegalStatusEntreprise(legalStatusEnt): void {
+        this.loadLegalStatusEntSource.next(legalStatusEnt);
     }
 }

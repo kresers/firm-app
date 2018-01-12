@@ -1,0 +1,41 @@
+<div class="widthFilter filter-light-purple">
+  <p class="title-filter">
+    <span class="glyphicon glyphicon-road" aria-hidden="true"></span><span
+          *ngIf="displayStatutForm == false"
+          (click)="onSelectStatut()"
+          class="glyphicon glyphicon-plus-sign pull-right badge-plus-light-purple"
+          aria-hidden="true"
+          data-toggle="modal"
+          data-target="#myModalCodePostal"></span>
+    <span *ngIf="displayStatutForm" (click)="onSelectStatut()"
+          class="glyphicon glyphicon-minus-sign pull-right badge-plus-light-purple"
+          aria-hidden="true" data-toggle="modal"
+          data-target="#myModalCodePostal"></span>
+    <b>Status Juridique</b></p>
+  <div *ngIf="displayStatutForm" class="col-md-12">
+    <div class="col-md-11 space">
+      <select class="form-control widthForm pull-right" #statut>
+        <option *ngFor="let value of statutHard; let i = index"><span (click)="deleteStatut(index)"
+                                                                      class="glyphicon glyphicon-remove"
+                                                                      aria-hidden="true"></span> {{ value }}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-1">
+      <button class="special-btn-light-purple btn btn-primary pull-right leftFloat"
+              (click)="addStatut(statut.value);">
+        Ajouter
+      </button>
+    </div>
+  </div>
+  <ul>
+    <li *ngFor="let value of statut; let i = index"><span (click)="deleteStatut(index)"
+                                                          class="glyphicon glyphicon-remove"
+                                                          aria-hidden="true"></span> {{ value }}<span
+            class="badge badge-default badge-light-purple
+ pull-right ">14</span></li>
+  </ul>
+  <div class="alert alert-danger" *ngIf="statutError">
+    <strong>Attention!</strong> Il y a une erreur.
+  </div>
+</div>

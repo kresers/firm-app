@@ -34,7 +34,7 @@ export class FilterCreationYearComponent implements OnInit {
 
     deleteAnneeCreation(idCode): void {
         console.log(idCode);
-        this.anneeCreation.splice(idCode, 1);
+        this.anneeCreation.splice(idCode,   1);
         this.updateParentListArea();
     }
 
