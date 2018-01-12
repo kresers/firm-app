@@ -12,20 +12,18 @@ export class FilterComponent implements OnInit {
     zipCode = [];
 
 
-    ca = [];
-    caHard = ['De 0.5 à 1M', 'De 1M à 2M'];
     region = [];
     regionHard = ['Picardie', 'Ile de France'];
     /** Tous les display. */
     displayZipCodeForm = false;
 
-    displayCaForm = false;
+
     displayRegionForm = false;
     /** Toutes les variables errors. */
     categError = false;
     depError = false;
 
-    caError = false;
+
     regionError = false;
     listTest = [];
 
@@ -60,36 +58,6 @@ export class FilterComponent implements OnInit {
         }
     }
 
-
-
-
-
-
-
-    /** CHIFFRES D'AFFAIRES **/
-    addCa(code: string): void {
-        const status = this.checkValue(code, this.ca);
-        if (status === false) {
-            this.ca.push(code);
-            this.caError = false;
-        } else {
-            this.caError = true;
-        }
-    }
-
-    deleteCa(idCode): void {
-        console.log(idCode);
-        this.ca.splice(idCode, 1);
-    }
-
-    onSelectCa(): void {
-        if (this.displayCaForm) {
-            this.displayCaForm = false;
-            this.resetErrors();
-        } else {
-            this.displayCaForm = true;
-        }
-    }
 
     /** REGION **/
     addRegion(code: string): void {
@@ -132,8 +100,6 @@ export class FilterComponent implements OnInit {
     resetErrors() {
         this.categError = false;
         this.depError = false;
-        this.effectifsError = false;
-        this.caError = false;
         this.regionError = false;
     }
 }

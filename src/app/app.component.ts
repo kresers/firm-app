@@ -50,4 +50,9 @@ export class AppComponent {
         console.log(workforceEnt);
         this.filterLinkService.LoadWorkforceEntreprise(workforceEnt);
     }
+
+    outputTotalRevenueStatus(totalRevenueEnt) {
+        console.log(totalRevenueEnt);
+        this.filterLinkService.LoadTotalRevenue(totalRevenueEnt);
+    }
 }

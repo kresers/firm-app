@@ -17,6 +17,8 @@ export class FilterLinkService {
     loadLegalStatusEntReceived$ = this.loadLegalStatusEntSource.asObservable();
     private loadWorkforceEntSource = new Subject<[string]>();
     loadWorkforceEntReceived$ = this.loadWorkforceEntSource.asObservable();
+    private loadTotalRevenueEntSource = new Subject<[string]>();
+    loadTotalRevenueEntReceived$ = this.loadTotalRevenueEntSource.asObservable();
 
     constructor() {
     }
@@ -48,5 +50,9 @@ export class FilterLinkService {
 
     LoadWorkforceEntreprise(workforceEnt): void {
         this.loadWorkforceEntSource.next(workforceEnt);
+    }
+
+    LoadTotalRevenue(totalRevEnt): void {
+        this.loadTotalRevenueEntSource.next(totalRevEnt);
     }
 }

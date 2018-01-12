@@ -21,6 +21,7 @@ export class EnterpriseComponent implements OnInit {
     listCreationYearEnt = [];
     listLegalStatus = [];
     listWorkforceEnt = [];
+    listTotalRevenue = [];
 
     constructor(private apiFirmService: ApiFirmService, private filterLinkService: FilterLinkService) {
         filterLinkService.loadCodeApeReceived$.subscribe(codeApe => {
@@ -54,8 +55,13 @@ export class EnterpriseComponent implements OnInit {
             this.fetchEnterprises();
         });
 
-        filterLinkService.loadWorkforceEntReceived$.subscribe( area=> {
+        filterLinkService.loadWorkforceEntReceived$.subscribe(area => {
             this.listWorkforceEnt = area;
+            this.fetchEnterprises();
+        });
+
+        filterLinkService.loadTotalRevenueEntReceived$.subscribe( area => {
+            this.listTotalRevenue = area;
             this.fetchEnterprises();
         });
     }
@@ -79,8 +85,8 @@ export class EnterpriseComponent implements OnInit {
     fetchEnterprises() {
         this.apiFirmService.updateLoader();
         this.apiFirmService.getEnterpriseByParameters(this.listCodeApe, this.listCategEnterprise, this.listAreaEnt,
-            this.listMunicipalityEnt, this.listCreationYearEnt, this.listLegalStatus, this.listWorkforceEnt ).subscribe(data => {
-            this.listEnterprises = [];
+            this.listMunicipalityEnt, this.listCreationYearEnt, this.listLegalStatus, this.listWorkforceEnt,
+            this.listTotalRevenue).subscribe(data => { this.listEnterprises = [];
             data['records'].forEach((value) => {
                 const enterprise = new Enterprise
                 (value.fields.siren, value.fields.l1_normalisee, value.fields.codpos, value.fields.libcom, value.fields.dcren);
