@@ -7,7 +7,7 @@ import {count} from 'rxjs/operator/count';
 
 @Injectable()
 export class ApiFirmService {
-    static BASE_URL = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=base-sirene%40datanova&rows=200&start=0';
+    static BASE_URL = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=base-sirene%40datanova&rows=2000&start=0';
 
     constructor(private http: HttpClient) {
     }
@@ -39,7 +39,7 @@ export class ApiFirmService {
     /* params : */
     /* listCodeApe : the list of ape Code filter */
     /* listCateg : the list of  enterprise categ filter */
-    getEnterpriseByParameters(listCodeApe, listCategEnt, listAreaEnt): Observable<Object> {
+    getEnterpriseByParameters(listCodeApe=[], listCategEnt=[],listAreaEnt=[]): Observable<Object> {
         this.parameters = '&q='; // init the list of parameters
         // list of codeApe parameter
         listCodeApe.forEach((item, index) => {
