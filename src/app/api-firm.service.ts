@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {forEach} from '@angular/router/src/utils/collection';
 import {Subject} from 'rxjs/Subject';
-import {count} from "rxjs/operator/count";
+import {count} from 'rxjs/operator/count';
 
 @Injectable()
 export class ApiFirmService {
@@ -16,6 +16,7 @@ export class ApiFirmService {
     parameters = '';
     codeApe = '';
     categ = '';
+    area = '';
     loader = false;
     private loadLoaderSource = new Subject<boolean>();
     loadLoaderReceived$ = this.loadLoaderSource.asObservable();
@@ -37,9 +38,8 @@ export class ApiFirmService {
     /* this function return entreprises with the selected filter */
     /* params : */
     /* listCodeApe : the list of ape Code filter */
-
     /* listCateg : the list of  enterprise categ filter */
-    getEnterpriseByParameters(listCodeApe=[], listCategEnt=[]): Observable<Object> {
+    getEnterpriseByParameters(listCodeApe=[], listCategEnt=[],listAreaEnt=[]): Observable<Object> {
         this.parameters = '&q='; // init the list of parameters
         // list of codeApe parameter
         listCodeApe.forEach((item, index) => {
@@ -54,7 +54,7 @@ export class ApiFirmService {
             }
         });
         /* if we have code ape filter we add '&' for the next filter */
-        if (listCodeApe !== []) {
+        if (listCodeApe.length > 0) {
             this.parameters += this.codeApe;
             this.parameters += '&';
         }
@@ -69,11 +69,28 @@ export class ApiFirmService {
             }
         });
         /* if we have list categ filter we add '&' for the next filter */
-        if (listCodeApe !== []) {
+        if (listCategEnt.length > 0) {
+            console.log('yo');
             this.parameters += this.categ;
             this.parameters += '&';
         }
+        /*list of area entreprise */
+        listAreaEnt.forEach((item, index) => {
+            if (index !== 0) {
+                this.area += '+OR+';
+            }
+            if (item !== '') {
+                this.area += 'depet:';
+                this.area += item;
+            }
+        });
+        /* if we have list area filter we add '&' for the next filter */
+        if (listAreaEnt.length > 0) {
+            this.parameters += this.area;
+            this.parameters += '&';
+        }
         this.parameters += this.codeApe;
+        console.log(ApiFirmService.BASE_URL + this.parameters);
         return this.http.get(ApiFirmService.BASE_URL + this.parameters);
     }
 
