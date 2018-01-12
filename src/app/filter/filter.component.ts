@@ -11,21 +11,20 @@ export class FilterComponent implements OnInit {
     /** Tous les arrays. */
     zipCode = [];
 
-    effectifs = [];
-    effectifsHard = ['0 à 9 salariés', '10 à 250 salariés', '250 à 500 salariés'];
+
     ca = [];
     caHard = ['De 0.5 à 1M', 'De 1M à 2M'];
     region = [];
     regionHard = ['Picardie', 'Ile de France'];
     /** Tous les display. */
     displayZipCodeForm = false;
-    displayEffectifsForm = false;
+
     displayCaForm = false;
     displayRegionForm = false;
     /** Toutes les variables errors. */
     categError = false;
     depError = false;
-    effectifsError = false;
+
     caError = false;
     regionError = false;
     listTest = [];
@@ -65,30 +64,7 @@ export class FilterComponent implements OnInit {
 
 
 
-    /** STATUS JURIDIQUE **/
-    addEffectifs(code: string): void {
-        const status = this.checkValue(code, this.effectifs);
-        if (status === false) {
-            this.effectifs.push(code);
-            this.effectifsError = false;
-        } else {
-            this.effectifsError = true;
-        }
-    }
 
-    deleteEffectifs(idCode): void {
-        console.log(idCode);
-        this.effectifs.splice(idCode, 1);
-    }
-
-    onSelectEffectifs(): void {
-        if (this.displayEffectifsForm) {
-            this.displayEffectifsForm = false;
-            this.resetErrors();
-        } else {
-            this.displayEffectifsForm = true;
-        }
-    }
 
     /** CHIFFRES D'AFFAIRES **/
     addCa(code: string): void {

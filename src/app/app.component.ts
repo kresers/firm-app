@@ -45,4 +45,9 @@ export class AppComponent {
         console.log(legalStatusEnt);
         this.filterLinkService.LoadLegalStatusEntreprise(legalStatusEnt);
     }
+
+    outputWorkforceStatus(workforceEnt) {
+        console.log(workforceEnt);
+        this.filterLinkService.LoadWorkforceEntreprise(workforceEnt);
+    }
 }

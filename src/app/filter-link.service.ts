@@ -15,6 +15,8 @@ export class FilterLinkService {
     loadCreationDateEntReceived$ = this.loadCreationYearEntSource.asObservable();
     private loadLegalStatusEntSource = new Subject<[string]>();
     loadLegalStatusEntReceived$ = this.loadLegalStatusEntSource.asObservable();
+    private loadWorkforceEntSource = new Subject<[string]>();
+    loadWorkforceEntReceived$ = this.loadWorkforceEntSource.asObservable();
 
     constructor() {
     }
@@ -42,5 +44,9 @@ export class FilterLinkService {
 
     LoadLegalStatusEntreprise(legalStatusEnt): void {
         this.loadLegalStatusEntSource.next(legalStatusEnt);
+    }
+
+    LoadWorkforceEntreprise(workforceEnt): void {
+        this.loadWorkforceEntSource.next(workforceEnt);
     }
 }
