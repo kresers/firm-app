@@ -20,6 +20,7 @@ export class ApiFirmService {
     loader = false;
     private loadLoaderSource = new Subject<boolean>();
     loadLoaderReceived$ = this.loadLoaderSource.asObservable();
+    ind = 0;
 
     /* celui qui à écrit cette fonction est invité à commenté merci :) . Elle était ancienement situé dans le filter component*/
     checkValue(value, array): Boolean {
@@ -38,64 +39,45 @@ export class ApiFirmService {
     /* this function return entreprises with the selected filter */
     /* params : */
     /* listCodeApe : the list of ape Code filter */
+
     /* listCateg : the list of  enterprise categ filter */
-    getEnterpriseByParameters(listCodeApe=[], listCategEnt=[],listAreaEnt=[]): Observable<Object> {
+    getEnterpriseByParameters(listCodeApe = [], listCategEnt = [], listAreaEnt = []): Observable<Object> {
         this.parameters = '&q='; // init the list of parameters
-        // list of codeApe parameter
-        listCodeApe.forEach((item, index) => {
-            // first time in the loop we don't add "+OR+"
-            if (index !== 0) {
-                this.codeApe += '+OR+';
-            }
-            // if the item is not null we add the label filter + the value of filter */
-            if (item !== '') {
-                this.codeApe += 'apet700:';
-                this.codeApe += item;
-            }
-        });
-        /* if we have code ape filter we add '&' for the next filter */
-        if (listCodeApe.length > 0) {
-            this.parameters += this.codeApe;
-            this.parameters += '&';
-        }
-        /* list of categ eterprise */
-        listCategEnt.forEach((item, index) => {
-            if (index !== 0) {
-                this.categ += '+OR+';
-            }
-            if (item !== '') {
-                this.categ += 'categorie:';
-                this.categ += item;
-            }
-        });
-        /* if we have list categ filter we add '&' for the next filter */
-        if (listCategEnt.length > 0) {
-            console.log('yo');
-            this.parameters += this.categ;
-            this.parameters += '&';
-        }
-        /*list of area entreprise */
-        listAreaEnt.forEach((item, index) => {
-            if (index !== 0) {
-                this.area += '+OR+';
-            }
-            if (item !== '') {
-                this.area += 'depet:';
-                this.area += item;
-            }
-        });
-        /* if we have list area filter we add '&' for the next filter */
-        if (listAreaEnt.length > 0) {
-            this.parameters += this.area;
-            this.parameters += '&';
-        }
-        this.parameters += this.codeApe;
+        this.addFilter(listCodeApe, 'apet700', this.codeApe);
+        this.addFilter(listCategEnt, 'categorie', this.categ);
+        this.addFilter(listAreaEnt, 'depet', this.area);
         console.log(ApiFirmService.BASE_URL + this.parameters);
         return this.http.get(ApiFirmService.BASE_URL + this.parameters);
     }
 
     getAllEnterprises(): Observable<Object> {
         return this.http.get('https://data.opendatasoft.com/api/records/1.0/search/?dataset=base-sirene%40datanova&rows=1000&start=50');
+    }
+
+    /* this function add filter */
+    /* params : */
+    /* list : the list of filter value */
+    /* fieldName : the name of the field in the API */
+    /* paramName : the variable string who concat params */
+    addFilter(list, fieldName, paramName) {
+        this.ind = 0;
+        list.forEach((item, index) => {
+            if (index !== 0) {
+                paramName += '+OR+';
+            }
+            if (item !== '') {
+                paramName += fieldName + ':';
+                paramName += item;
+                this.ind++;
+            }
+        });
+        if (list.length > 0) {
+            this.parameters += paramName;
+            if (this.ind >= list.length) {
+                this.parameters += '&';
+            }
+
+        }
     }
 
     updateLoader() {
