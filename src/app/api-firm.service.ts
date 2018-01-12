@@ -8,10 +8,10 @@ import {count} from 'rxjs/operator/count';
 @Injectable()
 export class ApiFirmService {
     static BASE_URL = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=base-sirene%40datanova&rows=2000&start=0';
+    static BASE_URL_MAP = 'https://data.opendatasoft.com/explore/embed/dataset/base-sirene@datanova/map?';
 
     constructor(private http: HttpClient) {
     }
-
     listEnterprise = [];
     parameters = '';
     codeApe = '';
@@ -55,6 +55,24 @@ export class ApiFirmService {
         this.addFilter(listLegalStatusEnt, 'nj', this.legalstatus);
         console.log(ApiFirmService.BASE_URL + this.parameters);
         return this.http.get(ApiFirmService.BASE_URL + this.parameters);
+    }
+
+    /* Update this function with your parameters. And go to the map.componenent.ts */
+    /* this function return map value with the selected filter */
+    /* params : */
+    /* listCodeApe : the list of ape Code filter */
+    /* listCateg : the list of  enterprise categ filter */
+    getMapByParameters(listCodeApe = [], listCategEnt = [], listAreaEnt = [], listMunicipalityEnt = [],
+                              listCreationYearEnt = [], listLegalStatusEnt = []): Observable<Object> {
+        this.parameters = '&q='; // init the list of parameters
+        this.addFilter(listCodeApe, 'apet700', this.codeApe);
+        this.addFilter(listCategEnt, 'categorie', this.categ);
+        this.addFilter(listAreaEnt, 'depet', this.area);
+        this.addFilter(listMunicipalityEnt, 'libcom', this.municipality);
+        this.addFilter(listCreationYearEnt, 'dcren', this.creationDate);
+        this.addFilter(listLegalStatusEnt, 'nj', this.legalstatus);
+        console.log(ApiFirmService.BASE_URL + this.parameters);
+        return this.http.get(ApiFirmService.BASE_URL_MAP + this.parameters);
     }
 
     getAllEnterprises(): Observable<Object> {
