@@ -1,18 +1,20 @@
 export class Enterprise {
 
-    constructor(siren, l1_normalisee, codpos, libcom, dcren) {
+    constructor(siren, nic, l1_normalisee, l2_normalisee , l3_normalisee, l4_normalisee) {
 
                 this.siren = siren ;
-                this.address =  l1_normalisee;
-                this.postal_code = codpos ;
-                this.city = libcom;
-                this.established_on = dcren ;
+                this.internNum = nic;
+                this.firstAddress = l1_normalisee;
+                this.secondAddress = l2_normalisee;
+                this.thirdAddress = l3_normalisee;
+                this.fourthAddress = l4_normalisee;
 
                 }
 
     siren: number;
-    address: string;
-    postal_code : number;
-    city: string;
-    established_on : number;
+    internNum: number;
+    firstAddress: string;
+    secondAddress: string;
+    thirdAddress: string;
+    fourthAddress: string;
 }

@@ -2,29 +2,33 @@
     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped borderless table-hover ">
         <thead>
         <tr class="headercolor">
-            <th> Forme Juridique </th>
-            <th> Adresse</th>
-            <th> Code postal</th>
-            <th> Ville </th>
-            <th> Année de création </th>
+            <th> Identifiant de l'entreprise </th>
+            <th> Numéro interne de classement </th>
+            <th> Première ligne de l'adressage </th>
+            <th> Deuxième ligne de l'adressage </th>
+            <th> Troisème ligne de l'adressage </th>
+            <th> Quatrième ligne de l'adressage </th>
         </tr>
         </thead>
         <tbody class="text-uppercase">
             <tr *ngFor="let Enterprise of listEnterprises">
                 <td>
-                    {{ Enterprise.siren}}
+                    {{Enterprise.siren}}
                 </td>
                 <td>
-                    {{ Enterprise.address}}
+                    {{Enterprise.internNum}}
                 </td>
                 <td>
-                    {{ Enterprise.postal_code}}
+                    {{Enterprise.firstAddress}}
                 </td>
                 <td>
-                    {{Enterprise.city}}
+                    {{Enterprise.secondAddress}}
                 </td>
                 <td>
-                    {{Enterprise.established_on}}
+                    {{Enterprise.thirdAddress}}
+                </td>
+                <td>
+                    {{Enterprise.fourthAddress}}
                 </td>
             </tr>
         </tbody>
