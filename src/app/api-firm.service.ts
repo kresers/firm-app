@@ -17,12 +17,15 @@ export class ApiFirmService {
     codeApe = '';
     categ = '';
     area = '';
+    municipality = '';
+    creationDate = '';
+    legalstatus = '';
     loader = false;
     private loadLoaderSource = new Subject<boolean>();
     loadLoaderReceived$ = this.loadLoaderSource.asObservable();
     ind = 0;
 
-    /* celui qui à écrit cette fonction est invité à commenté merci :) . Elle était ancienement situé dans le filter component*/
+    /* Verifies if the value already exists in an array */
     checkValue(value, array): Boolean {
         let status = false;
         for (let i = 0; i < array.length; i++) {
@@ -41,11 +44,15 @@ export class ApiFirmService {
     /* listCodeApe : the list of ape Code filter */
 
     /* listCateg : the list of  enterprise categ filter */
-    getEnterpriseByParameters(listCodeApe = [], listCategEnt = [], listAreaEnt = []): Observable<Object> {
+    getEnterpriseByParameters(listCodeApe = [], listCategEnt = [], listAreaEnt = [], listMunicipalityEnt = [],
+                              listCreationYearEnt = [], listLegalStatusEnt = []): Observable<Object> {
         this.parameters = '&q='; // init the list of parameters
         this.addFilter(listCodeApe, 'apet700', this.codeApe);
         this.addFilter(listCategEnt, 'categorie', this.categ);
         this.addFilter(listAreaEnt, 'depet', this.area);
+        this.addFilter(listMunicipalityEnt, 'libcom', this.municipality);
+        this.addFilter(listCreationYearEnt, 'dcren', this.creationDate);
+        this.addFilter(listLegalStatusEnt, 'nj', this.legalstatus);
         console.log(ApiFirmService.BASE_URL + this.parameters);
         return this.http.get(ApiFirmService.BASE_URL + this.parameters);
     }
