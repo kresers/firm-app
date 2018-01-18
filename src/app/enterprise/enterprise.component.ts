@@ -95,7 +95,12 @@ export class EnterpriseComponent implements OnInit {
             this.listTotalRevenue, this.listRegion).subscribe(data => { this.listEnterprises = [];
             data['records'].forEach((value) => {
                 const enterprise = new Enterprise
-                (value.fields.siren, value.fields.l1_normalisee, value.fields.codpos, value.fields.libcom, value.fields.dcren);
+                (value.fields.siren,
+                 value.fields.nic,
+                 value.fields.l1_normalisee,
+                 value.fields.l2_normalisee,
+                 value.fields.l3_normalisee,
+                 value.fields.l4_normalisee);
                 this.listEnterprises.push(enterprise);
             });
             this.apiFirmService.updateLoader();
