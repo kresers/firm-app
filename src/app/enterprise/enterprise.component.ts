@@ -83,6 +83,7 @@ export class EnterpriseComponent implements OnInit {
             deferRender: true,
             language: {url: '//cdn.datatables.net/plug-ins/1.10.11/i18n/French.json'},
             paging: false,
+            retrieve: true,
         };
         this.fetchEnterprises();
     }
