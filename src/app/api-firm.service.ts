@@ -65,7 +65,7 @@ export class ApiFirmService {
     }
 
     getAllEnterprises(): Observable<Object> {
-        return this.http.get('https://data.opendatasoft.com/api/records/1.0/search/?dataset=base-sirene%40datanova&rows=1000&start=50');
+        return this.http.get('https://data.opendatasoft.com/api/records/1.0/search/?dataset=base-sirene%40datanova&rows=10&start=50');
     }
 
     /* this function add filter */
