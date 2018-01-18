@@ -20,6 +20,9 @@ export class EnterpriseComponent implements OnInit {
     listMunicipalityEnt = [];
     listCreationYearEnt = [];
     listLegalStatus = [];
+    listWorkforceEnt = [];
+    listTotalRevenue = [];
+    listRegion = [];
 
     constructor(private apiFirmService: ApiFirmService, private filterLinkService: FilterLinkService) {
         filterLinkService.loadCodeApeReceived$.subscribe(codeApe => {
@@ -52,6 +55,21 @@ export class EnterpriseComponent implements OnInit {
             this.listLegalStatus = area;
             this.fetchEnterprises();
         });
+
+        filterLinkService.loadWorkforceEntReceived$.subscribe(area => {
+            this.listWorkforceEnt = area;
+            this.fetchEnterprises();
+        });
+
+        filterLinkService.loadTotalRevenueEntReceived$.subscribe( area => {
+            this.listTotalRevenue = area;
+            this.fetchEnterprises();
+        });
+
+        filterLinkService.loadRegionEntReceived$.subscribe( area => {
+            this.listRegion = area;
+            this.fetchEnterprises();
+        });
     }
 
     ngOnInit(): void {
@@ -73,11 +91,16 @@ export class EnterpriseComponent implements OnInit {
     fetchEnterprises() {
         this.apiFirmService.updateLoader();
         this.apiFirmService.getEnterpriseByParameters(this.listCodeApe, this.listCategEnterprise, this.listAreaEnt,
-            this.listMunicipalityEnt, this.listCreationYearEnt, this.listLegalStatus).subscribe(data => {
-            this.listEnterprises = [];
+            this.listMunicipalityEnt, this.listCreationYearEnt, this.listLegalStatus, this.listWorkforceEnt,
+            this.listTotalRevenue, this.listRegion).subscribe(data => { this.listEnterprises = [];
             data['records'].forEach((value) => {
                 const enterprise = new Enterprise
-                (value.fields.siren, value.fields.l1_normalisee, value.fields.codpos, value.fields.libcom, value.fields.dcren);
+                (value.fields.siren,
+                 value.fields.nic,
+                 value.fields.l1_normalisee,
+                 value.fields.l2_normalisee,
+                 value.fields.l3_normalisee,
+                 value.fields.l4_normalisee);
                 this.listEnterprises.push(enterprise);
             });
             this.apiFirmService.updateLoader();

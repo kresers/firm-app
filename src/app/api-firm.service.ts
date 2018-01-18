@@ -19,6 +19,9 @@ export class ApiFirmService {
     municipality = '';
     creationDate = '';
     legalstatus = '';
+    workforce = '';
+    totalrevenue = '';
+    region = '';
     loader = false;
     private loadLoaderSource = new Subject<boolean>();
     loadLoaderReceived$ = this.loadLoaderSource.asObservable();
@@ -44,7 +47,8 @@ export class ApiFirmService {
 
     /* listCateg : the list of  enterprise categ filter */
     getEnterpriseByParameters(listCodeApe = [], listCategEnt = [], listAreaEnt = [], listMunicipalityEnt = [],
-                              listCreationYearEnt = [], listLegalStatusEnt = []): Observable<Object> {
+                              listCreationYearEnt = [], listLegalStatusEnt = [], listWorkforceEnt = [],
+                              listTotalRevenueEnt = [], listRegion = []): Observable<Object> {
         this.parameters = '&q='; // init the list of parameters
         this.addFilter(listCodeApe, 'apet700', this.codeApe);
         this.addFilter(listCategEnt, 'categorie', this.categ);
@@ -52,6 +56,9 @@ export class ApiFirmService {
         this.addFilter(listMunicipalityEnt, 'libcom', this.municipality);
         this.addFilter(listCreationYearEnt, 'dcren', this.creationDate);
         this.addFilter(listLegalStatusEnt, 'nj', this.legalstatus);
+        this.addFilter(listWorkforceEnt, 'tefen', this.workforce);
+        this.addFilter(listTotalRevenueEnt, 'tca', this.totalrevenue);
+        this.addFilter(listRegion, 'libreg_new', this.region);
         console.log(ApiFirmService.BASE_URL + this.parameters);
         return this.http.get(ApiFirmService.BASE_URL + this.parameters);
     }

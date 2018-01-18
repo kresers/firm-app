@@ -1,0 +1,41 @@
+<div class="widthFilter filter-red">
+  <p class="title-filter">
+    <span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span><span
+          *ngIf="displayCaForm == false"
+          (click)="onSelectCa()"
+          class="glyphicon glyphicon-plus-sign pull-right badge-plus-red"
+          aria-hidden="true"
+          data-toggle="modal"
+          data-target="#myModalCodePostal"></span>
+    <span *ngIf="displayCaForm" (click)="onSelectCa()"
+          class="glyphicon glyphicon-minus-sign pull-right badge-plus-pink"
+          aria-hidden="true" data-toggle="modal"
+          data-target="#myModalCodePostal"></span>
+    <b>Chiffre d'Affaires</b></p>
+  <div *ngIf="displayCaForm" class="col-md-12">
+    <div class="col-md-11 space">
+      <select class="form-control widthForm pull-right" #ca>
+        <option *ngFor="let value of caHard; let i = index"><span (click)="deleteCa(index)"
+                                                                  class="glyphicon glyphicon-remove"
+                                                                  aria-hidden="true"></span> {{ value }}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-1">
+      <button class="special-btn-red btn btn-primary pull-right leftFloat"
+              (click)="addCa(ca.value);">
+        Ajouter
+      </button>
+    </div>
+  </div>
+  <ul>
+    <li *ngFor="let value of ca; let i = index"><span (click)="deleteCa(index)"
+                                                      class="glyphicon glyphicon-remove"
+                                                      aria-hidden="true"></span> {{ value }}<span
+            class="badge badge-default badge-red
+ pull-right ">14</span></li>
+  </ul>
+  <div class="alert alert-danger" *ngIf="caError">
+    <strong>Attention!</strong> Il y a une erreur.
+  </div>
+</div>
