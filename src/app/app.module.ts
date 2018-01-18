@@ -1,7 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
-import {FilterComponent} from './filter/filter.component';
 import {EnterpriseComponent} from './enterprise/enterprise.component';
 import {TopNavbarComponent} from './top-navbar/top-navbar.component';
 import {ApiFirmService} from './api-firm.service';
@@ -20,6 +19,9 @@ import { FilterAreaComponent } from './filter-area/filter-area.component';
 import { FilterMunicipalityComponent } from './filter-municipality/filter-municipality.component';
 import { FilterCreationYearComponent } from './filter-creation-year/filter-creation-year.component';
 import { FilterLegalStatusComponent } from './filter-legal-status/filter-legal-status.component';
+import { FilterWorkforceComponent } from './filter-workforce/filter-workforce.component';
+import { FilterTotalRevenueComponent } from './filter-total-revenue/filter-total-revenue.component';
+import { FilterRegionComponent } from './filter-region/filter-region.component';
 
 
 
@@ -32,7 +34,6 @@ const appRoutes: Routes = [
 @NgModule({
     declarations: [
         AppComponent,
-        FilterComponent,
         EnterpriseComponent,
         TopNavbarComponent,
         NavbarComponent,
@@ -45,6 +46,9 @@ const appRoutes: Routes = [
         FilterMunicipalityComponent,
         FilterCreationYearComponent,
         FilterLegalStatusComponent,
+        FilterWorkforceComponent,
+        FilterTotalRevenueComponent,
+        FilterRegionComponent,
     ],
     imports: [
         BrowserModule,
