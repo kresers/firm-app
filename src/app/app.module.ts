@@ -20,6 +20,9 @@ import { FilterAreaComponent } from './filter-area/filter-area.component';
 import { FilterMunicipalityComponent } from './filter-municipality/filter-municipality.component';
 import { FilterCreationYearComponent } from './filter-creation-year/filter-creation-year.component';
 import { FilterLegalStatusComponent } from './filter-legal-status/filter-legal-status.component';
+import { FilterWorkforceComponent } from './filter-workforce/filter-workforce.component';
+import { FilterTotalRevenueComponent } from './filter-total-revenue/filter-total-revenue.component';
+import { FilterRegionComponent } from './filter-region/filter-region.component';
 
 
 
@@ -45,6 +48,9 @@ const appRoutes: Routes = [
         FilterMunicipalityComponent,
         FilterCreationYearComponent,
         FilterLegalStatusComponent,
+        FilterWorkforceComponent,
+        FilterTotalRevenueComponent,
+        FilterRegionComponent,
     ],
     imports: [
         BrowserModule,

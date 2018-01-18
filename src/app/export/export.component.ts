@@ -1,22 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ApiFirmService} from '../api-firm.service';
-import { Angular2Csv } from 'angular2-csv/Angular2-csv';
-import {Enterprise} from '../model/enterprise';
+import {Angular2Csv} from 'angular2-csv/Angular2-csv';
+import {Enterprise} from "../model/enterprise";
 
 @Component({
-  selector: 'app-export',
-  templateUrl: './export.component.html',
-  styleUrls: ['./export.component.css']
+    selector: 'app-export',
+    templateUrl: './export.component.html',
+    styleUrls: ['./export.component.css']
 })
 export class ExportComponent implements OnInit {
 
     listEnterprises = [];
 
 
-  constructor(private apiFirmService: ApiFirmService) { }
+    constructor(private apiFirmService: ApiFirmService) {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
+
 
     downloadCsv () {
       const options = {
@@ -40,7 +42,8 @@ export class ExportComponent implements OnInit {
           new Angular2Csv(this.listEnterprises, 'nom du fichier', options);
       });
     }
-    downloadJson (){
+
+    downloadJson() {
         this.apiFirmService.getEnterpriseByParameters().subscribe(data => {
             data['records'].forEach((value) => {
                 const enterprise = new Enterprise(value.fields.siren,
@@ -51,7 +54,6 @@ export class ExportComponent implements OnInit {
                     value.fields.l4_normalisee);
                 this.listEnterprises.push(enterprise);
             });
-
             JSON.stringify(this.listEnterprises);
         });
     }
