@@ -7,7 +7,7 @@ import {count} from 'rxjs/operator/count';
 
 @Injectable()
 export class ApiFirmService {
-    static BASE_URL = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=base-sirene%40datanova&rows=20&start=0';
+    static BASE_URL = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=base-sirene%40datanova&rows=100&start=0';
 
     constructor(private http: HttpClient) {
     }
