@@ -12,8 +12,8 @@ import {FilterLinkService} from '../filter-link.service';
 })
 export class EnterpriseComponent implements OnInit {
     dtOptions: DataTables.Settings = {};
-    listEnterprises = [];
     dtTrigger: Subject<any> = new Subject();
+    listEnterprises = [];
     listCodeApe = [];
     listCategEnterprise = [];
     listAreaEnt = [];

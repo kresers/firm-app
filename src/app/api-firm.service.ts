@@ -1,9 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {forEach} from '@angular/router/src/utils/collection';
 import {Subject} from 'rxjs/Subject';
-import {count} from 'rxjs/operator/count';
 
 @Injectable()
 export class ApiFirmService {
@@ -12,6 +10,7 @@ export class ApiFirmService {
 
     constructor(private http: HttpClient) {
     }
+
     listEnterprise = [];
     parameters = '';
     codeApe = '';
@@ -61,9 +60,10 @@ export class ApiFirmService {
     /* this function return map value with the selected filter */
     /* params : */
     /* listCodeApe : the list of ape Code filter */
+
     /* listCateg : the list of  enterprise categ filter */
     getMapByParameters(listCodeApe = [], listCategEnt = [], listAreaEnt = [], listMunicipalityEnt = [],
-                              listCreationYearEnt = [], listLegalStatusEnt = []): Observable<Object> {
+                       listCreationYearEnt = [], listLegalStatusEnt = []): Observable<any> {
         this.parameters = '&q='; // init the list of parameters
         this.addFilter(listCodeApe, 'apet700', this.codeApe);
         this.addFilter(listCategEnt, 'categorie', this.categ);
@@ -71,7 +71,7 @@ export class ApiFirmService {
         this.addFilter(listMunicipalityEnt, 'libcom', this.municipality);
         this.addFilter(listCreationYearEnt, 'dcren', this.creationDate);
         this.addFilter(listLegalStatusEnt, 'nj', this.legalstatus);
-        console.log(ApiFirmService.BASE_URL + this.parameters);
+        console.log(ApiFirmService.BASE_URL_MAP + this.parameters);
         return this.http.get(ApiFirmService.BASE_URL_MAP + this.parameters);
     }
 
@@ -83,6 +83,7 @@ export class ApiFirmService {
     /* params : */
     /* list : the list of filter value */
     /* fieldName : the name of the field in the API */
+
     /* paramName : the variable string who concat params */
     addFilter(list, fieldName, paramName) {
         this.ind = 0;
