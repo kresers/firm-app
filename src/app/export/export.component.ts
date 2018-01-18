@@ -34,13 +34,13 @@ export class ExportComponent implements OnInit {
                                                   value.fields.l1_normalisee,
                                                   value.fields.l2_normalisee,
                                                   value.fields.l3_normalisee,
-                                                  value.fields.l4_normalisee);
+                                                  value.fields.l4_normalisee, );
               this.listEnterprises.push(enterprise);
           });
-          new Angular2Csv(this.listEnterprises, 'nom du fichier', options);
+          return new Angular2Csv(this.listEnterprises, 'fileName' , options);
       });
     }
-    downloadJson (){
+    downloadJson () {
         this.apiFirmService.getEnterpriseByParameters().subscribe(data => {
             data['records'].forEach((value) => {
                 const enterprise = new Enterprise(value.fields.siren,
