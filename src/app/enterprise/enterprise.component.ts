@@ -75,14 +75,14 @@ export class EnterpriseComponent implements OnInit {
     ngOnInit(): void {
         this.dtOptions = {
             pagingType: 'full_numbers',
-            lengthMenu: [10, 50, 100, 500, 1000],
-            pageLength: 200,
+            lengthChange: false,
+            pageLength: 50,
             autoWidth: true,
             scrollY: '500px',
             searching: false,
-            deferRender: true,
+            deferRender: false,
             language: {url: '//cdn.datatables.net/plug-ins/1.10.11/i18n/French.json'},
-            paging: false,
+            paging: true,
             retrieve: true,
         };
         this.fetchEnterprises();
@@ -105,7 +105,7 @@ export class EnterpriseComponent implements OnInit {
                 this.listEnterprises.push(enterprise);
             });
             this.apiFirmService.updateLoader();
+            this.dtTrigger.next();
         });
-        this.dtTrigger.next();
     }
 }

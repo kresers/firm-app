@@ -14,7 +14,7 @@
 
   <h4 class="export_title"> JSON </h4>
 
-  <a (click)="downloadJson()" class="separate_glyph">
+  <a download="monexport" class="separate_glyph" [href]="exportJSON">
     <span class="glyphicon glyphicon-download-alt"> Jeu de données entier</span>
   </a>
   <a (click)="downloadJson()" class="separate_glyph" >
@@ -24,7 +24,7 @@
   <br/>
 
   <h4 class="export_title"> EXCEL </h4>
-  <a (click)="downloadExcel()" class="separate_glyph">
+  <a download="downloadExcel()" class="separate_glyph" [href]="exportXLS">
     <span class="glyphicon glyphicon-download-alt"> Jeu de données entier</span>
   </a>
   <a (click)="downloadExcel()" class="separate_glyph">
