@@ -23,8 +23,6 @@ import { FilterWorkforceComponent } from './filter-workforce/filter-workforce.co
 import { FilterTotalRevenueComponent } from './filter-total-revenue/filter-total-revenue.component';
 import { FilterRegionComponent } from './filter-region/filter-region.component';
 
-
-
 const appRoutes: Routes = [
     {path: '', component: EnterpriseComponent},
     {path: 'carte', component: MapComponent},

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ApiFirmService} from '../api-firm.service';
 import {FilterLinkService} from '../filter-link.service';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import {Response} from '@angular/http';
 
 @Component({
     selector: 'app-map',
@@ -58,7 +59,7 @@ export class MapComponent implements OnInit {
         this.apiFirmService.updateLoader();
         this.apiFirmService.getMapByParameters(this.listCodeApe, this.listCategEnterprise, this.listAreaEnt,
             this.listMunicipalityEnt, this.listCreationYearEnt, this.listLegalStatus).subscribe(data => {
-            this.url =  this.sanitizer.bypassSecurityTrustResourceUrl(data);
+            this.url = this.sanitizer.bypassSecurityTrustResourceUrl(data);
             this.apiFirmService.updateLoader();
         });
     }

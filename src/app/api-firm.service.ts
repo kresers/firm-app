@@ -5,7 +5,7 @@ import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class ApiFirmService {
-    static BASE_URL = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=base-sirene%40datanova&rows=2000&start=0';
+    static BASE_URL = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=base-sirene%40datanova&rows=500&start=0';
     static BASE_URL_MAP = 'https://data.opendatasoft.com/explore/embed/dataset/base-sirene@datanova/map?';
 
     constructor(private http: HttpClient) {
@@ -44,7 +44,6 @@ export class ApiFirmService {
     /* this function return entreprises with the selected filter */
     /* params : */
     /* listCodeApe : the list of ape Code filter */
-
     /* listCateg : the list of  enterprise categ filter */
     getEnterpriseByParameters(listCodeApe = [], listCategEnt = [], listAreaEnt = [], listMunicipalityEnt = [],
                               listCreationYearEnt = [], listLegalStatusEnt = [], listWorkforceEnt = [],
@@ -67,7 +66,6 @@ export class ApiFirmService {
     /* this function return map value with the selected filter */
     /* params : */
     /* listCodeApe : the list of ape Code filter */
-
     /* listCateg : the list of  enterprise categ filter */
     getMapByParameters(listCodeApe = [], listCategEnt = [], listAreaEnt = [], listMunicipalityEnt = [],
                        listCreationYearEnt = [], listLegalStatusEnt = []): Observable<any> {
@@ -90,7 +88,6 @@ export class ApiFirmService {
     /* params : */
     /* list : the list of filter value */
     /* fieldName : the name of the field in the API */
-
     /* paramName : the variable string who concat params */
     addFilter(list, fieldName, paramName) {
         this.ind = 0;
