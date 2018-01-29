@@ -13,8 +13,17 @@ export class FilterBusinessCategoriesComponent implements OnInit {
     categError = false;
     displayCategEnt = false;
     @Output() outputListCateg = new EventEmitter<{}>(); // #SEB  the value of this output is transmit to the app.componenet.ts
+    resetAll: boolean;
 
     constructor(private apiFirmService: ApiFirmService) {
+        apiFirmService.loadResetAllReceived$.subscribe(data => {
+            this.resetAll = data;
+            if (this.resetAll === true) {
+                this.categEnt = [];
+                this.updateParentListCateg();
+                this.displayCategEnt = false;
+            }
+        });
     }
 
     ngOnInit() {
