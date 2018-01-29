@@ -12,8 +12,8 @@
           aria-hidden="true" data-toggle="modal"
           data-target="#myModalCodePostal"></span>
     <b>Status Juridique</b></p>
-  <div *ngIf="displayStatutForm" class="col-md-12">
-    <div class="col-md-11 space">
+  <div *ngIf="displayStatutForm" class="col-md-12 col-xs-12">
+    <div class="col-md-11 col-xs-11 space">
       <select class="form-control widthForm pull-right" #statut>
         <option *ngFor="let value of statutHard; let i = index"><span (click)="deleteStatut(index)"
                                                                       class="glyphicon glyphicon-remove"
@@ -21,7 +21,7 @@
         </option>
       </select>
     </div>
-    <div class="col-md-1">
+    <div class="col-md-1 col-xs-1">
       <button class="special-btn-light-purple btn btn-primary pull-right leftFloat"
               (click)="addStatut(statut.value);">
         Ajouter

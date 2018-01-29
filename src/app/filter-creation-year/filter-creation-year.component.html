@@ -12,8 +12,8 @@
           aria-hidden="true" data-toggle="modal"
           data-target="#myModalCodePostal"></span>
     <b>Année de création</b></p>
-  <div *ngIf="displayAnneeCreationForm" class="col-md-12">
-    <div class="col-md-11 space">
+  <div *ngIf="displayAnneeCreationForm" class="col-md-12 col-xs-12">
+    <div class="col-md-11 space col-xs-11">
       <select class="form-control widthForm pull-right" #annee>
         <option *ngFor="let value of anneeCreationHard; let i = index"><span (click)="deleteAnneeCreation(index)"
                                                                              class="glyphicon glyphicon-remove"
@@ -21,7 +21,7 @@
         </option>
       </select>
     </div>
-    <div class="col-md-1">
+    <div class="col-md-1 col-xs-1">
       <button class="special-btn-purple btn btn-primary pull-right leftFloat"
               (click)="addAnneeCreation(annee.value);">
         Ajouter

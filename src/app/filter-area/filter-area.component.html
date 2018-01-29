@@ -10,11 +10,11 @@
             data-toggle="modal"
             data-target="#myModalDepartement"></span>
     <b>Département</b></p>
-  <div *ngIf="displayDepartementForm" class="col-md-12">
-    <div class="col-md-11 space">
+  <div *ngIf="displayDepartementForm" class="col-md-12 col-xs-12">
+    <div class="col-md-11 col-xs-11 space">
       <input class="form-control widthForm pull-right" #dep placeholder="Departement">
     </div>
-    <div class="col-md-1">
+    <div class="col-md-1 col-xs-1">
       <button class="special-btn-blue btn btn-primary pull-right leftFloat" (click)="addDepartement(dep.value);">
         Ajouter
       </button>
