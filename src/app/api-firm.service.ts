@@ -32,10 +32,12 @@ export class ApiFirmService {
     reset = false;
     private loadResetSource = new Subject<number>();
     loadResetReceived$ = this.loadResetSource.asObservable();
+    private loadResetAllSource = new Subject<boolean>();
+    loadResetAllReceived$ = this.loadResetAllSource.asObservable();
 
     resetAll(): void {
         this.reset = true;
-        console.log(this.reset);
+        this.loadResetAllSource.next(this.reset);
     }
 
 
