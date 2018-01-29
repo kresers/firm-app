@@ -9,11 +9,20 @@ import {ApiFirmService} from '../api-firm.service';
 export class FilterTotalRevenueComponent implements OnInit {
 
     ca = [];
+    resetAll: boolean;
     caHard = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
     displayCaForm = false;
     caError = false;
     @Output() outputListArea = new EventEmitter<{}>(); // #SEB  the value of this output is transmit to the
     constructor(private apiFirmService: ApiFirmService) {
+        apiFirmService.loadResetAllReceived$.subscribe(data => {
+            this.resetAll = data;
+            if (this.resetAll === true) {
+                this.ca = [];
+                this.updateParentTotalRevenu();
+                this.displayCaForm = false;
+            }
+        });
     }
 
     ngOnInit() {
@@ -25,7 +34,7 @@ export class FilterTotalRevenueComponent implements OnInit {
         if (status === false) {
             this.ca.push(code);
             this.caError = false;
-            this.updateParentListArea();
+            this.updateParentTotalRevenu();
         } else {
             this.caError = true;
         }
@@ -34,7 +43,7 @@ export class FilterTotalRevenueComponent implements OnInit {
     deleteCa(idCode): void {
         console.log(idCode);
         this.ca.splice(idCode, 1);
-        this.updateParentListArea();
+        this.updateParentTotalRevenu();
     }
 
     onSelectCa(): void {
@@ -46,7 +55,7 @@ export class FilterTotalRevenueComponent implements OnInit {
     }
 
     /* #SEB  this functon update the value in the app.component.ts */
-    updateParentListArea() {
+    updateParentTotalRevenu() {
         this.outputListArea.emit(this.ca);
     }
 }

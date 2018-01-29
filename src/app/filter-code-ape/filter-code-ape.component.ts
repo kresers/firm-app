@@ -12,8 +12,18 @@ export class FilterCodeApeComponent implements OnInit {
     displayCodeApeForm = false;
     apeError = false;
     displayButton = false;
+    resetAll: boolean;
     @Output() outputCodeApe = new EventEmitter<{}>(); // #SEB  the value of this output is transmit to the app.componenent.ts
     constructor(private apiFirmService: ApiFirmService) {
+        apiFirmService.loadResetAllReceived$.subscribe(data => {
+            this.resetAll = data;
+            if (this.resetAll === true) {
+                this.codeApe = [];
+                this.updateParentCodeApe();
+                this.displayButton = false;
+                this.displayCodeApeForm = false ;
+            }
+        });
     }
 
     ngOnInit() {

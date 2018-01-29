@@ -13,9 +13,18 @@ export class FilterWorkforceComponent implements OnInit {
     ' salariés'];
     displayEffectifsForm = false;
     effectifsError = false;
+    resetAll: boolean;
     @Output() outputListArea = new EventEmitter<{}>(); // #SEB  the value of this output is transmit to the
 
     constructor(private apiFirmService: ApiFirmService) {
+        apiFirmService.loadResetAllReceived$.subscribe(data => {
+            this.resetAll = data;
+            if (this.resetAll === true) {
+                this.effectifs = [];
+                this.updateParentWorkforce();
+                this.displayEffectifsForm = false;
+            }
+        });
     }
 
     ngOnInit() {
@@ -27,7 +36,7 @@ export class FilterWorkforceComponent implements OnInit {
         if (status === false) {
             this.effectifs.push(code);
             this.effectifsError = false;
-            this.updateParentListArea();
+            this.updateParentWorkforce();
         } else {
             this.effectifsError = true;
         }
@@ -36,7 +45,7 @@ export class FilterWorkforceComponent implements OnInit {
     deleteEffectifs(idCode): void {
         console.log(idCode);
         this.effectifs.splice(idCode, 1);
-        this.updateParentListArea();
+        this.updateParentWorkforce();
     }
 
     onSelectEffectifs(): void {
@@ -48,7 +57,7 @@ export class FilterWorkforceComponent implements OnInit {
     }
 
     /* #SEB  this functon update the value in the app.component.ts */
-    updateParentListArea() {
+    updateParentWorkforce() {
         this.outputListArea.emit(this.effectifs);
     }
 }

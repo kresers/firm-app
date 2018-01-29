@@ -12,9 +12,19 @@ export class FilterLegalStatusComponent implements OnInit {
     statutHard = ['5520', '5620', '7112', '7357', '5370'];
     displayStatutForm = false;
     statutError = false;
+    resetAll: boolean;
     @Output() outputListZipCode = new EventEmitter<{}>();
 
-  constructor(private apiFirmService: ApiFirmService) { }
+  constructor(private apiFirmService: ApiFirmService) {
+      apiFirmService.loadResetAllReceived$.subscribe(data => {
+          this.resetAll = data;
+          if (this.resetAll === true) {
+              this.statut = [];
+              this.updateParentListArea();
+              this.displayStatutForm = false;
+          }
+      });
+  }
 
   ngOnInit() {
   }
