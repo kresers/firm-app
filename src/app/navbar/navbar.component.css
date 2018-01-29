@@ -52,4 +52,10 @@ ul
 padding-top: 15px;
 }
 
+@media screen and (max-width: 990px) {
+    .custom_title_table {
+        display:none;
+    }
+}
+
 

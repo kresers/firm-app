@@ -26,5 +26,7 @@
     padding-top: 15px;
     padding-left: 20px;
 }
-
+.glyphicon-remove::before{
+    margin-right:9px;
+}
 
