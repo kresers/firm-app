@@ -10,10 +10,18 @@ export class FilterAreaComponent implements OnInit {
     departement = [];
     displayDepartementForm = false;
     depError = false;
+    resetAll: boolean;
     @Output() outputListArea = new EventEmitter<{}>(); // #SEB  the value of this output is transmit to the
     // app.componenent.ts
 
     constructor(private apiFirmService: ApiFirmService) {
+        apiFirmService.loadResetAllReceived$.subscribe(data => {
+            this.resetAll = data;
+            if (this.resetAll === true) {
+                this.departement = [];
+                this.updateParentListArea();
+            }
+        });
     }
 
     ngOnInit() {
