@@ -11,3 +11,14 @@
 }
 
 
+.title-sidebar
+{
+    font-size: 150%;
+    color: #2569b0;
+    padding-top: 15px;
+    padding-left: 20px;
+}
+.glyphicon-remove::before{
+    margin-right:9px;
+}
+
