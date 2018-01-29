@@ -12,8 +12,8 @@
           aria-hidden="true" data-toggle="modal"
           data-target="#myModalCodePostal"></span>
     <b>Effectifs</b></p>
-  <div *ngIf="displayEffectifsForm" class="col-md-12">
-    <div class="col-md-11 space">
+  <div *ngIf="displayEffectifsForm" class="col-md-12 col-xs-12">
+    <div class="col-md-11 col-xs-11 space">
       <select class="form-control widthForm pull-right" #effectifs>
         <option *ngFor="let value of effectifsHard; let i = index"><span (click)="deleteEffectifs(index)"
                                                                          class="glyphicon glyphicon-remove"
@@ -21,7 +21,7 @@
         </option>
       </select>
     </div>
-    <div class="col-md-1">
+    <div class="col-md-1 col-xs-1">
       <button class="special-btn-pink btn btn-primary pull-right leftFloat"
               (click)="addEffectifs(effectifs.value);">
         Ajouter
