@@ -12,8 +12,8 @@ import {FilterLinkService} from '../filter-link.service';
 })
 export class EnterpriseComponent implements OnInit {
     dtOptions: DataTables.Settings = {};
-    listEnterprises = [];
     dtTrigger: Subject<any> = new Subject();
+    listEnterprises = [];
     listCodeApe = [];
     listCategEnterprise = [];
     listAreaEnt = [];
@@ -23,6 +23,8 @@ export class EnterpriseComponent implements OnInit {
     listWorkforceEnt = [];
     listTotalRevenue = [];
     listRegion = [];
+    nbResult: number;
+    @Output() outputNbResult = new EventEmitter<any>();
 
     constructor(private apiFirmService: ApiFirmService, private filterLinkService: FilterLinkService) {
         filterLinkService.loadCodeApeReceived$.subscribe(codeApe => {
@@ -61,12 +63,12 @@ export class EnterpriseComponent implements OnInit {
             this.fetchEnterprises();
         });
 
-        filterLinkService.loadTotalRevenueEntReceived$.subscribe( area => {
+        filterLinkService.loadTotalRevenueEntReceived$.subscribe(area => {
             this.listTotalRevenue = area;
             this.fetchEnterprises();
         });
 
-        filterLinkService.loadRegionEntReceived$.subscribe( area => {
+        filterLinkService.loadRegionEntReceived$.subscribe(area => {
             this.listRegion = area;
             this.fetchEnterprises();
         });
@@ -84,6 +86,7 @@ export class EnterpriseComponent implements OnInit {
             language: {url: '//cdn.datatables.net/plug-ins/1.10.11/i18n/French.json'},
             paging: true,
             retrieve: true,
+            info: false
         };
         this.fetchEnterprises();
     }
@@ -93,19 +96,23 @@ export class EnterpriseComponent implements OnInit {
         this.apiFirmService.updateLoader();
         this.apiFirmService.getEnterpriseByParameters(this.listCodeApe, this.listCategEnterprise, this.listAreaEnt,
             this.listMunicipalityEnt, this.listCreationYearEnt, this.listLegalStatus, this.listWorkforceEnt,
-            this.listTotalRevenue, this.listRegion).subscribe(data => { this.listEnterprises = [];
+            this.listTotalRevenue, this.listRegion).subscribe(data => {
+            this.listEnterprises = [];
             data['records'].forEach((value) => {
                 const enterprise = new Enterprise
                 (value.fields.siren,
-                 value.fields.nic,
-                 value.fields.l1_normalisee,
-                 value.fields.l2_normalisee,
-                 value.fields.l3_normalisee,
-                 value.fields.l4_normalisee);
+                    value.fields.nic,
+                    value.fields.l1_normalisee,
+                    value.fields.l2_normalisee,
+                    value.fields.l3_normalisee,
+                    value.fields.l4_normalisee);
                 this.listEnterprises.push(enterprise);
             });
+            this.nbResult = this.listEnterprises.length;
+            this.apiFirmService.updateNbResult(this.nbResult);
             this.apiFirmService.updateLoader();
             this.dtTrigger.next();
         });
     }
+
 }

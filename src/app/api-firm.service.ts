@@ -1,13 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {forEach} from '@angular/router/src/utils/collection';
 import {Subject} from 'rxjs/Subject';
-import {count} from 'rxjs/operator/count';
 
 @Injectable()
 export class ApiFirmService {
-    static BASE_URL = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=base-sirene%40datanova&rows=10&start=0';
+    static BASE_URL = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=base-sirene%40datanova&rows=500&start=0';
+    static BASE_URL_MAP = 'https://data.opendatasoft.com/explore/embed/dataset/base-sirene@datanova/map?';
 
     constructor(private http: HttpClient) {
     }
@@ -26,7 +25,19 @@ export class ApiFirmService {
     loader = false;
     private loadLoaderSource = new Subject<boolean>();
     loadLoaderReceived$ = this.loadLoaderSource.asObservable();
+    nbResult: number;
+    private loadNbResultSource = new Subject<number>();
+    loadNbResultReceived$ = this.loadNbResultSource.asObservable();
     ind = 0;
+    reset = false;
+    private loadResetSource = new Subject<number>();
+    loadResetReceived$ = this.loadResetSource.asObservable();
+
+    resetAll(): void {
+        this.reset = true;
+        console.log(this.reset);
+    }
+
 
     /* Verifies if the value already exists in an array */
     checkValue(value, array): Boolean {
@@ -62,6 +73,25 @@ export class ApiFirmService {
         this.addFilter(listRegion, 'libreg_new', this.region);
         console.log(ApiFirmService.BASE_URL + this.parameters);
         return this.http.get(ApiFirmService.BASE_URL + this.parameters);
+    }
+
+    /* Update this function with your parameters. And go to the map.componenent.ts */
+    /* this function return map value with the selected filter */
+    /* params : */
+    /* listCodeApe : the list of ape Code filter */
+
+    /* listCateg : the list of  enterprise categ filter */
+    getMapByParameters(listCodeApe = [], listCategEnt = [], listAreaEnt = [], listMunicipalityEnt = [],
+                       listCreationYearEnt = [], listLegalStatusEnt = []): Observable<any> {
+        this.parameters = '&q='; // init the list of parameters
+        this.addFilter(listCodeApe, 'apet700', this.codeApe);
+        this.addFilter(listCategEnt, 'categorie', this.categ);
+        this.addFilter(listAreaEnt, 'depet', this.area);
+        this.addFilter(listMunicipalityEnt, 'libcom', this.municipality);
+        this.addFilter(listCreationYearEnt, 'dcren', this.creationDate);
+        this.addFilter(listLegalStatusEnt, 'nj', this.legalstatus);
+        console.log(ApiFirmService.BASE_URL_MAP + this.parameters);
+        return this.http.get(ApiFirmService.BASE_URL_MAP + this.parameters);
     }
 
     getAllEnterprises(): Observable<Object> {
@@ -102,5 +132,10 @@ export class ApiFirmService {
             this.loader = true;
         }
         this.loadLoaderSource.next(this.loader);
+    }
+
+    updateNbResult(data) {
+        this.nbResult = data;
+        this.loadNbResultSource.next(this.nbResult);
     }
 }
