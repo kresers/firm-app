@@ -12,8 +12,8 @@
           aria-hidden="true" data-toggle="modal"
           data-target="#myModalCodePostal"></span>
     <b>Commune</b></p>
-  <div *ngIf="displayCommuneForm" class="col-md-12">
-    <div class="col-md-11 space">
+  <div *ngIf="displayCommuneForm" class="col-md-12 col-xs-12">
+    <div class="col-md-11 col-xs-11 space">
       <select class="form-control widthForm pull-right" #commune>
         <option *ngFor="let value of communeHard; let i = index"><span (click)="deleteCommune(index)"
                                                                        class="glyphicon glyphicon-remove"
@@ -21,7 +21,7 @@
         </option>
       </select>
     </div>
-    <div class="col-md-1">
+    <div class="col-md-1 col-xs-1">
       <button class="special-btn-dark-blue btn btn-primary pull-right leftFloat"
               (click)="addCommune(commune.value);">
         Ajouter

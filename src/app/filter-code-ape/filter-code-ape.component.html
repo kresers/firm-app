@@ -12,10 +12,10 @@
           data-target="#myModalCodePostal"></span>
     <b>Activité (code APE)</b></p>
   <div *ngIf="displayCodeApeForm  && displayButton == false" class="col-md-12">
-    <div class="col-md-11 space">
+    <div class="col-md-11 col-xs-11 space">
       <input class="form-control widthForm pull-right" #ape placeholder="Code APE">
     </div>
-    <div class="col-md-1">
+    <div class="col-md-1 col-xs-1">
       <button class="special-btn-orange btn btn-primary pull-right leftFloat"
               (click)="addCodeApe(ape.value);">
         Ajouter

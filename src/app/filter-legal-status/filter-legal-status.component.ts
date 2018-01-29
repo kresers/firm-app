@@ -9,7 +9,7 @@ import {ApiFirmService} from '../api-firm.service';
 export class FilterLegalStatusComponent implements OnInit {
 
     statut = [];
-    statutHard = ['5520 : Société d\'investissement à capital variable ', '5620', '7112', '7357', '5370'];
+    statutHard = ['5520', '5620', '7112', '7357', '5370'];
     displayStatutForm = false;
     statutError = false;
     resetAll: boolean;
