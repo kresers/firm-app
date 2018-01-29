@@ -2,31 +2,34 @@
 <div class="col-md-8 col-xs-11">
   <br/>
   <p> Format de fichiers plats</p>
-
   <h4 class="export_title"> CSV </h4>
 
-  <a (click)="downloadCsv()" class="separate_glyph">
+  <a (click)="downloadAllCsv()" class="separate_glyph">
     <span class="glyphicon glyphicon-download-alt"> Jeu de données entier</span>
   </a>
-  <a (click)="downloadCsv()">
+  <a (click)="downloadFilterCsv()" class="separate_glyph">
     <span class="glyphicon glyphicon-download-alt"> Jeu de données sélectionnées</span>
   </a>
+
   <p> Le CSV utilise le ; comme séparateur.</p>
+
   <h4 class="export_title"> JSON </h4>
 
-    <a (click)="downloadJson()" class="separate_glyph">
-      <span class="glyphicon glyphicon-download-alt"> Jeu de données entier</span>
-    </a>
-    <a (click)="downloadJson()" >
-      <span class="glyphicon glyphicon-download-alt"> Jeu de données sélectionnées</span>
-    </a>
+  <a download="Export entreprises.json" class="separate_glyph" [href]="exportAllJSON">
+    <span class="glyphicon glyphicon-download-alt"> Jeu de données entier</span>
+  </a>
+  <a download="Export entreprises.json" class="separate_glyph" [href]="exportFilterJSON">
+    <span class="glyphicon glyphicon-download-alt"> Jeu de données sélectionnées</span>
+  </a>
+
   <br/>
+
   <h4 class="export_title"> EXCEL </h4>
 
-    <a (click)="downloadExcel()" class="separate_glyph">
-      <span class="glyphicon glyphicon-download-alt"> Jeu de données entier</span>
-    </a>
-    <a (click)="downloadExcel()">
-      <span class="glyphicon glyphicon-download-alt"> Jeu de données sélectionnées</span>
-    </a>
+  <a (click)="downloadAllExcel()" class="separate_glyph">
+    <span class="glyphicon glyphicon-download-alt"> Jeu de données entier</span>
+  </a>
+  <a (click)="downloadFilterExcel()" class="separate_glyph">
+    <span class="glyphicon glyphicon-download-alt"> Jeu de données sélectionnées</span>
+  </a>
 </div>

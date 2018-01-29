@@ -12,14 +12,19 @@ import {FilterLinkService} from '../filter-link.service';
 })
 export class EnterpriseComponent implements OnInit {
     dtOptions: DataTables.Settings = {};
-    listEnterprises = [];
     dtTrigger: Subject<any> = new Subject();
+    listEnterprises = [];
     listCodeApe = [];
     listCategEnterprise = [];
     listAreaEnt = [];
     listMunicipalityEnt = [];
     listCreationYearEnt = [];
     listLegalStatus = [];
+    listWorkforceEnt = [];
+    listTotalRevenue = [];
+    listRegion = [];
+    nbResult: number;
+    @Output() outputNbResult = new EventEmitter<any>();
 
     constructor(private apiFirmService: ApiFirmService, private filterLinkService: FilterLinkService) {
         filterLinkService.loadCodeApeReceived$.subscribe(codeApe => {
@@ -52,19 +57,36 @@ export class EnterpriseComponent implements OnInit {
             this.listLegalStatus = area;
             this.fetchEnterprises();
         });
+
+        filterLinkService.loadWorkforceEntReceived$.subscribe(area => {
+            this.listWorkforceEnt = area;
+            this.fetchEnterprises();
+        });
+
+        filterLinkService.loadTotalRevenueEntReceived$.subscribe(area => {
+            this.listTotalRevenue = area;
+            this.fetchEnterprises();
+        });
+
+        filterLinkService.loadRegionEntReceived$.subscribe(area => {
+            this.listRegion = area;
+            this.fetchEnterprises();
+        });
     }
 
     ngOnInit(): void {
         this.dtOptions = {
             pagingType: 'full_numbers',
-            lengthMenu: [10, 50, 100, 500, 1000],
-            pageLength: 200,
+            lengthChange: false,
+            pageLength: 50,
             autoWidth: true,
             scrollY: '500px',
             searching: false,
-            deferRender: true,
+            deferRender: false,
             language: {url: '//cdn.datatables.net/plug-ins/1.10.11/i18n/French.json'},
-            paging: false,
+            paging: true,
+            retrieve: true,
+            info: false
         };
         this.fetchEnterprises();
     }
@@ -73,20 +95,24 @@ export class EnterpriseComponent implements OnInit {
     fetchEnterprises() {
         this.apiFirmService.updateLoader();
         this.apiFirmService.getEnterpriseByParameters(this.listCodeApe, this.listCategEnterprise, this.listAreaEnt,
-            this.listMunicipalityEnt, this.listCreationYearEnt, this.listLegalStatus).subscribe(data => {
+            this.listMunicipalityEnt, this.listCreationYearEnt, this.listLegalStatus, this.listWorkforceEnt,
+            this.listTotalRevenue, this.listRegion).subscribe(data => {
             this.listEnterprises = [];
             data['records'].forEach((value) => {
                 const enterprise = new Enterprise
                 (value.fields.siren,
-                 value.fields.nic,
-                 value.fields.l1_normalisee,
-                 value.fields.l2_normalisee,
-                 value.fields.l3_normalisee,
-                 value.fields.l4_normalisee);
+                    value.fields.nic,
+                    value.fields.l1_normalisee,
+                    value.fields.l2_normalisee,
+                    value.fields.l3_normalisee,
+                    value.fields.l4_normalisee);
                 this.listEnterprises.push(enterprise);
             });
+            this.nbResult = this.listEnterprises.length;
+            this.apiFirmService.updateNbResult(this.nbResult);
             this.apiFirmService.updateLoader();
+            this.dtTrigger.next();
         });
-        this.dtTrigger.next();
     }
+
 }
