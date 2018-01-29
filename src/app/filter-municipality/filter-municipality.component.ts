@@ -13,9 +13,17 @@ export class FilterMunicipalityComponent implements OnInit {
     displayCommuneForm = false;
     comError = false;
     @Output() outputListArea = new EventEmitter<{}>(); // #SEB  the value of this output is transmit to the
+    resetAll: boolean;
     // app.componenent.ts
     constructor(private apiFirmService: ApiFirmService) {
-
+        apiFirmService.loadResetAllReceived$.subscribe(data => {
+            this.resetAll = data;
+            if (this.resetAll === true) {
+                this.commune = [];
+                this.updateParentMunicipality();
+                this.displayCommuneForm = false;
+            }
+        });
     }
 
     ngOnInit() {
@@ -27,7 +35,7 @@ export class FilterMunicipalityComponent implements OnInit {
         if (status === false) {
             this.commune.push(code);
             this.comError = false;
-            this.updateParentListArea();
+            this.updateParentMunicipality();
         } else {
             this.comError = true;
         }
@@ -36,7 +44,7 @@ export class FilterMunicipalityComponent implements OnInit {
     deleteCommune(idCode): void {
         console.log(idCode);
         this.commune.splice(idCode, 1);
-        this.updateParentListArea();
+        this.updateParentMunicipality();
     }
 
     onSelectCommune(): void {
@@ -47,7 +55,7 @@ export class FilterMunicipalityComponent implements OnInit {
         }
     }
     /* #SEB  this functon update the value in the app.component.ts */
-    updateParentListArea() {
+    updateParentMunicipality() {
         this.outputListArea.emit(this.commune);
     }
 
