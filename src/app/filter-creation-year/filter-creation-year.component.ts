@@ -12,9 +12,18 @@ export class FilterCreationYearComponent implements OnInit {
     anneeCreationHard = ['2017', '2016', '2015'];
     displayAnneeCreationForm = false;
     anneeCreationError = false;
+    resetAll: boolean;
     @Output() outputListArea = new EventEmitter<{}>(); // #SEB  the value of this output is transmit to the
 
     constructor(private apiFirmService: ApiFirmService) {
+        apiFirmService.loadResetAllReceived$.subscribe(data => {
+            this.resetAll = data;
+            if (this.resetAll === true) {
+                this.anneeCreation = [];
+                this.updateParentListArea();
+                this.displayAnneeCreationForm = false;
+            }
+        });
     }
 
     ngOnInit() {

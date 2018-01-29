@@ -20,6 +20,7 @@ export class FilterAreaComponent implements OnInit {
             if (this.resetAll === true) {
                 this.departement = [];
                 this.updateParentListArea();
+                this.displayDepartementForm = false;
             }
         });
     }
