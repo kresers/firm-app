@@ -4,14 +4,10 @@
 <div>
     <div class="col-md-12 delete-bootstrap-padding fixed-top-filter">
         <div class="col-md-3 delete-bootstrap-padding ">
-            <div class="widthFilterTop">
-                <p class="title-sidebar"><span
-                        class="glyphicon glyphicon-remove pull-right reset" aria-hidden="true"></span>
-                    <b>216</b> résultats</p>
-            </div>
-            <!-- list of filters -->
+            <app-result (outputNbResult)="outputNbResult($event)"></app-result>
             <app-filter-code-ape (outputCodeApe)="outputCodeApe($event)"></app-filter-code-ape>
-            <app-filter-business-categories (outputListCateg)="outputListCateg($event)"></app-filter-business-categories>
+            <app-filter-business-categories
+                    (outputListCateg)="outputListCateg($event)"></app-filter-business-categories>
             <app-filter-area (outputListArea)="outputListArea($event)"></app-filter-area>
             <app-filter-municipality (outputListArea)="outputListMunicipality($event)"></app-filter-municipality>
             <app-filter-creation-year (outputListArea)="outputListCreationDate($event)"></app-filter-creation-year>

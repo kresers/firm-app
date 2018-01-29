@@ -25,7 +25,19 @@ export class ApiFirmService {
     loader = false;
     private loadLoaderSource = new Subject<boolean>();
     loadLoaderReceived$ = this.loadLoaderSource.asObservable();
+    nbResult: number;
+    private loadNbResultSource = new Subject<number>();
+    loadNbResultReceived$ = this.loadNbResultSource.asObservable();
     ind = 0;
+    reset = false;
+    private loadResetSource = new Subject<number>();
+    loadResetReceived$ = this.loadResetSource.asObservable();
+
+    resetAll(): void {
+        this.reset = true;
+        console.log(this.reset);
+    }
+
 
     /* Verifies if the value already exists in an array */
     checkValue(value, array): Boolean {
@@ -44,6 +56,7 @@ export class ApiFirmService {
     /* this function return entreprises with the selected filter */
     /* params : */
     /* listCodeApe : the list of ape Code filter */
+
     /* listCateg : the list of  enterprise categ filter */
     getEnterpriseByParameters(listCodeApe = [], listCategEnt = [], listAreaEnt = [], listMunicipalityEnt = [],
                               listCreationYearEnt = [], listLegalStatusEnt = [], listWorkforceEnt = [],
@@ -66,6 +79,7 @@ export class ApiFirmService {
     /* this function return map value with the selected filter */
     /* params : */
     /* listCodeApe : the list of ape Code filter */
+
     /* listCateg : the list of  enterprise categ filter */
     getMapByParameters(listCodeApe = [], listCategEnt = [], listAreaEnt = [], listMunicipalityEnt = [],
                        listCreationYearEnt = [], listLegalStatusEnt = []): Observable<any> {
@@ -88,6 +102,7 @@ export class ApiFirmService {
     /* params : */
     /* list : the list of filter value */
     /* fieldName : the name of the field in the API */
+
     /* paramName : the variable string who concat params */
     addFilter(list, fieldName, paramName) {
         this.ind = 0;
@@ -117,5 +132,10 @@ export class ApiFirmService {
             this.loader = true;
         }
         this.loadLoaderSource.next(this.loader);
+    }
+
+    updateNbResult(data) {
+        this.nbResult = data;
+        this.loadNbResultSource.next(this.nbResult);
     }
 }
