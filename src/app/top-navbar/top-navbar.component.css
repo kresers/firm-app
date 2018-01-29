@@ -11,3 +11,34 @@
     padding-left: 20px;
     padding-right: 250px;
 }
+.custom_searchbar_mini{
+    display:none;
+}
+.search-bar {
+    width: 80%!important;
+}
+.input-group-btn:last-child > .btn, .input-group-btn:last-child > .btn-group{
+    margin-left:-106px;
+}
+@media screen and (max-width: 768px) {
+
+    .custom_logo{
+        display:none;
+    }
+    .custom_searchbar{
+        display:none;
+    }
+    .custom_searchbar_mini[_ngcontent-c2]{
+        display:block;
+        width:100%;
+    }
+    .search-bar[_ngcontent-c2] {
+        margin-right:0;
+    }
+    .input-group-addon, .input-group-btn, .input-group .form-control{
+        display:block;
+    }
+    .input-group-btn:last-child > .btn, .input-group-btn:last-child > .btn-group{
+        margin-left:-1px!important;
+    }
+}
