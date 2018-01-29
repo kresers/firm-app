@@ -11,7 +11,7 @@ export class ResultComponent implements OnInit {
 
     nbResult = 0;
 
-    constructor(apifirmService: ApiFirmService) {
+    constructor(private apifirmService: ApiFirmService) {
         apifirmService.loadNbResultReceived$.subscribe(data => {
             this.nbResult = data;
         });
@@ -22,6 +22,7 @@ export class ResultComponent implements OnInit {
     }
 
     resetAllFilter(): void {
+        this.apifirmService.resetAll();
     }
 
 }
