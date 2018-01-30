@@ -42,6 +42,7 @@ export class FilterLegalStatusComponent implements OnInit {
     }
 
     deleteStatut(idCode): void {
+        this.statutError = false;
         console.log(idCode);
         this.statut.splice(idCode, 1);
     }

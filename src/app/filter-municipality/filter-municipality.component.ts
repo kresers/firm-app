@@ -42,6 +42,7 @@ export class FilterMunicipalityComponent implements OnInit {
     }
 
     deleteCommune(idCode): void {
+        this.comError = false;
         console.log(idCode);
         this.commune.splice(idCode, 1);
         this.updateParentMunicipality();
@@ -50,6 +51,7 @@ export class FilterMunicipalityComponent implements OnInit {
     onSelectCommune(): void {
         if (this.displayCommuneForm) {
             this.displayCommuneForm = false;
+            this.comError = false;
         } else {
             this.displayCommuneForm = true;
         }

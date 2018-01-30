@@ -41,6 +41,7 @@ export class FilterTotalRevenueComponent implements OnInit {
     }
 
     deleteCa(idCode): void {
+        this.caError = false;
         console.log(idCode);
         this.ca.splice(idCode, 1);
         this.updateParentTotalRevenu();
@@ -48,6 +49,7 @@ export class FilterTotalRevenueComponent implements OnInit {
 
     onSelectCa(): void {
         if (this.displayCaForm) {
+            this.caError = false;
             this.displayCaForm = false;
         } else {
             this.displayCaForm = true;

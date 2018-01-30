@@ -43,6 +43,7 @@ export class FilterRegionComponent implements OnInit {
     }
 
     deleteRegion(idCode): void {
+        this.regionError = false;
         console.log(idCode);
         this.region.splice(idCode, 1);
         this.updateParentRegion();
@@ -51,6 +52,7 @@ export class FilterRegionComponent implements OnInit {
     onSelectRegion(): void {
         if (this.displayRegionForm) {
             this.displayRegionForm = false;
+            this.regionError = false;
         } else {
             this.displayRegionForm = true;
         }

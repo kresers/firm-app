@@ -43,6 +43,7 @@ export class FilterBusinessCategoriesComponent implements OnInit {
 
     /* this function delete categ enterprise in the list of filter categ enterprise */
     deleteCategEnt(idCode): void {
+        this.categError = false;
         this.categEnt.splice(idCode, 1);
         this.updateParentListCateg();
     }

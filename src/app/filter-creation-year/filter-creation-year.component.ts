@@ -45,11 +45,13 @@ export class FilterCreationYearComponent implements OnInit {
         console.log(idCode);
         this.anneeCreation.splice(idCode,   1);
         this.updateParentListArea();
+        this.anneeCreationError = false;
     }
 
     onSelectAnneeCreation(): void {
         if (this.displayAnneeCreationForm) {
             this.displayAnneeCreationForm = false;
+            this.anneeCreationError = false;
         } else {
             this.displayAnneeCreationForm = true;
         }

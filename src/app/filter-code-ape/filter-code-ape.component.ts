@@ -44,6 +44,7 @@ export class FilterCodeApeComponent implements OnInit {
 
     /* this function delete APE code in the list of filter code APE */
     deleteCodeApe(idCode): void {
+        this.apeError = false;
         this.codeApe.splice(idCode, 1);
         this.displayButton = false;
         this.displayCodeApeForm = false;
