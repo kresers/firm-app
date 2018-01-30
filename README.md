@@ -1,4 +1,13 @@
-# FirmApp
+
+![alt text](https://i.imgur.com/Mvxn8pr.png "Logo Title Text 1")
+
+![alt text](https://i.imgur.com/EeCahmB.jpg "Logo Title Text 1")<br>
+
+# Wecome to Open Annuaire
+
+This project was made during our 3rd year of CS studies. We were given some UI and UX directions and a short but precise specifications folder. The core of the project revolves around the Firm App Api.
+
+We would like to thank [Jeff Martins](https://github.com/MWJeff) for his classes and his guidance through the year. 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5.
 

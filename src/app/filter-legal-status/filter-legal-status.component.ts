@@ -9,7 +9,7 @@ import {ApiFirmService} from '../api-firm.service';
 export class FilterLegalStatusComponent implements OnInit {
 
     statut = [];
-    statutHard = ['5520', '5620', '7112', '7357', '5370'];
+    statutHard = ['EARL','EI','EIRL','EURL','GAEC','GEIE','GIE','SARL','SA','SAS','SASU','SC','SCA','SCI','SCIC','SCM','SCOP','SCP','SCS','SEL','SELAFA','SELARL','SELAS','SELCA','SEM','SEML','SEP','SICA','SNC'];
     displayStatutForm = false;
     statutError = false;
     resetAll: boolean;
@@ -42,6 +42,7 @@ export class FilterLegalStatusComponent implements OnInit {
     }
 
     deleteStatut(idCode): void {
+        this.statutError = false;
         console.log(idCode);
         this.statut.splice(idCode, 1);
     }

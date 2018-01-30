@@ -11,7 +11,8 @@ export class FilterRegionComponent implements OnInit {
     region = [];
     resetAll: boolean;
     /** On a un problème ici. Pour que ça marche il faudrait que ça soit "Ile+de+France" **/
-    regionHard = ['Occitanie"', 'Ile de France', 'Corse'];
+    regionHard = ['Auvergne-Rhône-Alpes','Bourgogne-Franche-Comté','Bretagne','Centre-Val de Loire','Corse','Grand Est','Hauts-de-France','Île-de-France','Normandie','Nouvelle-Aquitaine','Occitanie','Pays de la Loire','Provence-Alpes-Côte d\'Azur','Guadeloupe','Martinique','Guyane','La Réunion','Mayotte'];
+
     regionError = false;
     displayRegionForm = false;
     @Output() outputRegion = new EventEmitter<{}>(); // #SEB  the value of this output is transmit to the
@@ -42,6 +43,7 @@ export class FilterRegionComponent implements OnInit {
     }
 
     deleteRegion(idCode): void {
+        this.regionError = false;
         console.log(idCode);
         this.region.splice(idCode, 1);
         this.updateParentRegion();
@@ -50,6 +52,7 @@ export class FilterRegionComponent implements OnInit {
     onSelectRegion(): void {
         if (this.displayRegionForm) {
             this.displayRegionForm = false;
+            this.regionError = false;
         } else {
             this.displayRegionForm = true;
         }
