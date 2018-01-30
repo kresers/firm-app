@@ -9,7 +9,7 @@ import {ApiFirmService} from '../api-firm.service';
 export class FilterBusinessCategoriesComponent implements OnInit {
 
     categEnt = [];
-    categEntHard = ['PME', 'ETI', 'GE'];
+    categEntHard = ['PME', 'PMI', 'TPE', 'ETI', 'GE'];
     categError = false;
     displayCategEnt = false;
     @Output() outputListCateg = new EventEmitter<{}>(); // #SEB  the value of this output is transmit to the app.componenet.ts
