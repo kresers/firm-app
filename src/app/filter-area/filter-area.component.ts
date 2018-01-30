@@ -41,6 +41,7 @@ export class FilterAreaComponent implements OnInit {
 
     deleteDepartement(idCode): void {
         console.log(idCode);
+        this.depError = false;
         this.departement.splice(idCode, 1);
         this.updateParentListArea();
 
@@ -49,7 +50,7 @@ export class FilterAreaComponent implements OnInit {
     onSelectDep(): void {
         if (this.displayDepartementForm) {
             this.displayDepartementForm = false;
-            // this.resetErrors();
+            this.depError = false;
         } else {
             this.displayDepartementForm = true;
         }

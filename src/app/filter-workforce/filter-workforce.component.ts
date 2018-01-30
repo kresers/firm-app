@@ -42,6 +42,7 @@ export class FilterWorkforceComponent implements OnInit {
     }
 
     deleteEffectifs(idCode): void {
+        this.effectifsError = false;
         console.log(idCode);
         this.effectifs.splice(idCode, 1);
         this.updateParentWorkforce();
@@ -49,6 +50,7 @@ export class FilterWorkforceComponent implements OnInit {
 
     onSelectEffectifs(): void {
         if (this.displayEffectifsForm) {
+            this.effectifsError = false;
             this.displayEffectifsForm = false;
         } else {
             this.displayEffectifsForm = true;
