@@ -41,6 +41,9 @@
     .custom_searchbar_mini[_ngcontent-c2]{
         display:block;
         width:100%;
+        margin-top: -31px;
+        margin-left: -20px;
+
     }
     .search-bar[_ngcontent-c2] {
         margin-right:0;
@@ -50,5 +53,9 @@
     }
     .input-group-btn:last-child > .btn, .input-group-btn:last-child > .btn-group{
         margin-left:-1px!important;
+    }
+    .navbar-header
+    {
+        height: 0px;
     }
 }
