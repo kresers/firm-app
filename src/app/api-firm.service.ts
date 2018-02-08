@@ -12,6 +12,7 @@ export class ApiFirmService {
     }
 
     listEnterprise = [];
+    search: any;
     parameters = '';
     codeApe = '';
     categ = '';
@@ -140,4 +141,16 @@ export class ApiFirmService {
         this.nbResult = data;
         this.loadNbResultSource.next(this.nbResult);
     }
+
+    getEnterpriseSearch( valueSearchBar = '') {
+        this.parameters = '&q='; // init the list of parameters
+        this.parameters += 'siret:';
+        this.parameters += valueSearchBar;
+        this.search = this.http.get(ApiFirmService.BASE_URL + this.parameters);
+        if (this.search['records'].length === 0 ) {
+            return this.search;
+        }
+        this.parameters += '$q=';
+    }
+
 }

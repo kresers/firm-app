@@ -23,6 +23,7 @@ export class EnterpriseComponent implements OnInit {
     listWorkforceEnt = [];
     listTotalRevenue = [];
     listRegion = [];
+    search: string;
     nbResult: number;
     @Output() outputNbResult = new EventEmitter<any>();
 
@@ -38,39 +39,48 @@ export class EnterpriseComponent implements OnInit {
             this.fetchEnterprises();
         });
 
-        filterLinkService.loadAreaEntReceived$.subscribe(area => {
-            this.listAreaEnt = area;
+        filterLinkService.loadAreaEntReceived$.subscribe(data => {
+            this.listAreaEnt = data;
             this.fetchEnterprises();
         });
 
-        filterLinkService.loadMunicipalityEntReceived$.subscribe(area => {
-            this.listMunicipalityEnt = area;
+        filterLinkService.loadMunicipalityEntReceived$.subscribe(data => {
+            this.listMunicipalityEnt = data;
             this.fetchEnterprises();
         });
 
-        filterLinkService.loadCreationDateEntReceived$.subscribe(area => {
-            this.listCreationYearEnt = area;
+        filterLinkService.loadCreationDateEntReceived$.subscribe(data => {
+            this.listCreationYearEnt = data;
             this.fetchEnterprises();
         });
 
-        filterLinkService.loadLegalStatusEntReceived$.subscribe(area => {
-            this.listLegalStatus = area;
+        filterLinkService.loadLegalStatusEntReceived$.subscribe(data => {
+            this.listLegalStatus = data;
             this.fetchEnterprises();
         });
 
-        filterLinkService.loadWorkforceEntReceived$.subscribe(area => {
-            this.listWorkforceEnt = area;
+        filterLinkService.loadWorkforceEntReceived$.subscribe(data => {
+            this.listWorkforceEnt = data;
             this.fetchEnterprises();
         });
 
-        filterLinkService.loadTotalRevenueEntReceived$.subscribe(area => {
-            this.listTotalRevenue = area;
+        filterLinkService.loadTotalRevenueEntReceived$.subscribe(data => {
+            this.listTotalRevenue = data;
             this.fetchEnterprises();
         });
 
-        filterLinkService.loadRegionEntReceived$.subscribe(area => {
-            this.listRegion = area;
+        filterLinkService.loadRegionEntReceived$.subscribe(data => {
+            this.listRegion = data;
             this.fetchEnterprises();
+        });
+        filterLinkService.loadSearchEntReceived$.subscribe(data => {
+            this.search = data;
+            const maVar = this.search;
+                if (maVar != null) {
+                    this.fetchEnterprises();
+                }else {
+                    this.fetchSearch();
+                }
         });
     }
 
@@ -114,5 +124,24 @@ export class EnterpriseComponent implements OnInit {
             this.dtTrigger.next();
         });
     }
-
+    fetchSearch() {
+        this.apiFirmService.updateLoader();
+        this.apiFirmService.getEnterpriseSearch(this.search).subscribe(data => {
+            this.listEnterprises = [];
+            data['records'].forEach((value) => {
+                const enterprise = new Enterprise
+                (value.fields.siren,
+                    value.fields.nic,
+                    value.fields.l1_normalisee,
+                    value.fields.l2_normalisee,
+                    value.fields.l3_normalisee,
+                    value.fields.l4_normalisee);
+                this.listEnterprises.push(enterprise);
+            });
+            this.nbResult = this.listEnterprises.length;
+            this.apiFirmService.updateNbResult(this.nbResult);
+            this.apiFirmService.updateLoader();
+            this.dtTrigger.next();
+        });
+    }
 }
