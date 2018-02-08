@@ -6,7 +6,8 @@ import {Subject} from 'rxjs/Subject';
 @Injectable()
 export class ApiFirmService {
     static BASE_URL = 'https://public.opendatasoft.com/api/records/1.0/search/?dataset=sirene&rows=500&start=0';
-    static BASE_URL_MAP = 'https://data.opendatasoft.com/explore/embed/dataset/base-sirene@datanova/map?';
+    static BASE_URL_MAP = 'https://public.opendatasoft.com/explore/embed/dataset/sirene/map';
+    static BASE_URL_MAP2 = 'https://data.opendatasoft.com/explore/embed/dataset/base-sirene@datanova/map?';
 
     constructor(private http: HttpClient) {
     }
