@@ -20,7 +20,6 @@ export class AppComponent {
         this.filterLinkService.LoadCodeApe(codeApe);
     }
 
-
     /* #SEB this function update the value in the service to easy access in the enterprise component */
 
     /* Don't forget to call this function in the app.component.html */
@@ -59,6 +58,9 @@ export class AppComponent {
     outputNbResult(nbResult) {
         console.log(nbResult);
         this.filterLinkService.LoadNbResult(nbResult);
+    }
+    outputSearch(search) {
+        this.filterLinkService.LoadSearch(search);
     }
 
 }
