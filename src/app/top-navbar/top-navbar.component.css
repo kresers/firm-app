@@ -7,9 +7,15 @@
 {
     font-size: 100%;
     color: #656565;
-    padding-top: 30px;
+    padding-top: 35px;
     padding-left: 20px;
-    padding-right: 250px;
+    padding-right: 329px;
+}
+
+.help-text a
+{
+    text-decoration: none;
+    color: #656565;
 }
 .custom_searchbar_mini{
     display:none;

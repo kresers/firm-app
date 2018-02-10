@@ -19,7 +19,8 @@ export class MapComponent implements OnInit {
     listLegalStatus = [];
     url: SafeResourceUrl;
 
-    constructor(private sanitizer: DomSanitizer, private apiFirmService: ApiFirmService, private filterLinkService: FilterLinkService) {
+    constructor(private sanitizer: DomSanitizer, private apiFirmService: ApiFirmService, private filterLinkService: FilterLinkService,
+                private domSanitizer: DomSanitizer) {
         filterLinkService.loadCodeApeReceived$.subscribe(codeApe => {
             this.listCodeApe = codeApe;
             this.getMap();
@@ -51,7 +52,7 @@ export class MapComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.url = '';
+        this.url = this.domSanitizer.bypassSecurityTrustResourceUrl('https://public.opendatasoft.com/explore/embed/dataset/sirene/map');
         this.getMap();
     }
 
