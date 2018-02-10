@@ -23,6 +23,8 @@ export class FilterLinkService {
     loadRegionEntReceived$ = this.loadRegionSource.asObservable();
     private loadNbResultSource = new Subject<number>();
     loadNbResultReceived$ = this.loadNbResultSource.asObservable();
+    private loadSearchSource = new Subject<string>();
+    loadSearchEntReceived$ = this.loadSearchSource.asObservable();
 
     constructor() {
     }
@@ -65,5 +67,8 @@ export class FilterLinkService {
     }
     LoadNbResult(nbResult): void {
         this.loadNbResultSource.next(nbResult);
+    }
+    LoadSearch(search): void {
+        this.loadSearchSource.next(search);
     }
 }
