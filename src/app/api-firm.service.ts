@@ -111,7 +111,6 @@ export class ApiFirmService {
     /* params : */
     /* list : the list of filter value */
     /* fieldName : the name of the field in the API */
-
     /* paramName : the variable string who concat params */
     addFilter(list, fieldName, paramName) {
         let checkFirst = false;
