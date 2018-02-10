@@ -6,7 +6,8 @@ import {Subject} from 'rxjs/Subject';
 @Injectable()
 export class ApiFirmService {
     static BASE_URL = 'https://public.opendatasoft.com/api/records/1.0/search/?dataset=sirene&rows=500&start=0';
-    static BASE_URL_MAP = 'https://data.opendatasoft.com/explore/embed/dataset/base-sirene@datanova/map?';
+    static BASE_URL_MAP = 'https://public.opendatasoft.com/explore/embed/dataset/sirene/map';
+    static BASE_URL_MAP2 = 'https://data.opendatasoft.com/explore/embed/dataset/base-sirene@datanova/map?';
 
     constructor(private http: HttpClient) {
     }
@@ -18,6 +19,7 @@ export class ApiFirmService {
     categ = '';
     area = '';
     municipality = '';
+    nbFilter: any;
     creationDate = '';
     legalstatus = '';
     workforce = '';
@@ -31,6 +33,7 @@ export class ApiFirmService {
     loadNbResultReceived$ = this.loadNbResultSource.asObservable();
     ind = 0;
     reset = false;
+    nbFiltreActif = 0;
     private loadResetSource = new Subject<number>();
     loadResetReceived$ = this.loadResetSource.asObservable();
     private loadResetAllSource = new Subject<boolean>();
@@ -70,10 +73,13 @@ export class ApiFirmService {
         this.addFilter(listAreaEnt, 'depet', this.area);
         this.addFilter(listMunicipalityEnt, 'libcom', this.municipality);
         this.addFilter(listCreationYearEnt, 'dcren', this.creationDate);
-        this.addFilter(listLegalStatusEnt, 'nj', this.legalstatus);
-        this.addFilter(listWorkforceEnt, 'tefen', this.workforce);
+        this.addFilter(listLegalStatusEnt, 'libnj', this.legalstatus);
+        this.addFilter(listWorkforceEnt, 'tefet', this.workforce);
         this.addFilter(listTotalRevenueEnt, 'tca', this.totalrevenue);
         this.addFilter(listRegion, 'libreg_new', this.region);
+        let lengthParam = 0;
+        lengthParam = this.parameters.length;
+        this.parameters = this.parameters.substring(0, lengthParam - 4);
         console.log(ApiFirmService.BASE_URL + this.parameters);
         return this.http.get(ApiFirmService.BASE_URL + this.parameters);
     }
@@ -108,10 +114,14 @@ export class ApiFirmService {
 
     /* paramName : the variable string who concat params */
     addFilter(list, fieldName, paramName) {
+        let checkFirst = false;
+        let last = false;
+        let checkFirstLast = false;
         this.ind = 0;
+        paramName += '(';
         list.forEach((item, index) => {
             if (index !== 0) {
-                paramName += '+OR+';
+                paramName += ' OR ';
             }
             if (item !== '') {
                 paramName += fieldName + ':';
@@ -119,12 +129,21 @@ export class ApiFirmService {
                 this.ind++;
             }
         });
+        paramName += ')';
         if (list.length > 0) {
-            this.parameters += paramName;
-            if (this.ind >= list.length) {
-                this.parameters += '&';
+            if (!checkFirstLast) {
+                last = fieldName;
+                checkFirstLast = true;
             }
-
+            if (!checkFirst) {
+                this.nbFiltreActif++;
+                checkFirst = true;
+            }
+            this.parameters += paramName;
+            console.log(this.nbFiltreActif);
+            if (this.nbFiltreActif > 1) {
+                this.parameters += ' AND ';
+            }
         }
     }
 
