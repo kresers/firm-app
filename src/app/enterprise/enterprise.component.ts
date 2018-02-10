@@ -76,7 +76,8 @@ export class EnterpriseComponent implements OnInit {
         filterLinkService.loadSearchEntReceived$.subscribe(data => {
             this.search = data;
             const maVar = this.search;
-                if (maVar != null) {
+            console.log(maVar);
+                if (maVar !== '') {
                     this.fetchEnterprises();
                 }else {
                     this.fetchSearch();

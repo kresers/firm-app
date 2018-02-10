@@ -147,10 +147,10 @@ export class ApiFirmService {
         this.parameters += 'siret:';
         this.parameters += valueSearchBar;
         this.search = this.http.get(ApiFirmService.BASE_URL + this.parameters);
+        console.log(this.search);
         if (this.search['records'].length === 0 ) {
             return this.search;
         }
-        this.parameters += '$q=';
     }
 
 }
