@@ -1,5 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ApiFirmService} from '../api-firm.service';
+import {Observable} from "rxjs/Observable";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
     selector: 'app-filter-code-ape',
@@ -9,19 +11,26 @@ import {ApiFirmService} from '../api-firm.service';
 export class FilterCodeApeComponent implements OnInit {
 
     codeApe = [];
+    codeApeHard = [];
     displayCodeApeForm = false;
     apeError = false;
     displayButton = false;
     resetAll: boolean;
     @Output() outputCodeApe = new EventEmitter<{}>(); // #SEB  the value of this output is transmit to the app.componenent.ts
-    constructor(private apiFirmService: ApiFirmService) {
+    constructor(private apiFirmService: ApiFirmService, private http: HttpClient) {
+        /* we load the legal status in the select list of legal status in the html code with the data of openDataDof api */
+        this.getCodeApe().subscribe(data => {
+            data['facet_groups'][0]['facets'].forEach((codeApe) => {
+                this.codeApeHard.push(codeApe['name']);
+            });
+        });
         apiFirmService.loadResetAllReceived$.subscribe(data => {
             this.resetAll = data;
             if (this.resetAll === true) {
                 this.codeApe = [];
                 this.updateParentCodeApe();
                 this.displayButton = false;
-                this.displayCodeApeForm = false ;
+                this.displayCodeApeForm = false;
             }
         });
     }
@@ -63,5 +72,10 @@ export class FilterCodeApeComponent implements OnInit {
 
     updateParentCodeApe() { // #SEB  this function update the value in the app.component.ts
         this.outputCodeApe.emit(this.codeApe);
+    }
+
+    /* this function return the municiality information of the api */
+    getCodeApe(): Observable<Object> {
+        return this.http.get('https://public.opendatasoft.com/api/records/1.0/search/?dataset=sirene&facet=apet700');
     }
 }
