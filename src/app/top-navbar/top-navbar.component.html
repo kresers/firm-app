@@ -22,18 +22,16 @@
                             </button>
                         </div>
                     </div>
-                    <!--<div class="input-group custom_searchbar_mini">-->
-                        <!--<input #search class="form-control search-bar"-->
-                               <!--placeholder="Nom de l'entreprise ...">-->
-                        <!--<div class="input-group-btn">-->
-                            <!--<button class="btn btn-default circle-glyph"-->
-                                    <!--(click)="addSearch(search.value);"><i class="glyphicon glyphicon-search "></i>-->
-                            <!--</button>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
+                    <div class="input-group custom_searchbar_mini">
+                        <input #searchmini class="form-control search-bar"
+                               placeholder="Nom de l'entreprise ...">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default circle-glyph"
+                                   (click)="addSearch(searchmini.value);"><i class="glyphicon glyphicon-search "></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-
             </div>
             <!--<p class="pull-right help-text"><a routerLink="/help" routerLinkActive="active">aide</a>-->
                 <!--<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></p>-->

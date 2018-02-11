@@ -76,11 +76,11 @@ export class EnterpriseComponent implements OnInit {
         filterLinkService.loadSearchEntReceived$.subscribe(data => {
             this.search = data;
             const maVar = this.search;
-            if (maVar !== '') {
-                this.fetchSearch();
-            }else {
-                this.fetchEnterprises();
-            }
+                if (maVar !== '') {
+                    this.fetchSearch();
+                }else {
+                    this.fetchEnterprises();
+                }
         });
     }
 
