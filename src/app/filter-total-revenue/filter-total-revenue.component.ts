@@ -8,6 +8,7 @@ import {ApiFirmService} from '../api-firm.service';
 })
 export class FilterTotalRevenueComponent implements OnInit {
 
+    /* /!\ /!\  this filter have no logic so we wait to question administrator about this filter. Do nothing in this component !!!!!!! */
     ca = [];
     resetAll: boolean;
     caHard = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -28,7 +29,6 @@ export class FilterTotalRevenueComponent implements OnInit {
     ngOnInit() {
     }
 
-    /** CHIFFRES D'AFFAIRES **/
     addCa(code: string): void {
         const status = this.apiFirmService.checkValue(code, this.ca);
         if (status === false) {

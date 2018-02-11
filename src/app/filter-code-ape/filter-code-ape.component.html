@@ -1,19 +1,22 @@
 <div class="widthFilter filter-yellow">
   <p class="title-filter">
     <span class="glyphicon glyphicon-object-align-vertical" aria-hidden="true"></span><span
-          *ngIf="displayCodeApeForm == false && displayButton == false"
+          *ngIf="displayCodeApeForm == false"
           (click)="onSelectCodeApe()"
           class="glyphicon glyphicon-plus-sign pull-right badge-plus-yellow"
           aria-hidden="true" data-toggle="modal"
           data-target="#myModalCodePostal"></span>
-    <span *ngIf="displayCodeApeForm && displayButton == false" (click)="onSelectCodeApe()"
+    <span *ngIf="displayCodeApeForm" (click)="onSelectCodeApe()"
           class="glyphicon glyphicon-minus-sign pull-right badge-plus-yellow"
           aria-hidden="true" data-toggle="modal"
           data-target="#myModalCodePostal"></span>
     <b>Activité (code APE)</b></p>
-  <div *ngIf="displayCodeApeForm  && displayButton == false" class="col-md-12">
+  <div *ngIf="displayCodeApeForm" class="col-md-12">
     <div class="col-md-11 col-xs-11 space">
-      <input class="form-control widthForm pull-right" #ape placeholder="Code APE">
+      <select class="form-control widthForm pull-right" #ape>
+        <option *ngFor="let value of codeApeHard; let i = index"> {{ value }}
+        </option>
+      </select>>
     </div>
     <div class="col-md-1 col-xs-1">
       <button class="special-btn-orange btn btn-primary pull-right leftFloat"

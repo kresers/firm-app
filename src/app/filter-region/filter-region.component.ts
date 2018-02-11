@@ -1,5 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ApiFirmService} from '../api-firm.service';
+import {Observable} from "rxjs/Observable";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
     selector: 'app-filter-region',
@@ -10,13 +12,18 @@ export class FilterRegionComponent implements OnInit {
 
     region = [];
     resetAll: boolean;
-    /** On a un problème ici. Pour que ça marche il faudrait que ça soit "Ile+de+France" **/
-    regionHard = ['Auvergne-Rhône-Alpes','Bourgogne-Franche-Comté','Bretagne','Centre-Val de Loire','Corse','Grand Est','Hauts-de-France','Île-de-France','Normandie','Nouvelle-Aquitaine','Occitanie','Pays de la Loire','Provence-Alpes-Côte d\'Azur','Guadeloupe','Martinique','Guyane','La Réunion','Mayotte'];
-
+    regionHard = [];
     regionError = false;
     displayRegionForm = false;
-    @Output() outputRegion = new EventEmitter<{}>(); // #SEB  the value of this output is transmit to the
-    constructor(private apiFirmService: ApiFirmService) {
+    @Output() outputRegion = new EventEmitter<{}>(); // the value of this output is transmit to the
+
+    constructor(private apiFirmService: ApiFirmService, private http: HttpClient) {
+        /* we load in the select list the data of region */
+        this.getRegion().subscribe(data => {
+            data['facet_groups'][0]['facets'].forEach((region) => {
+                this.regionHard.push(region['name']);
+            });
+        });
         apiFirmService.loadResetAllReceived$.subscribe(data => {
             this.resetAll = data;
             if (this.resetAll === true) {
@@ -30,7 +37,6 @@ export class FilterRegionComponent implements OnInit {
     ngOnInit() {
     }
 
-    /** REGION **/
     addRegion(code: string): void {
         const status = this.apiFirmService.checkValue(code, this.region);
         if (status === false) {
@@ -61,6 +67,11 @@ export class FilterRegionComponent implements OnInit {
     /* #SEB  this functon update the value in the app.component.ts */
     updateParentRegion() {
         this.outputRegion.emit(this.region);
+    }
+
+    /* this function return the region information of the api */
+    getRegion(): Observable<Object> {
+        return this.http.get('https://public.opendatasoft.com/api/records/1.0/search/?dataset=sirene&facet=libreg_new');
     }
 
 }
