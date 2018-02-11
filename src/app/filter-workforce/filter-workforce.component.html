@@ -15,9 +15,7 @@
   <div *ngIf="displayEffectifsForm" class="col-md-12 col-xs-12">
     <div class="col-md-11 col-xs-11 space">
       <select class="form-control widthForm pull-right" #effectifs>
-        <option *ngFor="let value of effectifsHard; let i = index"><span (click)="deleteEffectifs(index)"
-                                                                         class="glyphicon glyphicon-remove"
-                                                                         aria-hidden="true"></span> {{ value }}
+        <option *ngFor="let value of effectifsHard; let i = index"> {{ value }}
         </option>
       </select>
     </div>
@@ -29,7 +27,7 @@
     </div>
   </div>
   <ul>
-    <li *ngFor="let value of effectifs; let i = index"><span (click)="deleteStatut(index)"
+    <li *ngFor="let value of effectifs; let i = index"><span (click)="deleteEffectifs(index)"
                                                              class="glyphicon glyphicon-remove"
                                                              aria-hidden="true"></span> {{ value }}<span
             class="badge badge-default badge-pink

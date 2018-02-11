@@ -77,12 +77,14 @@ export class ApiFirmService {
         this.addFilter(listMunicipalityEnt, 'libcom', this.municipality);
         this.addFilter(listCreationYearEnt, 'dcren', this.creationDate);
         this.addFilter(listLegalStatusEnt, 'libnj', this.legalstatus);
-        this.addFilter(listWorkforceEnt, 'tefet', this.workforce);
+        this.addFilter(listWorkforceEnt, 'libtefet', this.workforce);
         this.addFilter(listTotalRevenueEnt, 'tca', this.totalrevenue);
         this.addFilter(listRegion, 'libreg_new', this.region);
-        let lengthParam = 0;
-        lengthParam = this.parameters.length;
-        this.parameters = this.parameters.substring(0, lengthParam - 4);
+        if (this.nbFiltreActif > 1) { /* we remove the last "AND" if we have more than one filter */
+            let lengthParam = 0;
+            lengthParam = this.parameters.length;
+            this.parameters = this.parameters.substring(0, lengthParam - 4);
+        }
         console.log(ApiFirmService.BASE_URL + this.parameters);
         return this.http.get(ApiFirmService.BASE_URL + this.parameters);
     }
@@ -101,7 +103,7 @@ export class ApiFirmService {
         this.addFilter(listAreaEnt, 'depet', this.area);
         this.addFilter(listMunicipalityEnt, 'libcom', this.municipality);
         this.addFilter(listCreationYearEnt, 'dcren', this.creationDate);
-        this.addFilter(listLegalStatusEnt, 'nj', this.legalstatus);
+        this.addFilter(listLegalStatusEnt, 'libnj', this.legalstatus);
         console.log(ApiFirmService.BASE_URL_MAP + this.parameters);
         return this.http.get(ApiFirmService.BASE_URL_MAP + this.parameters);
     }
@@ -164,7 +166,7 @@ export class ApiFirmService {
         this.loadNbResultSource.next(this.nbResult);
     }
 
-    getEnterpriseSearch( valueSearchBar = '') {
+    getEnterpriseSearch(valueSearchBar = '') {
         this.parameters = '&q='; // init the list of parameters
         this.parameters += 'siret:';
         this.parameters += valueSearchBar;
