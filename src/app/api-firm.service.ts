@@ -2,6 +2,9 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Subject} from 'rxjs/Subject';
+import {isDefined} from '@angular/compiler/src/util';
+import {defineDirective} from '@angular/core/src/render3';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Injectable()
 export class ApiFirmService {
@@ -165,10 +168,8 @@ export class ApiFirmService {
         this.parameters += 'siret:';
         this.parameters += valueSearchBar;
         this.search = this.http.get(ApiFirmService.BASE_URL + this.parameters);
-        console.log(this.search);
-        if (this.search['records'].length === 0 ) {
-            return this.search;
+        if (this.search !== null) {
+                return this.search;
         }
     }
-
 }
