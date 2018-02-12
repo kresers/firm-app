@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Subject} from 'rxjs/Subject';
 import {forEach} from '@angular/router/src/utils/collection';
+import {observableToBeFn} from 'rxjs/testing/TestScheduler';
 
 @Injectable()
 export class ApiFirmService {
@@ -171,7 +172,7 @@ export class ApiFirmService {
     }
 
     /* this function was call in the entreprise.component.ts to return the result of the search bar */
-    getEnterpriseSearch(valueSearchBar = '') {
+    getEnterpriseSearch(valueSearchBar = ''): Observable<Object>  {
         const label = ['siret', 'enseigne', '11_declaree'];
         let params: any;
         let url: any;
@@ -192,6 +193,8 @@ export class ApiFirmService {
             });
             console.log(url);
         });
+        // add de Thomas return pour que observable fonctionne
+        return this.http.get(ApiFirmService.BASE_URL + this.parameters);
 
         // this.resultSearchReceived.subscribe(myData => {
         //
