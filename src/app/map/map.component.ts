@@ -58,11 +58,11 @@ export class MapComponent implements OnInit {
 
     getMap() {
         this.apiFirmService.updateLoader();
-        this.apiFirmService.getMapByParameters(this.listCodeApe, this.listCategEnterprise, this.listAreaEnt,
-            this.listMunicipalityEnt, this.listCreationYearEnt, this.listLegalStatus).subscribe(data => {
-            this.url = this.sanitizer.bypassSecurityTrustResourceUrl(data);
-            this.apiFirmService.updateLoader();
-        });
+        let data: string;
+        console.log(this.listCodeApe);
+        data = this.apiFirmService.getMapByParameters(this.listCodeApe, this.listCategEnterprise, this.listAreaEnt,
+            this.listMunicipalityEnt, this.listCreationYearEnt, this.listLegalStatus);
+        this.url = this.sanitizer.bypassSecurityTrustResourceUrl('https://public.opendatasoft.com/explore/embed/dataset/sirene/map/?q=' + data);
+        this.apiFirmService.updateLoader();
     }
-
 }

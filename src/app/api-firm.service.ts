@@ -2,15 +2,11 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Subject} from 'rxjs/Subject';
-import {isDefined} from '@angular/compiler/src/util';
-import {defineDirective} from '@angular/core/src/render3';
 import {forEach} from '@angular/router/src/utils/collection';
 
 @Injectable()
 export class ApiFirmService {
     static BASE_URL = 'https://public.opendatasoft.com/api/records/1.0/search/?dataset=sirene&rows=500&start=0';
-    static BASE_URL_MAP = 'https://public.opendatasoft.com/explore/embed/dataset/sirene/map';
-    static BASE_URL_MAP2 = 'https://data.opendatasoft.com/explore/embed/dataset/base-sirene@datanova/map?';
 
     constructor(private http: HttpClient) {
     }
@@ -29,6 +25,7 @@ export class ApiFirmService {
     totalrevenue = '';
     region = '';
     loader = false;
+    nbData = 0;
     private loadLoaderSource = new Subject<boolean>();
     loadLoaderReceived$ = this.loadLoaderSource.asObservable();
     nbResult: number;
@@ -41,6 +38,8 @@ export class ApiFirmService {
     loadResetReceived$ = this.loadResetSource.asObservable();
     private loadResetAllSource = new Subject<boolean>();
     loadResetAllReceived$ = this.loadResetAllSource.asObservable();
+    resultSearch = new Subject<string>();
+    resultSearchReceived = this.resultSearch.asObservable();
 
     resetAll(): void {
         this.reset = true;
@@ -61,7 +60,7 @@ export class ApiFirmService {
         return status;
     }
 
-    /* #SEB Update this function with your parameters. And go to the enterprise.componenent.ts */
+    /* Update this function with your parameters. And go to the enterprise.componenent.ts */
     /* this function return entreprises with the selected filter */
     /* params : */
     /* listCodeApe : the list of ape Code filter */
@@ -96,16 +95,21 @@ export class ApiFirmService {
 
     /* listCateg : the list of  enterprise categ filter */
     getMapByParameters(listCodeApe = [], listCategEnt = [], listAreaEnt = [], listMunicipalityEnt = [],
-                       listCreationYearEnt = [], listLegalStatusEnt = []): Observable<any> {
-        this.parameters = '&q='; // init the list of parameters
+                       listCreationYearEnt = [], listLegalStatusEnt = []): any {
+        console.log(this.parameters);
+        this.parameters = '?q='; // init the list of parameters
         this.addFilter(listCodeApe, 'apet700', this.codeApe);
         this.addFilter(listCategEnt, 'categorie', this.categ);
         this.addFilter(listAreaEnt, 'depet', this.area);
         this.addFilter(listMunicipalityEnt, 'libcom', this.municipality);
         this.addFilter(listCreationYearEnt, 'dcren', this.creationDate);
         this.addFilter(listLegalStatusEnt, 'libnj', this.legalstatus);
-        console.log(ApiFirmService.BASE_URL_MAP + this.parameters);
-        return this.http.get(ApiFirmService.BASE_URL_MAP + this.parameters);
+        if (this.nbFiltreActif > 1) { /* we remove the last "AND" if we have more than one filter */
+            let lengthParam = 0;
+            lengthParam = this.parameters.length;
+            this.parameters = this.parameters.substring(0, lengthParam - 4);
+        }
+        return this.parameters;
     }
 
     getAllEnterprises(): Observable<Object> {
@@ -166,13 +170,32 @@ export class ApiFirmService {
         this.loadNbResultSource.next(this.nbResult);
     }
 
+    /* this function was call in the entreprise.component.ts to return the result of the search bar */
     getEnterpriseSearch(valueSearchBar = '') {
-        this.parameters = '&q='; // init the list of parameters
-        this.parameters += 'siret:';
-        this.parameters += valueSearchBar;
-        this.search = this.http.get(ApiFirmService.BASE_URL + this.parameters);
-        if (this.search !== null) {
-                return this.search;
-        }
+        const label = ['siret', 'enseigne', '11_declaree'];
+        let params: any;
+        let url: any;
+        label.forEach((item) => {
+            this.parameters = '&q=';
+            this.parameters += item + ':';
+            this.parameters += valueSearchBar;
+            this.search = this.http.get(ApiFirmService.BASE_URL + this.parameters);
+            console.log(ApiFirmService.BASE_URL + this.parameters);
+            url = this.search.subscribe(data => {
+                this.nbData = 0;
+                this.nbData = data['records'].length;
+                console.log(this.nbData);
+                if (this.nbData !== 0) {
+                    return this.http.get(ApiFirmService.BASE_URL + this.parameters);
+                    // this.resultSearch.next(this.parameters);
+                }
+            });
+            console.log(url);
+        });
+
+        // this.resultSearchReceived.subscribe(myData => {
+        //
+        // });
+        // console.log(this.resultSearch);
     }
 }

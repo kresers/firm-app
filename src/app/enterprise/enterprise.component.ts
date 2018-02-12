@@ -33,7 +33,7 @@ export class EnterpriseComponent implements OnInit {
             this.fetchEnterprises();
         });
 
-        /* #SEB call fetchEnterprise when value change */
+        /*call fetchEnterprise when value change */
         filterLinkService.loadLoaderReceived$.subscribe(categ => {
             this.listCategEnterprise = categ;
             this.fetchEnterprises();
