@@ -193,7 +193,7 @@ export class ApiFirmService {
             });
             console.log(url);
         });
-
+        return this.http.get(ApiFirmService.BASE_URL + this.parameters);
         // this.resultSearchReceived.subscribe(myData => {
         //
         // });
