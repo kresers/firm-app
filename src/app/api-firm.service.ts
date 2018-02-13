@@ -193,8 +193,6 @@ export class ApiFirmService {
             });
             console.log(url);
         });
-        // add de Thomas return pour que observable fonctionne
-        return this.http.get(ApiFirmService.BASE_URL + this.parameters);
 
         // this.resultSearchReceived.subscribe(myData => {
         //
